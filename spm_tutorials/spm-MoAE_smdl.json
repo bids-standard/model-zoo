@@ -1,0 +1,42 @@
+{
+    "BIDSModelVersion": "1.0.0",
+    "Name": "SPM_MoAE",
+    "Description": "simple block model",
+    "Input": {
+        "Include": {
+            "task": "auditory"
+        }
+    },
+    "Nodes": [
+        {
+            "Level": "subject",
+            "Model": {
+                "X": [
+                    "listening",
+                    "trans_x",
+                    "trans_y",
+                    "trans_z",
+                    "rot_x",
+                    "rot_y",
+                    "rot_z"
+                ],
+                "ModelType": "glm",
+                "Options": {
+                    "high_pass_filter_cutoff_secs": 128
+                },
+                "Software": {
+                    "SPM": {
+                        "HRF_type": "canonical",
+                        "whitening": "AR(1)"
+                    }
+                }
+            },
+            "DummyContrasts": {
+                "Contrasts": [
+                    "listening"
+                ],
+                "Type": "t"
+            }
+        }
+    ]
+}
