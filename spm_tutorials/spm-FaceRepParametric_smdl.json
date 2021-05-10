@@ -12,12 +12,12 @@
             "Level": "subject",
             "Model": {
                 "X": [
-                    "nonfamous_1",
-                    "nonfamous_2",
+                    "trial_type.nonfamous_1",
+                    "trial_type.nonfamous_2",
                     "nonfamous_2_lag_order_1",
                     "nonfamous_2_lag_order_2",
-                    "famous_1",
-                    "famous_2",
+                    "trial_type.famous_1",
+                    "trial_type.famous_2",
                     "famous_2_lag_order_1",
                     "famous_2_lag_order_2",
                     "trans_x",

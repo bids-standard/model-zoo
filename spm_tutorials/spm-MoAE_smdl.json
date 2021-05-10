@@ -12,7 +12,7 @@
             "Level": "subject",
             "Model": {
                 "X": [
-                    "listening",
+                    "trial_type.listening",
                     "trans_x",
                     "trans_y",
                     "trans_z",
@@ -33,7 +33,7 @@
             },
             "DummyContrasts": {
                 "Contrasts": [
-                    "listening"
+                    "listening*"
                 ],
                 "Type": "t"
             }

@@ -12,10 +12,10 @@
             "Level": "subject",
             "Model": {
                 "X": [
-                    "nonfamous_1",
-                    "nonfamous_2",
-                    "famous_1",
-                    "famous_2",
+                    "trial_type.nonfamous_1",
+                    "trial_type.nonfamous_2",
+                    "trial_type.famous_1",
+                    "trial_type.famous_2",
                     "trans_x",
                     "trans_y",
                     "trans_z",
@@ -54,7 +54,7 @@
                 {
                     "Name": "Main effect of Repetition",
                     "ConditionList": [
-                        "nonfamous_bf1",
+                        "nonfamous_1_bf1",
                         "nonfamous_1_bf2",
                         "nonfamous_1_bf3",
                         "nonfamous_2_bf1",
