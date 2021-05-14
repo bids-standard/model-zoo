@@ -1,0 +1,109 @@
+{
+  "Name": "NARPS",
+  "Description": "NARPS Analysis model",
+  "BIDSModelVersion": "1.0.0",
+  "Input": {
+    "task": "MGT"
+  },
+  "Nodes": [
+    {
+      "Level": "run",
+      "Name": "run",
+      "GroupBy": ["run", "subject"],
+      "Transformations": [
+        {
+          "Name": "Threshold",
+          "Input": ["gain", "loss"],
+          "Binarize": true,
+          "Output": ["gain_trials", "loss_trials"]
+        },
+        {
+          "Name": "Scale",
+          "Input": ["gain", "loss", "RT"],
+          "Demean": true,
+          "Rescale": false,
+          "Output": ["gain", "loss", "demeaned_RT"]
+        },
+        {
+          "Name": "Convolve",
+          "Model": "spm",
+          "Input": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT"]
+        }
+      ],
+      "Model": {
+        "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1]
+      },
+      "DummyContrasts": {
+        "Conditions": ["gain", "loss"],
+        "Type": "t"
+      }
+    },
+    {
+      "Level": "subject",
+      "Name": "subject",
+      "Model": {"X": [1], "Type": "Meta"},
+      "DummyContrasts": {
+        "Type": "FEMA"
+      }
+    },
+    {
+      "Level": "dataset",
+      "Name": "between-groups",
+      "Model": {
+        "X": [1, "group"],
+        "Formula": "0 + C(group)"
+      },
+      "Contrasts": [
+        {
+          "Name": "range_vs_indiference",
+          "ConditionList": ["C(group)[T.equalRange]", "C(group)[T.equalIndifference]"],
+          "Weights": [1, -1],
+          "Type": "t"
+        }
+      ]
+    },
+    {
+      "Level": "dataset",
+      "Name": "one-sample",
+      "Model": {
+        "X": [1]
+      },
+      "Contrasts": [
+        {
+          "Name": "positive",
+          "ConditionList": [1],
+          "Weights": [1],
+          "Type": "t"
+        },
+        {
+          "Name": "negative",
+          "ConditionList": [1],
+          "Weights": [-1],
+          "Type": "t"
+        }
+      ]
+    }
+  ],
+  "Edges": [
+    {
+      "Source": null,
+      "Destination": "run",
+      "GroupBy": ["run", "subject"]
+    },
+    {
+      "Source": "run",
+      "Destination": "subject",
+      "GroupBy": ["subject", "contrast"]
+    },
+    {
+      "Source": "subject",
+      "Destination": "one-sample",
+      "GroupBy": ["contrast", "group"]
+    },
+    {
+      "Source": "subject",
+      "Destination": "between-groups",
+      "GroupBy": ["contrast"]
+    }
+  ]
+}
