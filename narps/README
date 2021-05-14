@@ -1,0 +1,9 @@
+# NARPS model
+
+The NARPS dataset is included in ds001734/
+
+To explore this model, use:
+
+```
+pipenv run jupyter lab
+```
