@@ -35,20 +35,22 @@
       },
       "DummyContrasts": {
         "Conditions": ["gain", "loss"],
-        "Type": "t"
+        "Test": "t"
       }
     },
     {
       "Level": "subject",
       "Name": "subject",
+      "GroupBy": ["subject", "contrast"],
       "Model": {"X": [1], "Type": "Meta"},
       "DummyContrasts": {
-        "Type": "FEMA"
+        "Test": "t"
       }
     },
     {
       "Level": "dataset",
       "Name": "between-groups",
+      "GroupBy": ["contrast"],
       "Model": {
         "X": [1, "group"],
         "Formula": "0 + C(group)"
@@ -58,13 +60,14 @@
           "Name": "range_vs_indiference",
           "ConditionList": ["C(group)[T.equalRange]", "C(group)[T.equalIndifference]"],
           "Weights": [1, -1],
-          "Type": "t"
+          "Test": "t"
         }
       ]
     },
     {
       "Level": "dataset",
       "Name": "one-sample",
+      "GroupBy": ["contrast", "group"],
       "Model": {
         "X": [1]
       },
@@ -73,37 +76,29 @@
           "Name": "positive",
           "ConditionList": [1],
           "Weights": [1],
-          "Type": "t"
+          "Test": "t"
         },
         {
           "Name": "negative",
           "ConditionList": [1],
           "Weights": [-1],
-          "Type": "t"
+          "Test": "t"
         }
       ]
     }
   ],
   "Edges": [
     {
-      "Source": null,
-      "Destination": "run",
-      "GroupBy": ["run", "subject"]
-    },
-    {
       "Source": "run",
-      "Destination": "subject",
-      "GroupBy": ["subject", "contrast"]
+      "Destination": "subject"
     },
     {
       "Source": "subject",
-      "Destination": "one-sample",
-      "GroupBy": ["contrast", "group"]
+      "Destination": "one-sample"
     },
     {
       "Source": "subject",
-      "Destination": "between-groups",
-      "GroupBy": ["contrast"]
+      "Destination": "between-groups"
     }
   ]
 }
