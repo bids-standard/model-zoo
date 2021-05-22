@@ -39,8 +39,6 @@ layout = BIDSLayout('./ds001734/')
 # %%
 json_file = './model/model-narps_smdl.json'
 spec = json.loads(Path(json_file).read_text())
-spec["Edges"].pop(0)  # Model contains a demonstration of the null-root approach to grouping
-spec["Nodes"][1]["Model"]["Type"] = "glm"  # Set to "meta" in preparation for the meta-analysis type replacing FEMA
 spec
 
 # %%
@@ -80,11 +78,11 @@ bold = layout.get(**specs[0].entities, suffix='bold', extension='.nii.gz')[0]
 next_node = root_node.children[0].destination
 
 # %%
-root_node.children[0].group_by
+next_node.group_by
 
 # %%
 contrasts = list(chain(*[s.contrasts for s in specs]))
-sub_specs = next_node.run(contrasts, group_by=root_node.children[0].group_by)
+sub_specs = next_node.run(contrasts, group_by=next_node.group_by)
 
 # %%
 api(sub_specs[3])
@@ -95,7 +93,7 @@ api(ds1_node)
 
 # %%
 sub_contrasts = list(chain(*[s.contrasts for s in sub_specs]))
-ds1_specs = ds1_node.run(sub_contrasts, group_by=next_node.children[1].group_by)
+ds1_specs = ds1_node.run(sub_contrasts, group_by=ds1_node.group_by)
 
 # %%
 ds1_specs[0].X
@@ -105,7 +103,7 @@ pd.concat((ds1_specs[0].data, ds1_specs[0].metadata), axis=1)
 
 # %%
 ds0_node = next_node.children[0].destination 
-ds0_specs = ds0_node.run(sub_contrasts, group_by=next_node.children[0].group_by)
+ds0_specs = ds0_node.run(sub_contrasts, group_by=ds0_node.group_by)
 
 # %%
 ds0_specs[0].X
