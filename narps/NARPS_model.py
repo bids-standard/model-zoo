@@ -17,17 +17,19 @@
 # %load_ext autoreload
 # %autoreload 2
 
-from itertools import chain
+import json
 from pathlib import Path
-import pandas as pd
+from itertools import chain
+
 import numpy as np
+import pandas as pd
+
+from nilearn.plotting import plot_design_matrix
+
 import bids
 bids.config.set_option('extension_initial_dot', True)
 from bids.modeling import BIDSStatsModelsGraph
 from bids.layout import BIDSLayout
-from bids.tests import get_test_data_path
-from os.path import join
-import json
 
 def api(obj):
     return {attr: getattr(obj, attr) for attr in dir(obj) if not attr[0] == '_'}
@@ -59,6 +61,9 @@ len(specs)
 
 # %%
 api(specs[0])
+
+# %%
+plot_design_matrix(specs[0].X)
 
 # %%
 specs[0].entities
