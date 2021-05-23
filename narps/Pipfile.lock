@@ -720,7 +720,7 @@
         },
         "pybids": {
             "git": "https://github.com/bids-standard/pybids.git",
-            "ref": "da251d6f8de144a0f2acfda54daadf1bd13854a8"
+            "ref": "f27897b8a5bf26ad35d120ec89201196961c302a"
         },
         "pycparser": {
             "hashes": [
