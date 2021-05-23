@@ -69,7 +69,7 @@
     },
     {
       "Level": "dataset",
-      "Name": "one-sample",
+      "Name": "positive",
       "GroupBy": ["contrast", "group"],
       "Model": {
         "X": [1]
@@ -80,7 +80,17 @@
           "ConditionList": [1],
           "Weights": [1],
           "Test": "t"
-        },
+        }
+      ]
+    },
+    {
+      "Level": "dataset",
+      "Name": "negative",
+      "GroupBy": ["contrast", "group"],
+      "Model": {
+        "X": [1]
+      },
+      "Contrasts": [
         {
           "Name": "negative",
           "ConditionList": [1],
@@ -97,11 +107,17 @@
     },
     {
       "Source": "subject",
-      "Destination": "one-sample"
+      "Destination": "positive"
     },
     {
       "Source": "subject",
-      "Destination": "between-groups"
+      "Destination": "negative",
+      "Filter": {"contrast": "loss"}
+    },
+    {
+      "Source": "subject",
+      "Destination": "between-groups",
+      "Filter": {"contrast": "loss"}
     }
   ]
 }
