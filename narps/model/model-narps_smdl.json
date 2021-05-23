@@ -10,26 +10,29 @@
       "Level": "run",
       "Name": "run",
       "GroupBy": ["run", "subject"],
-      "Transformations": [
-        {
-          "Name": "Threshold",
-          "Input": ["gain", "loss"],
-          "Binarize": true,
-          "Output": ["gain_trials", "loss_trials"]
-        },
-        {
-          "Name": "Scale",
-          "Input": ["gain", "loss", "RT"],
-          "Demean": true,
-          "Rescale": false,
-          "Output": ["gain", "loss", "demeaned_RT"]
-        },
-        {
-          "Name": "Convolve",
-          "Model": "spm",
-          "Input": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT"]
-        }
-      ],
+      "Transformations": {
+        "Transformer": "pybids-transforms-v1",
+        "Instructions": [
+          {
+            "Name": "Threshold",
+            "Input": ["gain", "loss"],
+            "Binarize": true,
+            "Output": ["gain_trials", "loss_trials"]
+          },
+          {
+            "Name": "Scale",
+            "Input": ["gain", "loss", "RT"],
+            "Demean": true,
+            "Rescale": false,
+            "Output": ["gain", "loss", "demeaned_RT"]
+          },
+          {
+            "Name": "Convolve",
+            "Model": "spm",
+            "Input": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT"]
+          }
+        ]
+      },
       "Model": {
         "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1]
       },
