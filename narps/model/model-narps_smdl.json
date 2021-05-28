@@ -15,9 +15,9 @@
         "Instructions": [
           {
             "Name": "Threshold",
-            "Input": ["gain", "loss"],
+            "Input": ["gain"],
             "Binarize": true,
-            "Output": ["gain_trials", "loss_trials"]
+            "Output": ["trials"]
           },
           {
             "Name": "Scale",
@@ -34,7 +34,7 @@
         ]
       },
       "Model": {
-        "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1]
+        "X": ["trials", "gain", "loss", "demeaned_RT", 1]
       },
       "DummyContrasts": {
         "Conditions": ["gain", "loss"],
