@@ -29,7 +29,7 @@
           {
             "Name": "Convolve",
             "Model": "spm",
-            "Input": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT"]
+            "Input": ["trials", "gain", "loss", "demeaned_RT"]
           }
         ]
       },
