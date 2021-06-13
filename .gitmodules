@@ -6,3 +6,4 @@
 [submodule "narps/pybids"]
 	path = narps/pybids
 	url = https://github.com/bids-standard/pybids
+	datalad-url = https://github.com/bids-standard/pybids
