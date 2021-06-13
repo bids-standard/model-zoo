@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5b4cd1bb72b6e72d3f88ded22f6363e5cf551288e7995b9383430d8788c23ef7"
+            "sha256": "795b1a1fe35f1bc94b5d971d564e67200bda8949c598272cdb82d19c92601521"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -361,11 +361,11 @@
         },
         "jupytext": {
             "hashes": [
-                "sha256:184e44c2ea91a85f323d8190bd13d9dfb3b73e8d2a92d239cf5e489c98ca3605",
-                "sha256:7a32aa9edbc430653de3149de79c4ff4ee33ded2119b41ed476b5c93c9f6aff1"
+                "sha256:8dd68be6ab205097908289a187d8973a28fa6c86d438d9bfa41a01c8b2fd34a8",
+                "sha256:b7c23075151694079c0c84fe73f3fea4899bf0c800e6cd1daf16c76ac701587a"
             ],
             "index": "pypi",
-            "version": "==1.11.2"
+            "version": "==1.11.3"
         },
         "kiwisolver": {
             "hashes": [
@@ -732,7 +732,7 @@
             "extras": [
                 "plotting"
             ],
-            "path": "./../../pybids"
+            "path": "./pybids"
         },
         "pycparser": {
             "hashes": [
@@ -990,11 +990,11 @@
         },
         "terminado": {
             "hashes": [
-                "sha256:048ce7b271ad1f94c48130844af1de163e54913b919f8c268c89b36a6d468d7c",
-                "sha256:46fd07c9dc7db7321922270d544a1f18eaa7a02fd6cd4438314f27a687cabbea"
+                "sha256:89d5dac2f4e2b39758a0ff9a3b643707c95a020a6df36e70583b88297cd59cbe",
+                "sha256:c89ace5bffd0e7268bdcf22526830eb787fd146ff9d78691a0528386f92b9ae3"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==0.10.0"
+            "version": "==0.10.1"
         },
         "testpath": {
             "hashes": [
@@ -1099,11 +1099,11 @@
         },
         "websocket-client": {
             "hashes": [
-                "sha256:3e2bf58191d4619b161389a95bdce84ce9e0b24eb8107e7e590db682c2d0ca81",
-                "sha256:abf306dc6351dcef07f4d40453037e51cc5d9da2ef60d0fc5d0fe3bcda255372"
+                "sha256:b68e4959d704768fa20e35c9d508c8dc2bbc041fd8d267c0d7345cffe2824568",
+                "sha256:e5c333bfa9fa739538b652b6f8c8fc2559f1d364243c8a689d7c0e1d41c2e611"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.0.1"
+            "version": "==1.1.0"
         },
         "wrapt": {
             "hashes": [
