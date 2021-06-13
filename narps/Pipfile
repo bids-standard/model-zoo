@@ -7,7 +7,7 @@ name = "pypi"
 jupyterlab = "*"
 jupytext = "*"
 pandas = "*"
-pybids = {ref = "model/aggregate", git = "https://github.com/bids-standard/pybids.git"}
+pybids = {editable = true, extras = ["plotting"], path = "./../../pybids"}
 nilearn = "*"
 matplotlib = "*"
 
