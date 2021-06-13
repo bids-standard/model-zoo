@@ -36,7 +36,7 @@ def api(obj):
 
 
 # %%
-layout = BIDSLayout('./ds001734/')
+layout = BIDSLayout('./ds001734/', database_path="./ds001734.db")
 
 # %%
 json_file = './model/model-narps_smdl.json'
@@ -45,6 +45,9 @@ spec
 
 # %%
 graph = BIDSStatsModelsGraph(layout, spec)
+
+# %%
+graph.write_graph(format='svg')
 
 # %%
 root_node = graph.root_node
@@ -61,6 +64,9 @@ len(specs)
 
 # %%
 api(specs[0])
+
+# %%
+specs[0]
 
 # %%
 plot_design_matrix(specs[0].X)
@@ -86,6 +92,9 @@ next_node = root_node.children[0].destination
 next_node.group_by
 
 # %%
+root_node.children[0].filter
+
+# %%
 contrasts = list(chain(*[s.contrasts for s in specs]))
 sub_specs = next_node.run(contrasts, group_by=next_node.group_by)
 
@@ -93,12 +102,18 @@ sub_specs = next_node.run(contrasts, group_by=next_node.group_by)
 api(sub_specs[3])
 
 # %%
+# %pdb
+
+# %%
 ds1_node = next_node.children[1].destination
 api(ds1_node)
 
 # %%
+next_node.children[1].filter
+
+# %%
 sub_contrasts = list(chain(*[s.contrasts for s in sub_specs]))
-ds1_specs = ds1_node.run(sub_contrasts, group_by=ds1_node.group_by)
+ds1_specs = ds1_node.run(sub_contrasts, group_by=ds1_node.group_by, **next_node.children[1].filter)
 
 # %%
 ds1_specs[0].X
@@ -107,13 +122,50 @@ ds1_specs[0].X
 pd.concat((ds1_specs[0].data, ds1_specs[0].metadata), axis=1)
 
 # %%
+ds1_specs[0].contrasts
+
+# %%
 ds0_node = next_node.children[0].destination 
 ds0_specs = ds0_node.run(sub_contrasts, group_by=ds0_node.group_by)
 
 # %%
-ds0_specs[0].X
+ds0_specs
+
+# %%
+ds0_specs[1].X
 
 # %%
 pd.concat((ds0_specs[0].data, ds0_specs[0].metadata), axis=1)
+
+# %%
+ds2_node = next_node.children[2].destination 
+filters = next_node.children[2].filter or {}
+print(filters)
+ds2_specs = ds2_node.run(sub_contrasts, group_by=ds2_node.group_by, **filters)
+print(ds2_specs)
+
+# %%
+api(ds2_specs[0])
+
+# %%
+ds2_specs[0].X
+
+# %%
+pd.concat((ds2_specs[0].data, ds2_specs[0].metadata), axis=1)
+
+# %%
+api(ds1_node)
+
+# %%
+graph.nodes
+
+# %%
+graph.root_node.children
+
+# %%
+graph.root_node.children[0].destination.children
+
+# %%
+graph.root_node.children[0].destination.children[2].destination.name
 
 # %%
