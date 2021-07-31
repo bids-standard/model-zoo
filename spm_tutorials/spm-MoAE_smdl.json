@@ -1,28 +1,28 @@
 {
     "BIDSModelVersion": "1.0.0",
     "Name": "SPM_MoAE",
-    "Description": "simple block model",
+    "Description": "Mother of all experiments: simple block model",
     "Input": {
-        "Include": {
-            "task": "auditory"
-        }
+        "task": "auditory"
     },
     "Nodes": [
         {
-            "Level": "subject",
+            "Level": "Subject",
             "Model": {
                 "X": [
                     "trial_type.listening",
-                    "trans_x",
-                    "trans_y",
-                    "trans_z",
-                    "rot_x",
-                    "rot_y",
-                    "rot_z"
+                    "trans_*",
+                    "rot_*"
                 ],
-                "ModelType": "glm",
+                "Type": "glm",
                 "Options": {
                     "high_pass_filter_cutoff_secs": 128
+                },
+                "HRF": {
+                    "Variables": [
+                        "trial_type.listening"
+                    ],
+                    "Model": "DoubleGamma"
                 },
                 "Software": {
                     "SPM": {
