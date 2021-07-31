@@ -3,29 +3,84 @@
     "Name": "SPM_FaceRepetition",
     "Description": "Look at a) main effect of seeing task, b) see if repetition affects BOLD response, c) effect of motion",
     "Input": {
-        "Include": {
-            "task": "FaceRepetition"
-        }
+            "task": "facerepetition"
     },
     "Nodes": [
         {
-            "Level": "subject",
+            "Level": "Subject",
+            "Transformations": {
+                "Transformer": "TBD",
+                "Instructions": [
+                   {
+                      "Name": "AND",
+                      "Input": [
+                         "face_type==famous",
+                         "repetition_type==1"
+                      ],
+                      "Output": [
+                         "famous_1"
+                      ]
+                   },
+                   {
+                      "Name": "AND",
+                      "Input": [
+                         "face_type==famous",
+                         "repetition_type==2"
+                      ],
+                      "Output": [
+                         "famous_2"
+                      ]
+                   },
+                   {
+                      "Name": "AND",
+                      "Input": [
+                         "face_type==unfamiliar",
+                         "repetition_type==famous"
+                      ],
+                      "Output": [
+                         "unfamiliar_1"
+                      ]
+                   },
+                   {
+                      "Name": "AND",
+                      "Input": [
+                         "face_type==unfamiliar",
+                         "repetition_type==2"
+                      ],
+                      "Output": [
+                         "unfamiliar_2"
+                      ]
+                   },
+                   {
+                      "Name": "Convolve",
+                      "Model": "spm",
+                      "Input": [
+                         "famous_1",
+                         "unfamiliar_1",
+                         "famous_2",
+                         "unfamiliar_2"
+                      ]
+                   }
+                ]
+             },
             "Model": {
                 "X": [
-                    "trial_type.nonfamous_1",
-                    "trial_type.nonfamous_2",
-                    "trial_type.famous_1",
-                    "trial_type.famous_2",
-                    "trans_x",
-                    "trans_y",
-                    "trans_z",
-                    "rot_x",
-                    "rot_y",
-                    "rot_z"
+                    "famous_1",
+                    "unfamiliar_1",
+                    "famous_2",
+                    "unfamiliar_2",
+                    "trans_*",
+                    "rot_*"
                 ],
                 "ModelType": "glm",
                 "Options": {
                     "high_pass_filter_cutoff_secs": 128
+                },
+                "HRF": {
+                    "Variables": [
+                        "trial_type.listening"
+                    ],
+                    "Model": "DoubleGamma"
                 },
                 "Software": {
                     "SPM": {
@@ -38,8 +93,8 @@
                 {
                     "Name": "Positive effect of condition_1",
                     "ConditionList": [
-                        "nonfamous_1_bf1",
-                        "nonfamous_2_bf1",
+                        "unfamiliar_1_bf1",
+                        "unfamiliar_2_bf1",
                         "famous_1_bf1",
                         "famous_2_bf1"
                     ],
@@ -54,12 +109,12 @@
                 {
                     "Name": "Main effect of Repetition",
                     "ConditionList": [
-                        "nonfamous_1_bf1",
-                        "nonfamous_1_bf2",
-                        "nonfamous_1_bf3",
-                        "nonfamous_2_bf1",
-                        "nonfamous_2_bf2",
-                        "nonfamous_2_bf3",
+                        "unfamiliar_1_bf1",
+                        "unfamiliar_1_bf2",
+                        "unfamiliar_1_bf3",
+                        "unfamiliar_2_bf1",
+                        "unfamiliar_2_bf2",
+                        "unfamiliar_2_bf3",
                         "famous_1_bf1",
                         "famous_1_bf2",
                         "famous_1_bf3",
