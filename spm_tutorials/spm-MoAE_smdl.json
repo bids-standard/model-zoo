@@ -10,7 +10,7 @@
             "Level": "Subject",
             "Model": {
                 "X": [
-                    "trial_type.listening",
+                    "trial_type",
                     "trans_*",
                     "rot_*"
                 ],
@@ -20,7 +20,7 @@
                 },
                 "HRF": {
                     "Variables": [
-                        "trial_type.listening"
+                        "trial_type"
                     ],
                     "Model": "DoubleGamma"
                 },
@@ -33,7 +33,7 @@
             },
             "DummyContrasts": {
                 "Contrasts": [
-                    "listening*"
+                    "trial_type*"
                 ],
                 "Type": "t"
             }
