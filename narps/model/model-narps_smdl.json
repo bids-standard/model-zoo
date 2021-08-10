@@ -7,7 +7,7 @@
   },
   "Nodes": [
     {
-      "Level": "run",
+      "Level": "Run",
       "Name": "run",
       "GroupBy": ["run", "subject"],
       "Transformations": {
@@ -42,7 +42,7 @@
       }
     },
     {
-      "Level": "subject",
+      "Level": "Subject",
       "Name": "subject",
       "GroupBy": ["subject", "contrast"],
       "Model": {"X": [1], "Type": "Meta"},
@@ -51,7 +51,7 @@
       }
     },
     {
-      "Level": "dataset",
+      "Level": "Dataset",
       "Name": "between-groups",
       "GroupBy": ["contrast"],
       "Model": {
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "Level": "dataset",
+      "Level": "Dataset",
       "Name": "positive",
       "GroupBy": ["contrast", "group"],
       "Model": {
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "Level": "dataset",
+      "Level": "Dataset",
       "Name": "negative",
       "GroupBy": ["contrast", "group"],
       "Model": {
