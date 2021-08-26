@@ -7,7 +7,7 @@
     },
     "Nodes": [
         {
-            "Level": "Subject",
+            "Level": "Run",
             "Model": {
                 "X": [
                     "trial_type",

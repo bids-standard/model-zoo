@@ -9,7 +9,7 @@
     },
     "Nodes": [
         {
-            "Level": "subject",
+            "Level": "Run",
             "Model": {
                 "X": [
                     "trial_type.nonfamous_1",

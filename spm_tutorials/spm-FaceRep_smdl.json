@@ -7,7 +7,7 @@
     },
     "Nodes": [
         {
-            "Level": "Subject",
+            "Level": "Run",
             "Transformations": {
                 "Transformer": "TBD",
                 "Instructions": [
