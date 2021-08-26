@@ -10,20 +10,26 @@ https://www.fil.ion.ucl.ac.uk/spm/data/
 
 Simple block design: one subject, one run, one condition.
 
-Corresponding model: `spm-MoAE_smdl.json`
-
 BIDS dataset available from:
 https://www.fil.ion.ucl.ac.uk/spm/download/data/MoAEpilot/MoAEpilot.bids.zip
+
+Data on GIN:
+
+- raw: https://gin.g-node.org/RemiGau/spm_moae_raw
+- frmriprep derivatives: https://gin.g-node.org/RemiGau/spm_moae_fmriprep
+
+Statistical model: `spm-MoAE_smdl.json`
 
 ## Face repetition priming
 
 Event related design: : one subject, one run, 2 X 2 design.
 
-There is no BIDS dataset available so we provide an Matlab / Octave script to
-download and convert the data set
-(`spm_tutorials/download_convert_face_rep_ds.m`) taken from
-[cpp_spm](https://github.com/cpp-lln-lab/CPP_SPM).
+Data on GIN:
+
+- raw: https://gin.g-node.org/RemiGau/spm_facerep_raw
+- fmriprep derivatives: https://gin.g-node.org/RemiGau/spm_facerep_fmriprep
 
 Simple model: `spm-FaceRep_smdl.json`
 
 Parametric model: `spm-FaceRepParametric_smdl.json`
+
