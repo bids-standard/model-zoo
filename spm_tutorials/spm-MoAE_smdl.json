@@ -8,32 +8,31 @@
     "Nodes": [
         {
             "Level": "Run",
+            "Name": "run level",
+            "Type": "glm",
             "Model": {
                 "X": [
-                    "trial_type",
+                    "trial_type.listening",
                     "trans_*",
                     "rot_*"
                 ],
-                "Type": "glm",
-                "Options": {
-                    "high_pass_filter_cutoff_secs": 128
-                },
                 "HRF": {
-                    "Variables": [
-                        "trial_type"
-                    ],
+                    "Variables": ["trial_type.listening"],
                     "Model": "DoubleGamma"
+                },
+                "Options": {
+                    "HighPassFilterCutoffHz": 0.008,
+                    "Mask": " "
                 },
                 "Software": {
                     "SPM": {
-                        "HRF_type": "canonical",
-                        "whitening": "AR(1)"
+                        "Whitening": "AR(1)"
                     }
                 }
             },
             "DummyContrasts": {
                 "Contrasts": [
-                    "trial_type*"
+                    "trial_type.listening"
                 ],
                 "Type": "t"
             }

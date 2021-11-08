@@ -8,61 +8,64 @@
     "Nodes": [
         {
             "Level": "Run",
+            "Type": "glm",
             "Transformations": {
                 "Transformer": "TBD",
                 "Instructions": [
-                   {
-                      "Name": "AND",
-                      "Input": [
-                         "face_type==famous",
-                         "repetition_type==1"
-                      ],
-                      "Output": [
-                         "famous_1"
-                      ]
-                   },
-                   {
-                      "Name": "AND",
-                      "Input": [
-                         "face_type==famous",
-                         "repetition_type==2"
-                      ],
-                      "Output": [
-                         "famous_2"
-                      ]
-                   },
-                   {
-                      "Name": "AND",
-                      "Input": [
-                         "face_type==unfamiliar",
-                         "repetition_type==famous"
-                      ],
-                      "Output": [
-                         "unfamiliar_1"
-                      ]
-                   },
-                   {
-                      "Name": "AND",
-                      "Input": [
-                         "face_type==unfamiliar",
-                         "repetition_type==2"
-                      ],
-                      "Output": [
-                         "unfamiliar_2"
-                      ]
-                   },
-                   {
-                      "Name": "Convolve",
-                      "Model": "spm",
-                      "Input": [
-                         "famous_1",
-                         "unfamiliar_1",
-                         "famous_2",
-                         "unfamiliar_2"
-                      ]
-                   }
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==famous",
+                        "repetition_type==1"
+                    ],
+                    "Output": [
+                        "famous_1"
+                    ]
+                    },
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==famous",
+                        "repetition_type==2"
+                    ],
+                    "Output": [
+                        "famous_2"
+                    ]
+                    },
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==unfamiliar",
+                        "repetition_type==famous"
+                    ],
+                    "Output": [
+                        "unfamiliar_1"
+                    ]
+                    },
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==unfamiliar",
+                        "repetition_type==2"
+                    ],
+                    "Output": [
+                        "unfamiliar_2"
+                    ]
+                    },
+                    {
+                    "Name": "Convolve",
+                        "Model": "spm",
+                        "Input": [
+                        "famous_1",
+                        "unfamiliar_1",
+                        "famous_2",
+                        "unfamiliar_2"
+                    ],
+                    "Derivative": false,
+                    "Dispersion": false
+                    }
                 ]
-             },
+            },
             "Model": {
                 "X": [
                     "famous_1",
@@ -72,19 +75,12 @@
                     "trans_*",
                     "rot_*"
                 ],
-                "ModelType": "glm",
                 "Options": {
-                    "high_pass_filter_cutoff_secs": 128
-                },
-                "HRF": {
-                    "Variables": [
-                        "trial_type.listening"
-                    ],
-                    "Model": "DoubleGamma"
+                    "HighPassFilterCutoffHz": 0.008,
+                    "Mask": " "
                 },
                 "Software": {
                     "SPM": {
-                        "HRF_type": "informed_basis_set",
                         "whitening": "AR(1)"
                     }
                 }
