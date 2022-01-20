@@ -7,7 +7,7 @@
   },
   "Nodes": [
     {
-      "Level": "Run",
+      "Level": "run",
       "Name": "run",
       "GroupBy": ["run", "subject"],
       "Transformations": {
@@ -34,15 +34,15 @@
         ]
       },
       "Model": {
-        "X": ["trials", "gain", "loss", "demeaned_RT", 1]
+        "X": ["trials", "gain", "loss", "demeaned_RT", "rot_x", "rot_y", "rot_z", "trans_x", "trans_y", "trans_z", 1]
       },
       "DummyContrasts": {
-        "Conditions": ["gain", "loss"],
+        "Conditions": ["trials", "gain", "loss"],
         "Test": "t"
       }
     },
     {
-      "Level": "Subject",
+      "Level": "subject",
       "Name": "subject",
       "GroupBy": ["subject", "contrast"],
       "Model": {"X": [1], "Type": "Meta"},
@@ -51,7 +51,7 @@
       }
     },
     {
-      "Level": "Dataset",
+      "Level": "dataset",
       "Name": "between-groups",
       "GroupBy": ["contrast"],
       "Model": {
@@ -68,24 +68,19 @@
       ]
     },
     {
-      "Level": "Dataset",
+      "Level": "dataset",
       "Name": "positive",
       "GroupBy": ["contrast", "group"],
       "Model": {
         "X": [1]
       },
-      "Contrasts": [
-        {
-          "Name": "positive",
-          "ConditionList": [1],
-          "Weights": [1],
-          "Test": "t"
-        }
-      ]
+      "DummyContrasts": {
+        "Test": "t"
+      }
     },
     {
-      "Level": "Dataset",
-      "Name": "negative",
+      "Level": "dataset",
+      "Name": "negative-loss",
       "GroupBy": ["contrast", "group"],
       "Model": {
         "X": [1]
@@ -111,7 +106,7 @@
     },
     {
       "Source": "subject",
-      "Destination": "negative",
+      "Destination": "negative-loss",
       "Filter": {"contrast": "loss"}
     },
     {
