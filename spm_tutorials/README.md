@@ -22,14 +22,4 @@ Statistical model: `spm-MoAE_smdl.json`
 
 ## Face repetition priming
 
-Event related design: : one subject, one run, 2 X 2 design.
-
-Data on GIN:
-
-- raw: https://gin.g-node.org/RemiGau/spm_facerep_raw
-- fmriprep derivatives: https://gin.g-node.org/RemiGau/spm_facerep_fmriprep
-
-Simple model: `spm-FaceRep_smdl.json`
-
-Parametric model: `spm-FaceRepParametric_smdl.json`
 
