@@ -7,10 +7,10 @@
     },
     "Nodes": [
         {
-            "Level": "Run",
+            "Level": "run",
             "Type": "glm",
             "Transformations": {
-                "Transformer": "TBD",
+                "Transformer": "pybids-transforms-v1",
                 "Instructions": [
                     {
                     "Name": "AND",
@@ -65,7 +65,7 @@
                     "Dispersion": false
                     }
                 ]
-            },
+            },                   
             "Model": {
                 "X": [
                     "famous_1",
@@ -76,23 +76,23 @@
                     "rot_*"
                 ],
                 "Options": {
-                    "HighPassFilterCutoffHz": 0.008,
-                    "Mask": " "
+                    "HighPassFilterCutoffHz": 0.008
                 },
-                "Software": {
-                    "SPM": {
-                        "whitening": "AR(1)"
+                "Software": [
+                {"SPM": {
+                    "whitening": "AR(1)"
                     }
                 }
+                ]
             },
             "Contrasts": [
                 {
                     "Name": "Positive effect of condition_1",
                     "ConditionList": [
-                        "unfamiliar_1_bf1",
-                        "unfamiliar_2_bf1",
-                        "famous_1_bf1",
-                        "famous_2_bf1"
+                        "unfamiliar_1",
+                        "unfamiliar_2",
+                        "famous_1",
+                        "famous_2"
                     ],
                     "Weights": [
                         1,
@@ -105,23 +105,18 @@
                 {
                     "Name": "Main effect of Repetition",
                     "ConditionList": [
-                        "unfamiliar_1_bf1",
-                        "unfamiliar_1_bf2",
-                        "unfamiliar_1_bf3",
-                        "unfamiliar_2_bf1",
-                        "unfamiliar_2_bf2",
-                        "unfamiliar_2_bf3",
-                        "famous_1_bf1",
-                        "famous_1_bf2",
-                        "famous_1_bf3",
-                        "famous_2_bf3",
-                        "famous_2_bf2",
-                        "famous_2_bf3"
+                        "unfamiliar_1",
+                        "unfamiliar_2",
+                        "famous_1",
+                        "famous_2"
                     ],
                     "Weights": [
-                        [1,0,0, -1,0,0, 1,0,0, -1,0,0],
-                        [0,1,0, 0,-1,0, 0,1,0, 0,-1,0],
-                        [0,0,1, 0,0,-1, 0,0,1, 0,0,-1]
+                        [
+                            1,
+                            -1,
+                            1,
+                            -1
+                        ]
                     ],
                     "Type": "F"
                 },
