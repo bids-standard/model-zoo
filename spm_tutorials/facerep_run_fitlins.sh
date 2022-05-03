@@ -1,14 +1,14 @@
 #!/bin/bash
 
-dataset_root="$(pwd)"
+this_dir="$(pwd)"
 
-bids_dir=${dataset_root}/sourcedata/raw
-fmriprep_dir=${dataset_root}/sourcedata/fmriprep/derivatives/fmriprep
-output_dir=${dataset_root}/derivatives
-tmp_dir=${dataset_root}/tmp
-model_dir=${dataset_root}/sourcedata/model/spm_tutorials
+bids_dir=${this_dir}/facerep_raw
+fmriprep_dir=${this_dir}/facerep_fmriprep/derivatives/fmriprep
+output_dir=${this_dir}/derivatives/facerep
+tmp_dir=${this_dir}/tmp
+model_dir=${this_dir}
 
-model_file=spm-FaceRep_smdl.json
+model_file=model-FaceRep_smdl.json
 
 mkdir -p ${tmp_dir} ${output_dir}
 

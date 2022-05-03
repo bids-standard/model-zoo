@@ -8,7 +8,7 @@
     "Nodes": [
         {
             "Level": "run",
-            "Type": "glm",
+
             "Transformations": {
                 "Transformer": "pybids-transforms-v1",
                 "Instructions": [
@@ -75,14 +75,16 @@
                     "trans_*",
                     "rot_*"
                 ],
+                "Type": "glm",
                 "Options": {
                     "HighPassFilterCutoffHz": 0.008
                 },
                 "Software": [
-                {"SPM": {
-                    "whitening": "AR(1)"
+                    {
+                        "SPM": {
+                            "whitening": "AR(1)"
+                        }
                     }
-                }
                 ]
             },
             "Contrasts": [
