@@ -12,18 +12,6 @@
             "GroupBy": [
                 "run"
             ],
-            "Transformations": {
-                "Transformer": "pybids-transforms-v1",
-                "Instructions": [
-                    {
-                        "Name": "Convolve",
-                        "Model": "spm",
-                        "Input": [
-                            "trial_type.listening"
-                        ]
-                    }
-                ]
-            },
             "Model": {
                 "X": [
                     "trial_type.listening"

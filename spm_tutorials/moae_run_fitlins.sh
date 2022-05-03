@@ -1,14 +1,14 @@
 #!/bin/bash
 
-dataset_root="$(pwd)"
+this_dir="$(pwd)"
 
-bids_dir=${dataset_root}/sourcedata/raw
-fmriprep_dir=${dataset_root}/sourcedata/fmriprep
-output_dir=${dataset_root}/derivatives
-tmp_dir=${dataset_root}/tmp
-model_dir=${dataset_root}/sourcedata/model/spm_tutorials
+bids_dir=${this_dir}/moae_raw
+fmriprep_dir=${this_dir}/moae_fmriprep
+output_dir=${this_dir}/derivatives/moae
+tmp_dir=${this_dir}/tmp
+model_dir=${this_dir}
 
-model_file=spm-MoAE_smdl.json
+model_file=model-MoAE-desc-fitlins_smdl.json
 
 mkdir -p ${tmp_dir} ${output_dir}
 

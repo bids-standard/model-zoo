@@ -6,6 +6,22 @@ the SPM manual.
 Datasets and corresponding sections of the SPM manuals are available from here:
 https://www.fil.ion.ucl.ac.uk/spm/data/
 
+To run those models with fitlins:
+
+- create a virtual environment and install fitlins
+
+```bash
+virtualenv -p /usr/bin/python3.8 env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+- or get the filins docker image
+
+```bash
+docker pull poldracklab/fitlins:0.10.1
+```
+
 ## Mother of all experiments (MoAE)
 
 Simple block design: one subject, one run, one condition.
@@ -20,7 +36,21 @@ to this repository for convenience.
 - raw: https://gin.g-node.org/SPM_datasets/spm_moae_raw
 - frmriprep derivatives: https://gin.g-node.org/SPM_datasets/spm_moae_fmriprep
 
-Statistical model: `spm-MoAE_smdl.json`
+## Run with fitlins
+
+Statistical model: `model-MoAE-desc-pybids_smdl.json`
+
+Get the data with datalad
+
+```bash
+datalad get moae_raw
+datalad get moae_fmriprep
+```
+
+Run either :
+
+- `moae_run_fitlins.sh`
+- `moae_run_fitlins_docker.sh`
 
 ## Face repetition priming
 
