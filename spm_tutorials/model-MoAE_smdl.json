@@ -26,11 +26,13 @@
                 "Options": {
                     "HighPassFilterCutoffHz": 0.008
                 },
-                "Software": {
-                    "SPM": {
-                        "Whitening": "AR(1)"
+                "Software": [
+                    {
+                        "SPM": {
+                            "Whitening": "AR(1)"
+                        }
                     }
-                }
+                ]
             },
             "DummyContrasts": {
                 "Contrasts": [

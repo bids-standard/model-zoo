@@ -9,6 +9,9 @@
         {
             "Level": "run",
             "Name": "run level",
+            "GroupBy": [
+                "run"
+            ],
             "Transformations": {
                 "Transformer": "pybids-transforms-v1",
                 "Instructions": [
@@ -29,11 +32,13 @@
                 "Options": {
                     "HighPassFilterCutoffHz": 0.008
                 },
-                "Software": {
-                    "SPM": {
-                        "Whitening": "AR(1)"
+                "Software": [
+                    {
+                        "SPM": {
+                            "Whitening": "AR(1)"
+                        }
                     }
-                }
+                ]
             },
             "DummyContrasts": {
                 "Contrasts": [
