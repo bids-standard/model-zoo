@@ -7,3 +7,32 @@
 	path = narps/pybids
 	url = https://github.com/bids-standard/pybids
 	datalad-url = https://github.com/bids-standard/pybids
+[submodule "ds005/ds000005"]
+	path = ds005/ds000005
+	url = https://github.com/OpenNeuroDatasets/ds000005
+	datalad-id = b2c7f086-8704-11e8-9916-0242ac120015
+	datalad-url = https://github.com/OpenNeuroDatasets/ds000005
+[submodule "ds005/pybids"]
+	path = ds005/pybids
+	url = https://github.com/bids-standard/pybids.git
+	datalad-url = https://github.com/bids-standard/pybids.git
+[submodule "ds001/ds000001"]
+	path = ds001/ds000001
+	url = https://github.com/OpenNeuroDatasets/ds000001.git
+	datalad-id = 7cce28be-8703-11e8-bf98-0242ac120023
+	datalad-url = https://github.com/OpenNeuroDatasets/ds000001.git
+[submodule "ds003/ds000003"]
+	path = ds003/ds000003
+	url = https://github.com/OpenNeuroDatasets/ds000003.git
+	datalad-id = 9040fae2-8704-11e8-aff3-0242ac12000c
+	datalad-url = https://github.com/OpenNeuroDatasets/ds000003.git
+[submodule "ds109/ds000109"]
+	path = ds109/ds000109
+	url = https://github.com/OpenNeuroDatasets/ds000109.git
+	datalad-id = 9ff2fb46-8709-11e8-89c2-0242ac120020
+	datalad-url = https://github.com/OpenNeuroDatasets/ds000109.git
+[submodule "ds120/ds000120"]
+	path = ds120/ds000120
+	url = https://github.com/OpenNeuroDatasets/ds000120.git
+	datalad-id = 6f8ac3f8-89c2-11e8-b883-0242ac12001c
+	datalad-url = https://github.com/OpenNeuroDatasets/ds000120.git
