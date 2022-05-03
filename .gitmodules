@@ -51,3 +51,8 @@
 	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_raw.git
 	datalad-id = 2477d9ee-001c-11ec-8f9d-9cb6d0c3b1af
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_raw.git
+[submodule "spm_tutorials/facerep_fmriprep"]
+	path = spm_tutorials/facerep_fmriprep
+	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
+	datalad-id = dbcb33ec-001d-11ec-8f9d-9cb6d0c3b1af
+	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
