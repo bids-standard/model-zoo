@@ -19,7 +19,6 @@ to this repository for convenience.
 
 - raw: https://gin.g-node.org/SPM_datasets/spm_moae_raw
 - frmriprep derivatives: https://gin.g-node.org/SPM_datasets/spm_moae_fmriprep
-- fitlins analysis: https://gin.g-node.org/SPM_datasets/spm_moae_fitlins
 
 Statistical model: `spm-MoAE_smdl.json`
 
