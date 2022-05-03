@@ -41,3 +41,8 @@
 	url = git@gin.g-node.org:/SPM_datasets/spm_moae_raw.git
 	datalad-id = bdf8c016-ff3f-11eb-b67a-9cb6d0c3b1af
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_raw.git
+[submodule "spm_tutorials/moae_fmriprep"]
+	path = spm_tutorials/moae_fmriprep
+	url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
+	datalad-id = 3509d525-3771-48f3-8e6b-6ecf9feb3509
+	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
