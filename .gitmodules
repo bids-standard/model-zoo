@@ -36,3 +36,8 @@
 	url = https://github.com/OpenNeuroDatasets/ds000120.git
 	datalad-id = 6f8ac3f8-89c2-11e8-b883-0242ac12001c
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000120.git
+[submodule "ds003/ds000003-fmriprep"]
+	path = ds003/ds000003-fmriprep
+	url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
+	datalad-id = b099d04a-a2d7-4082-9660-05a9019ed8fe
+	datalad-url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
