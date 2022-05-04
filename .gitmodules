@@ -7,12 +7,6 @@
 	path = narps/pybids
 	url = https://github.com/bids-standard/pybids
 	datalad-url = https://github.com/bids-standard/pybids
-[submodule "ds001/ds000001"]
-	path = ds001/ds000001
-	url = https://github.com/jdkent/ds000001.git
-	datalad-id = 7cce28be-8703-11e8-bf98-0242ac120023
-	datalad-url = https://github.com/jdkent/ds000001.git
-	branch = try/datalad_crawl
 [submodule "ds005/ds000005"]
 	path = ds005/ds000005
 	url = https://github.com/OpenNeuroDatasets/ds000005
