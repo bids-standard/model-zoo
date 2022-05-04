@@ -1,0 +1,32 @@
+{
+  "Name": "ds2799_scrubbing",
+  "Description": "scrubbing denoising, see https://nilearn.github.io/stable/modules/generated/nilearn.interfaces.fmriprep.load_confounds_strategy.html",
+  "BIDSModelVersion": "1.0.0",
+  "Input": {
+    "task": "rest",
+    "space": "MNI152NLin2009cAsym"
+  },
+  "Nodes": [
+    {
+      "Level": "run",
+      "Name": "run",
+      "GroupBy": [
+        "run"
+      ],
+      "Model": {
+        "X": [
+          "rot*",
+          "trans*",
+          "motion_outlier*",
+          "non_steady*",
+          "white_matter*",
+          "csf*"
+        ],
+        "Options": {
+          "HighPassFilterCutoffHz" : 1,
+          "LowPassFilterCutoffHz" : 1
+        }
+      }
+    }
+  ]
+}
