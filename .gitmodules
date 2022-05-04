@@ -16,11 +16,6 @@
 	path = ds005/pybids
 	url = https://github.com/bids-standard/pybids.git
 	datalad-url = https://github.com/bids-standard/pybids.git
-[submodule "ds001/ds000001"]
-	path = ds001/ds000001
-	url = https://github.com/OpenNeuroDatasets/ds000001.git
-	datalad-id = 7cce28be-8703-11e8-bf98-0242ac120023
-	datalad-url = https://github.com/OpenNeuroDatasets/ds000001.git
 [submodule "ds003/ds000003"]
 	path = ds003/ds000003
 	url = https://github.com/OpenNeuroDatasets/ds000003.git
