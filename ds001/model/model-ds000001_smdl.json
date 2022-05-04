@@ -1,0 +1,210 @@
+{
+  "Name": "ds000001",
+  "Description": "ds000001 Analysis model",
+  "BIDSModelVersion": "1.0.0",
+  "Input": {
+    "task": "balloonanalogrisktask"
+  },
+  "Nodes": [
+    {
+      "Level": "run",
+      "Name": "run",
+      "GroupBy": ["run", "subject"],
+      "Transformations": {
+        "Transformer": "pybids-transforms-v1",
+        "Instructions": [
+          {
+            "Name": "Factor",
+            "Input": "trial_type"
+          },
+          {
+            "Name": "Rename",
+            "Input": [
+              "trial_type.pumps_demean",
+              "trial_type.control_pumps_demean",
+              "trial_type.cash_demean",
+              "trial_type.explode_demean"
+            ],
+            "Output": [
+              "pumps",
+              "control_pumps",
+              "cash",
+              "explode"
+            ]
+          },
+          {
+            "Name": "Scale",
+            "Input": [
+              "response_time",
+              "pumps_demean",
+              "control_pumps_demean",
+              "cash_demean",
+              "explode_demean"
+              ],
+            "Demean": false,
+            "Rescale": false,
+            "ReplaceNa": "after"
+          },
+          {
+            "Name": "Assign",
+            "Input": "response_time",
+            "Target": "pumps",
+            "Output": "pumps_rt",
+            "TargetAttr": "duration"
+          },
+          {
+            "Name": "Assign",
+            "Input": "response_time",
+            "Target": "control_pumps",
+            "Output": "control_pumps_rt",
+            "TargetAttr": "duration"
+          },
+          {
+            "Name": "Assign",
+            "Input": "response_time",
+            "Target": "cash",
+            "Output": "cash_rt",
+            "TargetAttr": "duration"
+          },
+          {
+            "Name": "Convolve",
+            "Model": "glover",
+            "Derivative": false,
+            "Input": [
+              "pumps",
+              "pumps_demean",
+              "pumps_rt",
+              "control_pumps",
+              "control_pumps_demean",
+              "control_pumps_rt",
+              "cash",
+              "cash_demean",
+              "cash_rt",
+              "explode",
+              "explode_demean"
+            ]
+          },
+          {
+            "Name": "Orthogonalize",
+            "Input": "pumps_rt",
+            "Other": "pumps"
+          },
+          {
+            "Name": "Orthogonalize",
+            "Input": "control_pumps_rt",
+            "Other": "control_pumps"
+          },
+          {
+            "Name": "Orthogonalize",
+            "Input": "cash_rt",
+            "Other": "cash"
+          }
+        ]
+      },
+      "Model": {
+        "X": [
+          "pumps",
+          "pumps_demean",
+          "pumps_rt",
+          "control_pumps",
+          "control_pumps_demean",
+          "control_pumps_rt",
+          "cash",
+          "cash_demean",
+          "cash_rt",
+          "explode",
+          "explode_demean",
+          "rot_x",
+          "rot_y",
+          "rot_z",
+          "trans_x",
+          "trans_y",
+          "trans_z",
+          1
+        ]
+      },
+      "Contrasts": [
+        {
+          "Name": "pumps_parametric_gt_control_parametric",
+          "ConditionList": ["pumps_demean", "control_pumps_demean"],
+          "Weights": [1, -1]
+        },
+        {
+          "Name": "pumps_parametric_lt_control_parametric",
+          "ConditionList": ["pumps_demean", "control_pumps_demean"],
+          "Weights": [-1, 1]
+        },
+        {
+          "Name": "pumps_parametric_lt_baseline",
+          "ConditionList": ["pumps_demean"],
+          "Weights": [-1]
+        },
+        {
+          "Name": "pumps_gt_control",
+          "ConditionList": ["pumps", "control_pumps"],
+          "Weights": [1, -1]
+        },
+        {
+          "Name": "pumps_lt_control",
+          "ConditionList": ["pumps", "control_pumps"],
+          "Weights": [-1, 1]
+        },
+        {
+          "Name": "pumps_rt_gt_control_rt",
+          "ConditionList": ["pumps_rt", "control_pumps_rt"],
+          "Weights": [1, -1]
+        },
+        {
+          "Name": "pumps_rt_lt_control_rt",
+          "ConditionList": ["pumps_rt", "control_pumps_rt"],
+          "Weights": [-1, 1]
+        },
+        {
+          "Name": "cash_parametric",
+          "ConditionList": ["cash_demean"],
+          "Weights": [1]
+        },
+        {
+          "Name": "cash",
+          "ConditionList": ["cash"],
+          "Weights": [1]
+        },
+        {
+          "Name": "cash_rt",
+          "ConditionList": ["cash_rt"],
+          "Weights": [1]
+        },
+        {
+          "Name": "explode_parametric",
+          "ConditionList": ["explode_demean"],
+          "Weights": [1]
+        },
+        {
+          "Name": "explode",
+          "ConditionList": ["explode"],
+          "Weights": [1]
+        }
+      ]
+    },
+    {
+      "Level": "subject",
+      "Name": "subject",
+      "GroupBy": ["subject", "contrast"],
+      "Model": {"X": [1], "Type": "Meta"},
+      "DummyContrasts": {
+        "Test": "t"
+      }
+    },
+    {
+      "Level": "dataset",
+      "Name": "overall_effect",
+      "GroupBy": ["contrast"],
+      "Model": {
+        "X": [1], "Type": "Meta"
+      },
+      "DummyContrasts": {
+        "Test": "t"
+      }
+    }
+  ]
+}
