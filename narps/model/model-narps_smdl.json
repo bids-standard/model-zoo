@@ -108,12 +108,12 @@
     {
       "Source": "subject",
       "Destination": "negative-loss",
-      "Filter": {"contrast": "loss"}
+      "Filter": [{"contrast": "loss"}]
     },
     {
       "Source": "subject",
       "Destination": "between-groups",
-      "Filter": {"contrast": "loss"}
+      "Filter": [{"contrast": "loss"}]
     }
   ]
 }
