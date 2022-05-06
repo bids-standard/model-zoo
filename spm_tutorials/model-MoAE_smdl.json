@@ -3,11 +3,11 @@
     "Name": "SPM_MoAE",
     "Description": "Mother of all experiments: simple block model",
     "Input": {
-        "task": "auditory"
+        "task": ["auditory"]
     },
     "Nodes": [
         {
-            "Level": "run",
+            "Level": "Run",
             "Name": "run level",
             "GroupBy": [
                 "run"

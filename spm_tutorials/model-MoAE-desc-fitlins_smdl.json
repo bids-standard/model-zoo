@@ -3,7 +3,7 @@
     "Name": "SPM_MoAE",
     "Description": "Mother of all experiments: simple block model to be run with fitlins",
     "Input": {
-        "task": "auditory"
+        "task": ["auditory"]
     },
     "Nodes": [
         {
