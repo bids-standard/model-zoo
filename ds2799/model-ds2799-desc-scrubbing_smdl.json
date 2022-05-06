@@ -10,9 +10,7 @@
     {
       "Level": "Run",
       "Name": "run",
-      "GroupBy": [
-        "run"
-      ],
+      "GroupBy": ["run", "session", "subject"],
       "Model": {
         "X": [
           "rot*",
