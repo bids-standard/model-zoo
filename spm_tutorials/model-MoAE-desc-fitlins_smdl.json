@@ -3,7 +3,9 @@
     "Name": "SPM_MoAE",
     "Description": "Mother of all experiments: simple block model to be run with fitlins",
     "Input": {
-        "task": ["auditory"]
+        "task": [
+            "auditory"
+        ]
     },
     "Nodes": [
         {
@@ -20,13 +22,16 @@
                         "Model": "spm",
                         "Input": [
                             "trial_type.listening"
-                        ]
+                        ],
+                        "Output": "listening"
                     }
                 ]
             },
             "Model": {
+                "Description": "simple model with a design matrix with the condition of interest and the intercept",
                 "X": [
-                    "trial_type.listening"
+                    "listening",
+                    1
                 ],
                 "Type": "glm",
                 "Options": {
@@ -42,7 +47,7 @@
             },
             "DummyContrasts": {
                 "Contrasts": [
-                    "trial_type.listening"
+                    "listening"
                 ],
                 "Test": "t"
             }
