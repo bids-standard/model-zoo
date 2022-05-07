@@ -5,9 +5,6 @@
   "Input": {
     "task": [
       "rest"
-    ],
-    "space": [
-      "MNI152NLin2009cAsym"
     ]
   },
   "Nodes": [
