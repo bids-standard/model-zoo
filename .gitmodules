@@ -46,3 +46,8 @@
 	url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
 	datalad-id = 3509d525-3771-48f3-8e6b-6ecf9feb3509
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
+[submodule "ds003/ds000003-fmriprep"]
+	path = ds003/ds000003-fmriprep
+	url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
+	datalad-id = b099d04a-a2d7-4082-9660-05a9019ed8fe
+	datalad-url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
