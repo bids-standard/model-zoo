@@ -1,13 +1,10 @@
 {
-  "Name": "ds2799_simple",
-  "Description": "simple denoising, see https://nilearn.github.io/stable/modules/generated/nilearn.interfaces.fmriprep.load_confounds_strategy.html",
+  "Name": "ds2799_compcor",
+  "Description": "scrubbing compcor, see https://nilearn.github.io/stable/modules/generated/nilearn.interfaces.fmriprep.load_confounds_strategy.html",
   "BIDSModelVersion": "1.0.0",
   "Input": {
     "task": [
       "rest"
-    ],
-    "space": [
-      "MNI152NLin2009cAsym"
     ]
   },
   "Nodes": [
@@ -20,12 +17,11 @@
         "subject"
       ],
       "Model": {
-        "Description": "removes effect of 1) realigment parameters, their squares, their derivatives and the derivatives squared and 2) the mean signal measured in CSF, white matter",
+        "Description": "removes effect of 1) realigment parameters, their squares, their derivatives and the derivatives squared and 2) the a_comp_cor noise regressors computer by fmriprep to explain 50% of the noise variance in a noise region.",
         "X": [
           "rot*",
           "trans*",
-          "white_matter",
-          "csf",
+          "a_comp_cor_??",
           1
         ],
         "Type": "glm",
