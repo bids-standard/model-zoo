@@ -25,18 +25,17 @@
                     "Variables": [
                         "trial_type.listening"
                     ],
-                    "Model": "DoubleGamma"
+                    "Model": "spm"
                 },
                 "Options": {
                     "HighPassFilterCutoffHz": 0.008
                 },
-                "Software": [
+                "Software": 
                     {
                         "SPM": {
                             "Whitening": "AR(1)"
                         }
                     }
-                ]
             },
             "DummyContrasts": {
                 "Contrasts": [
