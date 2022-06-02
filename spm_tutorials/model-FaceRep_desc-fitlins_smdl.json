@@ -3,11 +3,12 @@
     "Name": "SPM_FaceRepetition",
     "Description": "Look at a) main effect of seeing task, b) see if repetition affects BOLD response, c) effect of motion",
     "Input": {
-            "task": "facerepetition"
+            "task": ["facerepetition"]
     },
     "Nodes": [
         {
-            "Level": "run",
+            "Level": "Run",
+            "Name": "run_level",
             "GroupBy": [
                 "run"
             ],
@@ -81,13 +82,12 @@
                 "Options": {
                     "HighPassFilterCutoffHz": 0.008
                 },
-                "Software": [
-                    {
-                        "SPM": {
-                            "whitening": "AR(1)"
-                        }
+                "Software": {
+                    "SPM": {
+                        "whitening": "AR(1)"
                     }
-                ]
+                }
+                
             },
             "Contrasts": [
                 {
@@ -104,7 +104,7 @@
                         1,
                         1
                     ],
-                    "Type": "t"
+                    "Test": "t"
                 },
                 {
                     "Name": "Main effect of Repetition",
@@ -122,7 +122,7 @@
                             -1
                         ]
                     ],
-                    "Type": "F"
+                    "Test": "F"
                 },
                 {
                     "Name": "Movement-related effects",
@@ -142,7 +142,7 @@
                         [0,0,0,0,1,0],
                         [0,0,0,0,0,1]
                     ],
-                    "Type": "F"
+                    "Test": "F"
                 }                
             ]
         }
