@@ -27,7 +27,6 @@ import pandas as pd
 from nilearn.plotting import plot_design_matrix
 
 import bids
-bids.config.set_option('extension_initial_dot', True)
 from bids.modeling import BIDSStatsModelsGraph
 from bids.layout import BIDSLayout
 
