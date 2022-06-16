@@ -34,7 +34,7 @@
         ]
       },
       "Model": {
-        "X": ["trials", "gain", "loss", "demeaned_RT", "rot_x", "rot_y", "rot_z", "trans_x", "trans_y", "trans_z", 1],
+        "X": ["trials", "gain", "loss", "demeaned_RT", 1],
         "Type": "glm"
       },
       "DummyContrasts": {
