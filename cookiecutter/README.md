@@ -3,12 +3,12 @@
 ## How to use this cookiecutter?
 Reproduce the python environment using the requirements.txt. 
 
-**2. Run cookiecutter to create the template:**
+**1. Run cookiecutter to create the template:**
 ```
 cookiecutter template
 ```
 
-**3.Enter your model's information:** 
+**2.Enter your model's information:** 
 You will be asked for the following information:
 ```
 "example_name": "example_name",
@@ -26,7 +26,7 @@ that you want to analyze and have already defined a `model.json` that describes
 the BIDS Stats Models. 
 
 
-**4. This cookiecutter create the following directory tree:**
+**3. This cookiecutter creates the following directory tree:**
 ```
 {example_name}
 ├── README.md
