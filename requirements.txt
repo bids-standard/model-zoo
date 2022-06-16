@@ -1,0 +1,10 @@
+pybids
+nilearn
+pandas
+numpy
+matplotlib
+graphviz
+notebook
+cookiecutter
+jupytext
+bsmschema
