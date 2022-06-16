@@ -3,19 +3,11 @@
 	url = https://github.com/OpenNeuroDatasets/ds001734
 	datalad-id = ca05bc10-29a0-11e9-9a7b-0242ac13000d
 	datalad-url = https://github.com/OpenNeuroDatasets/ds001734
-[submodule "narps/pybids"]
-	path = narps/pybids
-	url = https://github.com/bids-standard/pybids
-	datalad-url = https://github.com/bids-standard/pybids
 [submodule "ds005/ds000005"]
 	path = ds005/ds000005
 	url = https://github.com/OpenNeuroDatasets/ds000005
 	datalad-id = b2c7f086-8704-11e8-9916-0242ac120015
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000005
-[submodule "ds005/pybids"]
-	path = ds005/pybids
-	url = https://github.com/bids-standard/pybids.git
-	datalad-url = https://github.com/bids-standard/pybids.git
 [submodule "ds001/ds000001"]
 	path = ds001/ds000001
 	url = https://github.com/OpenNeuroDatasets/ds000001.git
@@ -56,3 +48,12 @@
 	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
 	datalad-id = dbcb33ec-001d-11ec-8f9d-9cb6d0c3b1af
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
+[submodule "ds003/ds000003-fmriprep"]
+	path = ds003/ds000003-fmriprep
+	url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
+	datalad-id = b099d04a-a2d7-4082-9660-05a9019ed8fe
+	datalad-url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
+[submodule "ds2799/ds002799"]
+	path = ds2799/ds002799
+	url = https://github.com/OpenNeuroDatasets/ds002799.git
+	datalad-id = d5b52178-970c-11ea-a09a-1e09d750626b

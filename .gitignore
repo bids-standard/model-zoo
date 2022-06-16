@@ -1,6 +1,5 @@
 .ipynb_checkpoints/
-
 env
-
 spm_tutorials/tmp
 spm_tutorials/derivatives
+.vscode

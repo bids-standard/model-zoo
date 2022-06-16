@@ -7,7 +7,7 @@ name = "pypi"
 jupyterlab = "*"
 jupytext = "*"
 pandas = "*"
-pybids = {editable = true, extras = ["plotting"], path = "./pybids"}
+pybids = {version = ">=0.15.1", extras = ["plotting"]}
 nilearn = "*"
 matplotlib = "*"
 
