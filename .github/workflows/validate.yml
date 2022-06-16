@@ -1,0 +1,23 @@
+name: Model validation
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+jobs:
+  tests:
+    name: validate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install Python dependencies
+      run: |
+        python -m requirements.txt
+    - name: Validate models
+      run: |
+        make validate
