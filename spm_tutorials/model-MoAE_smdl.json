@@ -3,36 +3,39 @@
     "Name": "SPM_MoAE",
     "Description": "Mother of all experiments: simple block model",
     "Input": {
-        "task": "auditory"
+        "task": [
+            "auditory"
+        ]
     },
     "Nodes": [
         {
-            "Level": "run",
+            "Level": "Run",
             "Name": "run level",
             "GroupBy": [
                 "run"
             ],
             "Model": {
+                "Description": "simple model with a design matrix with the condition of interest and the intercept",
                 "X": [
-                    "trial_type.listening"
+                    "trial_type.listening",
+                    1
                 ],
                 "Type": "glm",
                 "HRF": {
                     "Variables": [
                         "trial_type.listening"
                     ],
-                    "Model": "DoubleGamma"
+                    "Model": "spm"
                 },
                 "Options": {
                     "HighPassFilterCutoffHz": 0.008
                 },
-                "Software": [
+                "Software": 
                     {
                         "SPM": {
                             "Whitening": "AR(1)"
                         }
                     }
-                ]
             },
             "DummyContrasts": {
                 "Contrasts": [
