@@ -36,7 +36,7 @@ to this repository for convenience.
 - raw: https://gin.g-node.org/SPM_datasets/spm_moae_raw
 - frmriprep derivatives: https://gin.g-node.org/SPM_datasets/spm_moae_fmriprep
 
-## Run with fitlins
+### Run with fitlins
 
 Statistical model: `model-MoAE-desc-pybids_smdl.json`
 
@@ -52,6 +52,31 @@ Run either :
 - `moae_run_fitlins.sh`
 - `moae_run_fitlins_docker.sh`
 
+
 ## Face repetition priming
 
-<!-- TODO -->
+Event related design: : one subject, one run, 2 X 2 design.
+
+Datasets are available on GIN as datalad datasets and also added as submodules
+to this repository for convenience.
+
+- raw: https://gin.g-node.org/SPM_datasets/spm_facerep_raw
+- fmriprep: https://gin.g-node.org/SPM_datasets/spm_facerep_fmriprep
+
+### Run with fitlins
+
+
+Simple model: `model-FaceRep_smdl.json`
+
+Parametric model: `model-FaceRepParametric_smdl.json`
+
+Get the data with datalad
+
+```bash
+datalad get facerep_raw
+datalad get facerep_fmriprep/derivatives/fmriprep
+```
+
+Run either :
+
+- `facerep_run_fitlins.sh`
