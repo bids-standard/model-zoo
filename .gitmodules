@@ -28,6 +28,26 @@
 	url = https://github.com/OpenNeuroDatasets/ds000120.git
 	datalad-id = 6f8ac3f8-89c2-11e8-b883-0242ac12001c
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000120.git
+[submodule "spm_tutorials/moae_raw"]
+	path = spm_tutorials/moae_raw
+	url = git@gin.g-node.org:/SPM_datasets/spm_moae_raw.git
+	datalad-id = bdf8c016-ff3f-11eb-b67a-9cb6d0c3b1af
+	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_raw.git
+[submodule "spm_tutorials/moae_fmriprep"]
+	path = spm_tutorials/moae_fmriprep
+	url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
+	datalad-id = 3509d525-3771-48f3-8e6b-6ecf9feb3509
+	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
+[submodule "spm_tutorials/facerep_raw"]
+	path = spm_tutorials/facerep_raw
+	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_raw.git
+	datalad-id = 2477d9ee-001c-11ec-8f9d-9cb6d0c3b1af
+	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_raw.git
+[submodule "spm_tutorials/facerep_fmriprep"]
+	path = spm_tutorials/facerep_fmriprep
+	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
+	datalad-id = dbcb33ec-001d-11ec-8f9d-9cb6d0c3b1af
+	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
 [submodule "ds003/ds000003-fmriprep"]
 	path = ds003/ds000003-fmriprep
 	url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
