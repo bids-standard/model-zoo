@@ -1,59 +1,59 @@
 [submodule "narps/ds001734"]
-	path = narps/ds001734
+	path = model-zoo/exhibits/narps/ds001734
 	url = https://github.com/OpenNeuroDatasets/ds001734
 	datalad-id = ca05bc10-29a0-11e9-9a7b-0242ac13000d
 	datalad-url = https://github.com/OpenNeuroDatasets/ds001734
 [submodule "ds005/ds000005"]
-	path = ds005/ds000005
+	path = model-zoo/exhibits/ds005/ds000005
 	url = https://github.com/OpenNeuroDatasets/ds000005
 	datalad-id = b2c7f086-8704-11e8-9916-0242ac120015
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000005
 [submodule "ds001/ds000001"]
-	path = ds001/ds000001
+	path = model-zoo/exhibits/ds001/ds000001
 	url = https://github.com/OpenNeuroDatasets/ds000001.git
 	datalad-id = 7cce28be-8703-11e8-bf98-0242ac120023
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000001.git
 [submodule "ds003/ds000003"]
-	path = ds003/ds000003
+	path = model-zoo/exhibits/ds003/ds000003
 	url = https://github.com/OpenNeuroDatasets/ds000003.git
 	datalad-id = 9040fae2-8704-11e8-aff3-0242ac12000c
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000003.git
 [submodule "ds109/ds000109"]
-	path = ds109/ds000109
+	path = model-zoo/exhibits/ds109/ds000109
 	url = https://github.com/OpenNeuroDatasets/ds000109.git
 	datalad-id = 9ff2fb46-8709-11e8-89c2-0242ac120020
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000109.git
 [submodule "ds120/ds000120"]
-	path = ds120/ds000120
+	path = model-zoo/exhibits/ds120/ds000120
 	url = https://github.com/OpenNeuroDatasets/ds000120.git
 	datalad-id = 6f8ac3f8-89c2-11e8-b883-0242ac12001c
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000120.git
 [submodule "spm_tutorials/moae_raw"]
-	path = spm_tutorials/moae_raw
+	path = model-zoo/exhibits/spm_tutorials/moae_raw
 	url = git@gin.g-node.org:/SPM_datasets/spm_moae_raw.git
 	datalad-id = bdf8c016-ff3f-11eb-b67a-9cb6d0c3b1af
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_raw.git
 [submodule "spm_tutorials/moae_fmriprep"]
-	path = spm_tutorials/moae_fmriprep
+	path = model-zoo/exhibits/spm_tutorials/moae_fmriprep
 	url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
 	datalad-id = 3509d525-3771-48f3-8e6b-6ecf9feb3509
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_moae_fmriprep.git
 [submodule "spm_tutorials/facerep_raw"]
-	path = spm_tutorials/facerep_raw
+	path = model-zoo/exhibits/spm_tutorials/facerep_raw
 	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_raw.git
 	datalad-id = 2477d9ee-001c-11ec-8f9d-9cb6d0c3b1af
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_raw.git
 [submodule "spm_tutorials/facerep_fmriprep"]
-	path = spm_tutorials/facerep_fmriprep
+	path = model-zoo/exhibits/spm_tutorials/facerep_fmriprep
 	url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
 	datalad-id = dbcb33ec-001d-11ec-8f9d-9cb6d0c3b1af
 	datalad-url = git@gin.g-node.org:/SPM_datasets/spm_facerep_fmriprep.git
 [submodule "ds003/ds000003-fmriprep"]
-	path = ds003/ds000003-fmriprep
+	path = model-zoo/exhibits/ds003/ds000003-fmriprep
 	url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
 	datalad-id = b099d04a-a2d7-4082-9660-05a9019ed8fe
 	datalad-url = https://gin.g-node.org/markiewicz/ds000003-fmriprep
 [submodule "ds2799/ds002799"]
-	path = ds2799/ds002799
+	path = model-zoo/exhibits/ds2799/ds002799
 	url = https://github.com/OpenNeuroDatasets/ds002799.git
 	datalad-id = d5b52178-970c-11ea-a09a-1e09d750626b
