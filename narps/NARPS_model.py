@@ -39,7 +39,7 @@ def api(obj):
 layout = BIDSLayout('./ds001734/', database_path="./ds001734.db")
 
 # %%
-json_file = './model/model-narps_smdl.json'
+json_file = './model-narps_smdl.json'
 spec = json.loads(Path(json_file).read_text())
 spec
 
