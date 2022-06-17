@@ -5,6 +5,5 @@ numpy
 matplotlib
 graphviz
 notebook
-cookiecutter
 jupytext
 -e git+https://github.com/bids-standard/stats-models.git#egg=bsmschema&subdirectory=bsmschema
