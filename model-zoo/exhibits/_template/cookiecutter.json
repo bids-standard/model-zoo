@@ -3,7 +3,7 @@
 "author_name": "Your name (or your organization/team)",
 "description": "A short description of the example.",
 "dataset_path": "The local path to the dataset being used",
-"model_json_path": "Path to the json describing the model",
-"scan_length": "Scan length",
-"derivatives": "Path to the fmriprep derivatives. If no derivatives are availiable type None."
+"derivatives": "Path to the fmriprep derivatives. If no derivatives are availiable type None.",
+"model_json_path": "Model file name, ending in _smdl.json",
+"scan_length": "Scan length (in seconds)"
 }
