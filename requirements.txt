@@ -7,4 +7,4 @@ graphviz
 notebook
 cookiecutter
 jupytext
-bsmschema
+-e git+https://github.com/bids-standard/stats-models.git#egg=bsmschema&subdirectory=bsmschema
