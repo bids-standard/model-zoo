@@ -1,14 +1,23 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: BIDS Stats-Models Model Zoo
-author: The BIDS Stats-Models Community
-logo: _static/bids_black.png
+title: BIDS Stats Models - Model Zoo
+author: The BIDS Community
+logo: images/bids_black.png
+
+exclude_patterns:
+  - _build
+  - Thumbs.db
+  - .DS_Store
+  - ".git*"
+  - "**.ipynb_checkpoints"
+  - "narps/*.ipynb"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 100
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -22,7 +31,7 @@ bibtex_bibfiles:
 # Information about where the book exists on the web
 repository:
   url: https://github.com/bids-standard/model-zoo  # Online location of your book
-  path_to_book: model-zoo  # Optional path to your book, relative to the repository root
+  path_to_book: .  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
@@ -30,3 +39,10 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+sphinx:
+  config:
+    nb_custom_formats:
+      .py:
+        - jupytext.reads
+        - fmt: percent
