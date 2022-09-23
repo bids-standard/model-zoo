@@ -1,0 +1,9 @@
+// ds003_model001
+digraph structs {
+	node [shape=record]
+	subject [label="<f0> name: subject|<f1> level: run"]
+	"t-test" [label="<f0> name: t-test|<f1> level: dataset"]
+	"F-test" [label="<f0> name: F-test|<f1> level: dataset"]
+	subject -> "t-test"
+	subject -> "F-test"
+}
