@@ -5,3 +5,4 @@ spm_tutorials/derivatives
 .vscode
 .DS_store
 .idea
+model-zoo/_build
