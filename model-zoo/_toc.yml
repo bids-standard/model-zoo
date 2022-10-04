@@ -3,5 +3,6 @@
 
 format: jb-book
 root: index
+title: ''
 chapters:
 - file: narps/NARPS_model.py

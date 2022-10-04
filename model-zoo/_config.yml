@@ -11,16 +11,22 @@ exclude_patterns:
   - .DS_Store
   - ".git*"
   - "**.ipynb_checkpoints"
-  - "narps/*.ipynb"
+  - "**.ipynb"
+  - "exhibits/**.md"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
   timeout: 100
+  exclude_patterns:
+    - "**.ipynb"
+    - "**.md"
+    - "**.ipynb_checkpoints"
 
 # Define the name of the latex output file for PDF builds
 latex:
+  latex_engine: xelatex
   latex_documents:
     targetname: book.tex
 
@@ -39,10 +45,15 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  home_page_in_navbar: false
 
 sphinx:
+  extra_extensions:
+   - sphinx.ext.intersphinx
   config:
     nb_custom_formats:
       .py:
         - jupytext.reads
         - fmt: percent
+    intersphinx_mapping:
+      stats-models: ['https://bids-standard.github.io/stats-models/', null]
