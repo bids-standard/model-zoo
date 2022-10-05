@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        pip install -r model-zoo/requirements.txt
+        pip install -r requirements.txt
     - name: Pull Git submodules
       run: |
         git submodule update --recursive
