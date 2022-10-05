@@ -18,7 +18,7 @@ exclude_patterns:
 execute:
   execute_notebooks: force
   timeout: 100
-  
+
 only_build_toc_files: true
 
 # Define the name of the latex output file for PDF builds
@@ -48,5 +48,6 @@ sphinx:
   extra_extensions:
    - sphinx.ext.intersphinx 
   config:
+    execution_show_tb: True
     intersphinx_mapping:
       stats-models: ['https://bids-standard.github.io/stats-models/', null]
