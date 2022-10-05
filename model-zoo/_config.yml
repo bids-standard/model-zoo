@@ -18,9 +18,8 @@ exclude_patterns:
 execute:
   execute_notebooks: force
   timeout: 100
-  exclude_patterns:
-    - "**.ipynb"
-    - "**.ipynb_checkpoints"
+  
+only_build_toc_files: true
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -47,7 +46,7 @@ html:
 
 sphinx:
   extra_extensions:
-   - sphinx.ext.intersphinx
+   - sphinx.ext.intersphinx 
   config:
     intersphinx_mapping:
       stats-models: ['https://bids-standard.github.io/stats-models/', null]

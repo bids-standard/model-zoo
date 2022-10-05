@@ -36,10 +36,6 @@ def api(obj):
 ```
 
 ```{code-cell} ipython3
-import bids
-```
-
-```{code-cell} ipython3
 layout = BIDSLayout('./ds001734/', database_path="./ds001734.db")
 ```
 
@@ -47,6 +43,13 @@ layout = BIDSLayout('./ds001734/', database_path="./ds001734.db")
 json_file = './model-narps_smdl.json'
 spec = json.loads(Path(json_file).read_text())
 spec
+```
+
+```{code-cell} ipython3
+spec['Input'] = {
+    'task': 'MGT',
+    'subject': ['001', '002', '003']
+}
 ```
 
 ```{code-cell} ipython3
@@ -70,7 +73,6 @@ except ValueError:
 
 ```{code-cell} ipython3
 specs = root_node.run(group_by=root_node.group_by, force_dense=False)
-len(specs)
 ```
 
 ```{code-cell} ipython3
