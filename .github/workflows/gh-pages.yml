@@ -20,6 +20,9 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -r model-zoo/requirements.txt
+    - name: Pull Git submodules
+      run: |
+        git submodule update --init --recursive
     - name: Build
       run: jb build -W model-zoo
     - uses: peaceiris/actions-gh-pages@v3
