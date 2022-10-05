@@ -1,4 +1,4 @@
 jupyter-book
 jupytext
-pybids[plotting]
+-e git+https://www.github.com/bids-standard/pybids.git@master#egg=pybids[plotting]
 matplotlib
