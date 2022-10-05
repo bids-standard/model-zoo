@@ -1,257 +1,253 @@
 {
-    "Name": "ds000005_altered_anova_2_by_4_cell_means",
-    "BIDSModelVersion": "1.0.0",
-    "Description": "Illustration of group model: 2x4 ANOVA using cell means approach",
-    "Input": {
-        "task": [
-            "mixedgamblestask"
-        ]
-    },
-    "Nodes": [
-        {
-            "Level": "Run",
-            "Name": "run_within_subject",
-            "GroupBy": [
-                "subject",
-                "run"
-            ],
-            "Transformations": {
-                "Transformer": "pybids-transforms-v1",
-                "Instructions": [
-                    {
-                        "Name": "Threshold",
-                        "Input": "gain",
-                        "Threshold": 0,
-                        "Binarize": true,
-                        "Output": "all_trials"
-                    },
-                    {
-                        "Name": "Demean",
-                        "Input": [
-                            "gain",
-                            "loss",
-                            "distance from indifference"
-                        ]
-                    },
-                    {
-                        "Name": "Convolve",
-                        "Input": [
-                            "all_trials",
-                            "gain",
-                            "loss",
-                            "distance from indifference"
-                        ]
-                    }
-                ]
-            },
-            "Model": {
-                "X": [
-                    "all_trials",
-                    "gain",
-                    "loss",
-                    "distance from indifference",
-                    1
-                ],
-                "Type": "glm"
-            },
-            "Contrasts": [
-                {
-                    "Name": "neg_loss_parametric",
-                    "ConditionList": [
-                        "loss"
-                    ],
-                    "Weights": [
-                        -1
-                    ],
-                    "Test": "t"
-                }
-            ]
-        },
-        {
-            "Level": "Subject",
-            "Name": "combine_runs_within_subject",
-            "GroupBy": [
-                "subject"
-            ],
-            "Model": {
-                "X": [
-                    1
-                ],
-                "Type": "meta"
-            },
-            "DummyContrasts": {
-                "Test": "t"
-            }
-        },
-        {
-            "Level": "Dataset",
-            "Name": "anova 2_by_4",
-            "GroupBy": [
-                "contrast"
-            ],
-            "Transformations": {
-                "Transformer": "pybids-transforms-v1",
-                "Instructions": [
-                    {
-                        "Name": "Factor",
-                        "Input": [
-                            "fake_patient_grp"
-                        ]
-                    },
-                    {
-                        "Name": "Factor",
-                        "Input": [
-                            "sex"
-                        ]
-                    }
-                ]
-            },
-            "Model": {
-                "X": [
-                    "fake_patient_grp.1",
-                    "fake_patient_grp.2",
-                    "fake_patient_grp.3",
-                    "fake_patient_grp.4",
-                    "sex.M",
-                    "sex.F"
-                ],
-                "Type": "glm",
-                "Formula": "~ 0 + fake_patient_grp.1:sex.M+ fake_patient_grp.1:sex.F+ fake_patient_grp.2:sex.M+ fake_patient_grp.2:sex.F+ fake_patient_grp.3:sex.M+ fake_patient_grp.3:sex.F+ fake_patient_grp.4:sex.M+ fake_patient_grp.4:sex.F"
-            },
-            "Contrasts": [
-                {
-                    "Name": "main sex effect f-test",
-                    "ConditionList": [
-                        "fake_patient_grp.1:sex.M",
-                        "fake_patient_grp.1:sex.F",
-                        "fake_patient_grp.2:sex.M",
-                        "fake_patient_grp.2:sex.F",
-                        "fake_patient_grp.3:sex.M",
-                        "fake_patient_grp.3:sex.F",
-                        "fake_patient_grp.4:sex.M",
-                        "fake_patient_grp.4:sex.F"
-                    ],
-                    "Weights": [
-                        [
-                            1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            -1,
-                            1,
-                            -1
-                        ]
-                    ],
-                    "Test": "F"
-                },
-                {
-                    "Name": "main patient group effect f-test",
-                    "ConditionList": [
-                        "fake_patient_grp.1:sex.M",
-                        "fake_patient_grp.1:sex.F",
-                        "fake_patient_grp.2:sex.M",
-                        "fake_patient_grp.2:sex.F",
-                        "fake_patient_grp.3:sex.M",
-                        "fake_patient_grp.3:sex.F",
-                        "fake_patient_grp.4:sex.M",
-                        "fake_patient_grp.4:sex.F"
-                    ],
-                    "Weights": [
-                        [
-                            [
-                                1,
-                                1,
-                                0,
-                                0,
-                                0,
-                                0,
-                                -1,
-                                -1
-                            ],
-                            [
-                                0,
-                                0,
-                                1,
-                                1,
-                                0,
-                                0,
-                                -1,
-                                -1
-                            ],
-                            [
-                                0,
-                                0,
-                                0,
-                                0,
-                                1,
-                                1,
-                                -1,
-                                -1
-                            ]
-                        ]
-                    ],
-                    "Test": "F"
-                },
-                {
-                    "Name": "Interaction effect f-test",
-                    "ConditionList": [
-                        "fake_patient_grp.1:sex.M",
-                        "fake_patient_grp.1:sex.F",
-                        "fake_patient_grp.2:sex.M",
-                        "fake_patient_grp.2:sex.F",
-                        "fake_patient_grp.3:sex.M",
-                        "fake_patient_grp.3:sex.F",
-                        "fake_patient_grp.4:sex.M",
-                        "fake_patient_grp.4:sex.F"
-                    ],
-                    "Weights": [
-                        [
-                            [
-                                1,
-                                -1,
-                                0,
-                                0,
-                                0,
-                                0,
-                                -1,
-                                1
-                            ],
-                            [
-                                0,
-                                0,
-                                1,
-                                -1,
-                                0,
-                                0,
-                                -1,
-                                1
-                            ],
-                            [
-                                0,
-                                0,
-                                0,
-                                0,
-                                1,
-                                -1,
-                                -1,
-                                1
-                            ]
-                        ]
-                    ],
-                    "Test": "F"
-                }
-            ]
-        }
-    ],
-    "Edges": [
-        {
-            "Source": "run_within_subject",
-            "Destination": "combine_runs_within_subject"
-        },
-        {
-            "Source": "combine_runs_within_subject",
-            "Destination": "anova 2_by_4"
-        }
+  "Name": "ds000005_altered_anova_2_by_4_cell_means",
+  "BIDSModelVersion": "1.0.0",
+  "Description": "Illustration of group model: 2x4 ANOVA using cell means approach",
+  "Input": {
+    "task": [
+      "mixedgamblestask"
     ]
+  },
+  "Nodes": [
+    {
+      "Level": "Run",
+      "Name": "run_within_subject",
+      "GroupBy": [
+        "subject",
+        "run"
+      ],
+      "Transformations": {
+        "Transformer": "pybids-transforms-v1",
+        "Instructions": [
+          {
+            "Name": "Threshold",
+            "Input": "gain",
+            "Threshold": 0,
+            "Binarize": true,
+            "Output": "all_trials"
+          },
+          {
+            "Name": "Demean",
+            "Input": [
+              "gain",
+              "loss",
+              "distance from indifference"
+            ]
+          },
+          {
+            "Name": "Convolve",
+            "Input": [
+              "all_trials",
+              "gain",
+              "loss",
+              "distance from indifference"
+            ]
+          }
+        ]
+      },
+      "Model": {
+        "X": [
+          "all_trials",
+          "gain",
+          "loss",
+          "distance from indifference",
+          1
+        ],
+        "Type": "glm"
+      },
+      "Contrasts": [
+        {
+          "Name": "neg_loss_parametric",
+          "ConditionList": [
+            "loss"
+          ],
+          "Weights": [
+            -1
+          ],
+          "Test": "t"
+        }
+      ]
+    },
+    {
+      "Level": "Subject",
+      "Name": "combine_runs_within_subject",
+      "GroupBy": [
+        "subject"
+      ],
+      "Model": {
+        "X": [
+          1
+        ],
+        "Type": "meta"
+      },
+      "DummyContrasts": {
+        "Test": "t"
+      }
+    },
+    {
+      "Level": "Dataset",
+      "Name": "anova 2_by_4",
+      "GroupBy": [
+        "contrast"
+      ],
+      "Transformations": {
+        "Transformer": "pybids-transforms-v1",
+        "Instructions": [
+          {
+            "Name": "Factor",
+            "Input": [
+              "fake_patient_grp"
+            ]
+          },
+          {
+            "Name": "Factor",
+            "Input": [
+              "sex"
+            ]
+          }
+        ]
+      },
+      "Model": {
+        "X": [
+          "fake_patient_grp.1",
+          "fake_patient_grp.2",
+          "fake_patient_grp.3",
+          "fake_patient_grp.4",
+          "sex.M",
+          "sex.F"
+        ],
+        "Type": "glm",
+        "Formula": "~ 0 + fake_patient_grp.1:sex.M+ fake_patient_grp.1:sex.F+ fake_patient_grp.2:sex.M+ fake_patient_grp.2:sex.F+ fake_patient_grp.3:sex.M+ fake_patient_grp.3:sex.F+ fake_patient_grp.4:sex.M+ fake_patient_grp.4:sex.F"
+      },
+      "Contrasts": [
+        {
+          "Name": "main sex effect f-test",
+          "ConditionList": [
+            "fake_patient_grp.1:sex.M",
+            "fake_patient_grp.1:sex.F",
+            "fake_patient_grp.2:sex.M",
+            "fake_patient_grp.2:sex.F",
+            "fake_patient_grp.3:sex.M",
+            "fake_patient_grp.3:sex.F",
+            "fake_patient_grp.4:sex.M",
+            "fake_patient_grp.4:sex.F"
+          ],
+          "Weights": [
+            [
+              1,
+              -1,
+              1,
+              -1,
+              1,
+              -1,
+              1,
+              -1
+            ]
+          ],
+          "Test": "F"
+        },
+        {
+          "Name": "main patient group effect f-test",
+          "ConditionList": [
+            "fake_patient_grp.1:sex.M",
+            "fake_patient_grp.1:sex.F",
+            "fake_patient_grp.2:sex.M",
+            "fake_patient_grp.2:sex.F",
+            "fake_patient_grp.3:sex.M",
+            "fake_patient_grp.3:sex.F",
+            "fake_patient_grp.4:sex.M",
+            "fake_patient_grp.4:sex.F"
+          ],
+          "Weights": [
+            [
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              -1
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              -1,
+              -1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              -1,
+              -1
+            ]
+          ],
+          "Test": "F"
+        },
+        {
+          "Name": "Interaction effect f-test",
+          "ConditionList": [
+            "fake_patient_grp.1:sex.M",
+            "fake_patient_grp.1:sex.F",
+            "fake_patient_grp.2:sex.M",
+            "fake_patient_grp.2:sex.F",
+            "fake_patient_grp.3:sex.M",
+            "fake_patient_grp.3:sex.F",
+            "fake_patient_grp.4:sex.M",
+            "fake_patient_grp.4:sex.F"
+          ],
+          "Weights": [
+            [
+              1,
+              -1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              -1,
+              0,
+              0,
+              -1,
+              1
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              -1,
+              -1,
+              1
+            ]
+          ],
+          "Test": "F"
+        }
+      ]
+    }
+  ],
+  "Edges": [
+    {
+      "Source": "run_within_subject",
+      "Destination": "combine_runs_within_subject"
+    },
+    {
+      "Source": "combine_runs_within_subject",
+      "Destination": "anova 2_by_4"
+    }
+  ]
 }
