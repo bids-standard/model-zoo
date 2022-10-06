@@ -22,10 +22,9 @@ jobs:
         pip install -r requirements.txt
     - name: Pull Git submodules
       run: |
-        git submodule deinit -f .
         git submodule update --init
     - name: Build
-      run: jb build model-zoo --all
+      run: jb build model-zoo
     - uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
