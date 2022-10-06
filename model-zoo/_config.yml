@@ -12,6 +12,7 @@ exclude_patterns:
   - ".git*"
   - "**.ipynb_checkpoints"
   - "**.ipynb"
+  - "**/derivatives/**"
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
