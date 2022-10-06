@@ -20,6 +20,7 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
+        apt-get install graphviz
     - name: Pull Git submodules
       run: |
         git submodule update --init
