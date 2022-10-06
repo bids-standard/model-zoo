@@ -52,3 +52,4 @@ sphinx:
     execution_show_tb: True
     intersphinx_mapping:
       stats-models: ['https://bids-standard.github.io/stats-models/', null]
+    nbsphinx_allow_errors: True
