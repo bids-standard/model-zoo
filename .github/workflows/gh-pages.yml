@@ -22,6 +22,7 @@ jobs:
         pip install -r requirements.txt
     - name: Pull Git submodules
       run: |
+        git submodule deinit -f .
         git submodule update --init
     - name: Build
       run: jb build model-zoo
