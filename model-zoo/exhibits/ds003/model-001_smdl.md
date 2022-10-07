@@ -11,6 +11,8 @@ kernelspec:
   name: python3
 ---
 
+# ds003 - model 1
+
 ```{code-cell} ipython3
 %load_ext autoreload
 %autoreload 2
@@ -23,7 +25,7 @@ import numpy as np
 import pandas as pd
 ```
 
-# Preamble
+## Preamble
 We will use Datalad to manage our data, which in turn depends on git-annex.
 
 ```{code-cell} ipython3
