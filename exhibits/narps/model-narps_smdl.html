@@ -509,11 +509,11 @@ title="Print to PDF"
  452  0.097324  3.315304  0.939883  8.506043e-03        1.0
  
  [453 rows x 5 columns],
- &#39;contrasts&#39;: [ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
-  ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;}),
+ &#39;contrasts&#39;: [ContrastInfo(name=&#39;intercept&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;intercept&#39;}),
   ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;}),
-  ContrastInfo(name=&#39;intercept&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;intercept&#39;}),
-  ContrastInfo(name=&#39;demeaned_RT&#39;, conditions=[&#39;demeaned_RT&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;demeaned_RT&#39;})],
+  ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
+  ContrastInfo(name=&#39;demeaned_RT&#39;, conditions=[&#39;demeaned_RT&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;demeaned_RT&#39;}),
+  ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;})],
  &#39;data&#39;:        trials      gain      loss   demeaned_RT  intercept
  0    0.000002 -0.000020 -0.000011  7.939675e-07          1
  1   -0.000005  0.000056  0.000032 -2.276861e-06          1
@@ -610,7 +610,7 @@ title="Print to PDF"
  452      1.0   .nii.gz  452.0   1      001    bold  MGT  
  
  [453 rows x 22 columns],
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7fa6f5091b80&gt;,
+ &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f72118db970&gt;,
  &#39;node&#39;: &lt;BIDSStatsModelsNode[run] run&gt;,
  &#39;sampling_rate&#39;: &#39;TR&#39;}
 </pre></div>
@@ -624,7 +624,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6d55280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720b6da430&gt;
 </pre></div>
 </div>
 </div>
@@ -1039,21 +1039,21 @@ title="Print to PDF"
  1          1
  2          1
  3          1,
- &#39;contrasts&#39;: [ContrastInfo(name=&#39;intercept&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;intercept&#39;, &#39;subject&#39;: &#39;001&#39;})],
+ &#39;contrasts&#39;: [ContrastInfo(name=&#39;demeaned_RT&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;demeaned_RT&#39;, &#39;subject&#39;: &#39;001&#39;})],
  &#39;data&#39;:    intercept
  0          1
  1          1
  2          1
  3          1,
- &#39;entities&#39;: {&#39;contrast&#39;: &#39;intercept&#39;, &#39;subject&#39;: &#39;001&#39;},
+ &#39;entities&#39;: {&#39;contrast&#39;: &#39;demeaned_RT&#39;, &#39;subject&#39;: &#39;001&#39;},
  &#39;force_dense&#39;: True,
  &#39;invalid_contrasts&#39;: &#39;drop&#39;,
- &#39;metadata&#39;:     contrast  run subject
- 0  intercept    1     001
- 1  intercept    2     001
- 2  intercept    3     001
- 3  intercept    4     001,
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7fa6f6d14cd0&gt;,
+ &#39;metadata&#39;:       contrast  run subject
+ 0  demeaned_RT    1     001
+ 1  demeaned_RT    2     001
+ 2  demeaned_RT    3     001
+ 3  demeaned_RT    4     001,
+ &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f720b941c70&gt;,
  &#39;node&#39;: &lt;BIDSStatsModelsNode[subject] subject&gt;,
  &#39;sampling_rate&#39;: &#39;TR&#39;}
 </pre></div>
@@ -1237,16 +1237,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa7343e4820&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6ceff70&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6ce4c40&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6ce4490&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6cb8550&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6cb82e0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6cb8250&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6c4b1f0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6c4b790&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7fa6f6c4b5e0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720ba424f0&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f72115a6580&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f724dc36fa0&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720b7afbe0&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720b7afe50&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720b7af100&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720bba86d0&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720bba8280&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720bba8160&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f720bbb89d0&gt;]
 </pre></div>
 </div>
 </div>
@@ -1326,13 +1326,13 @@ title="Print to PDF"
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>gain</td>
+      <td>intercept</td>
       <td>001</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1</td>
-      <td>gain</td>
+      <td>intercept</td>
       <td>003</td>
     </tr>
   </tbody>
@@ -1351,7 +1351,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;contrast&#39;: [&#39;loss&#39;]}
-[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput object at 0x7fa6f6ce49a0&gt;]
+[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput object at 0x7f720b941610&gt;]
 </pre></div>
 </div>
 </div>
@@ -1379,7 +1379,7 @@ title="Print to PDF"
  0     loss     001  participants
  1     loss     002  participants
  2     loss     003  participants,
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7fa6f6ce4a90&gt;,
+ &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f720b96e3d0&gt;,
  &#39;node&#39;: &lt;BIDSStatsModelsNode[dataset] between-groups&gt;,
  &#39;sampling_rate&#39;: &#39;TR&#39;}
 </pre></div>
