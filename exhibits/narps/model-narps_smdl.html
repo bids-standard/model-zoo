@@ -52,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Preamble" href="../ds003/model-001_smdl.html" />
+    <link rel="next" title="ds003 - model 1" href="../ds003/model-001_smdl.html" />
     <link rel="prev" title="BIDS Stats Models Zoo 🦓" href="../../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -113,7 +113,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ds003/model-001_smdl.html">
-   Preamble
+   ds003 - model 1
   </a>
  </li>
 </ul>
@@ -515,11 +515,11 @@ title="Print to PDF"
  452  0.097324  3.315304  0.939883  8.506043e-03        1.0
  
  [453 rows x 5 columns],
- &#39;contrasts&#39;: [ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;}),
-  ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;}),
+ &#39;contrasts&#39;: [ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;}),
   ContrastInfo(name=&#39;demeaned_RT&#39;, conditions=[&#39;demeaned_RT&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;demeaned_RT&#39;}),
+  ContrastInfo(name=&#39;intercept&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;intercept&#39;}),
   ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
-  ContrastInfo(name=&#39;intercept&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;intercept&#39;})],
+  ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;})],
  &#39;data&#39;:        trials      gain      loss   demeaned_RT  intercept
  0    0.000002 -0.000020 -0.000011  7.939675e-07          1
  1   -0.000005  0.000056  0.000032 -2.276861e-06          1
@@ -616,7 +616,7 @@ title="Print to PDF"
  452      1.0   .nii.gz  452.0   1      001    bold  MGT  
  
  [453 rows x 22 columns],
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f5cc43bd4c0&gt;,
+ &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f4ff67c39d0&gt;,
  &#39;node&#39;: &lt;BIDSStatsModelsNode[run] run&gt;,
  &#39;sampling_rate&#39;: &#39;TR&#39;}
 </pre></div>
@@ -630,7 +630,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86b51100&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6f27040&gt;
 </pre></div>
 </div>
 </div>
@@ -1059,7 +1059,7 @@ title="Print to PDF"
  1     gain    2     001
  2     gain    3     001
  3     gain    4     001,
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f5c86fec9a0&gt;,
+ &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f4ff6da11c0&gt;,
  &#39;node&#39;: &lt;BIDSStatsModelsNode[subject] subject&gt;,
  &#39;sampling_rate&#39;: &#39;TR&#39;}
 </pre></div>
@@ -1243,16 +1243,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86f24040&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86f2efd0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86f3cc40&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5cc4401070&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5cc4401250&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86f23070&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86f238e0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c86f23430&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c8729eac0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f5c8729ee20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff864cfd0&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6adba60&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff881bdf0&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6dfd850&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff864c730&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6acf430&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6acf760&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6acf370&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6ad2280&gt;,
+ &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6ad2cd0&gt;]
 </pre></div>
 </div>
 </div>
@@ -1332,13 +1332,13 @@ title="Print to PDF"
     <tr>
       <th>0</th>
       <td>1</td>
-      <td>loss</td>
+      <td>trials</td>
       <td>001</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1</td>
-      <td>loss</td>
+      <td>trials</td>
       <td>003</td>
     </tr>
   </tbody>
@@ -1357,7 +1357,7 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;contrast&#39;: [&#39;loss&#39;]}
-[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput object at 0x7f5cc43d2e80&gt;]
+[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput object at 0x7f4ff8122550&gt;]
 </pre></div>
 </div>
 </div>
@@ -1385,7 +1385,7 @@ title="Print to PDF"
  0     loss     001  participants
  1     loss     002  participants
  2     loss     003  participants,
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f5c86fec970&gt;,
+ &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f4ff6d71700&gt;,
  &#39;node&#39;: &lt;BIDSStatsModelsNode[dataset] between-groups&gt;,
  &#39;sampling_rate&#39;: &#39;TR&#39;}
 </pre></div>
@@ -1624,7 +1624,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="../ds003/model-001_smdl.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Preamble</p>
+        <p class="prev-next-title">ds003 - model 1</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
