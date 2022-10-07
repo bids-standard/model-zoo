@@ -2,6 +2,7 @@ pybids
 nilearn
 pandas
 numpy
+datalad
 matplotlib
 graphviz
 notebook

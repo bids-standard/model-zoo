@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-```{code-cell}
+```{code-cell} ipython3
 %load_ext autoreload
 %autoreload 2
 
@@ -24,53 +24,15 @@ import pandas as pd
 ```
 
 # Preamble
-We will use Datalad to manage our data, which in turn depends on git-annex. To install git-annex, uncomment and run one of the following:
+We will use Datalad to manage our data, which in turn depends on git-annex.
 
-```{code-cell}
-# Debian
-# apt-get install git-annex
+```{code-cell} ipython3
+! datalad get ds000003-fmriprep/sub-*/func/*_desc-confounds_*.tsv \
+              ds000003-fmriprep/sub-*/func/*_desc-confounds_*.json \
+              ds000003-fmriprep/dataset_description.json 
 ```
 
-```{code-cell}
-# Linux with Conda
-# conda install -y git-annex
-```
-
-```{code-cell}
-# OSX
-# open https://git-annex.branchable.com/install/OSX/
-```
-
-Datalad, Pybids, Nilearn are Python tools.
-To ensure that everything installs correctly, we'll upgrade the [pip](https://pip.pypa.io/en/stable/) package manager
-and the [setuptools](https://setuptools.readthedocs.io/en/latest/) utilities.
-
-We will also install unreleased versions of Datalad, Pybids, and [Nilearn](https://nilearn.github.io/) to make things run a little more smoothly.
-
-```{code-cell}
-# ! pip install -q --upgrade pip setuptools
-# ! pip install -q --upgrade datalad nistats pybids graphviz
-```
-
-```{code-cell}
-# # get the dataset
-# !export DATALAD_UI_PROGRESSBAR=log
-# !export NO_COLOR="1"
-
-# !datalad install -r ds000003-fmriprep/
-# !datalad update ds000003_fmriprep
-
-# !datalad install -r ds000003/
-# !datalad update ds000003
-```
-
-```{code-cell}
-# ! datalad get ds000003-fmriprep/sub-*/func/*_desc-confounds_*.tsv \
-#               ds000003-fmriprep/sub-*/func/*_desc-confounds_*.json \
-#               ds000003-fmriprep/dataset_description.json 
-```
-
-```{code-cell}
+```{code-cell} ipython3
 from nilearn.plotting import plot_design_matrix
 
 import bids
@@ -82,73 +44,56 @@ def api(obj):
     return {attr: getattr(obj, attr) for attr in dir(obj) if not attr[0] == '_'}
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 layout = BIDSLayout('./ds000003', derivatives='./ds000003-fmriprep')
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 json_file = 'model-001_smdl.json'
 spec = json.loads(Path(json_file).read_text())
 spec
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 layout
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 graph = BIDSStatsModelsGraph(layout, spec)
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 root_node = graph.root_node
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 try:
     graph.load_collections()
 except ValueError:
     graph.load_collections(scan_length=320)
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 collections = layout.get_collections('run', task='rhymejudgment', scan_length=320)
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 root_node.get_collections()[-1].entities
 ```
 
-```{code-cell}
-# graph.load_collections(scan_length=320)
+```{code-cell} ipython3
+graph.load_collections(scan_length=320)
 ```
 
-```{code-cell}
-# foo = graph.root_node.get_collections()[0]
-```
-
-```{code-cell}
-# [ff.run_info[0][0]['RepetitionTime'] for ff in list(foo.variables.values())]
-```
-
-```{code-cell}
-# for ff in list(foo.variables.values()):
-#     break
-```
-
-```{code-cell}
-# ff.to_df()
-```
-
-```{code-cell}
+```{code-cell} ipython3
 specs = root_node.run(group_by=root_node.group_by)
 len(specs)
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 specs[0]
 ```
 
-```{code-cell}
+```{code-cell} ipython3
 plot_design_matrix(specs[0].X, rescale=False)
 ```

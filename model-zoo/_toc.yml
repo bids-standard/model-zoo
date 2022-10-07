@@ -6,4 +6,4 @@ root: index
 title: ''
 chapters:
 - file: exhibits/narps/model-narps_smdl
-- file: exhibits/ds000030/model-001_smdl
+- file: exhibits/ds003/model-001_smdl
