@@ -11,6 +11,11 @@ jobs:
       matrix:
         python: [3.9]
     steps:
+    - name: Set up environment
+      run: |
+        git config --global user.email "test@github.land"
+        git config --global user.name "GitHub Almighty"
+    - uses: actions/checkout@v1
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python }}
       uses: actions/setup-python@v3
