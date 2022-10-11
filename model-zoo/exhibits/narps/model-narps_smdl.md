@@ -7,17 +7,18 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.14.1
 kernelspec:
-  display_name: Python 3 (ipykernel)
+  display_name: Python 3.9.7 ('base')
   language: python
   name: python3
 ---
 
-# NARPS
+# Neuroimaging Analysis Replication and Prediction Study (NARPS)
+
++++
+
+Here, we specify the statistical model in the [NARPS](https://www.narps.info/) study using a BIDS Stats Model. The dataset is publicaly available on [OpenNeuro](https://openneuro.org/datasets/ds001734/).
 
 ```{code-cell} ipython3
-%load_ext autoreload
-%autoreload 2
-
 import json
 from pathlib import Path
 from itertools import chain
@@ -36,7 +37,7 @@ def api(obj):
 ```
 
 ```{code-cell} ipython3
-layout = BIDSLayout('./ds001734/', database_path="./ds001734.db")
+layout = BIDSLayout('./ds001734/')
 ```
 
 ```{code-cell} ipython3
@@ -57,11 +58,19 @@ graph = BIDSStatsModelsGraph(layout, spec)
 ```
 
 ```{code-cell} ipython3
+graph.variables
+```
+
+```{code-cell} ipython3
 graph.write_graph(format='svg')
 ```
 
 ```{code-cell} ipython3
 root_node = graph.root_node
+```
+
+```{code-cell} ipython3
+root_node.get_collections()
 ```
 
 ```{code-cell} ipython3
@@ -72,7 +81,55 @@ except ValueError:
 ```
 
 ```{code-cell} ipython3
+coll = root_node.get_collections()[0]
+```
+
+```{code-cell} ipython3
+coll.variables['loss']
+```
+
+```{code-cell} ipython3
 specs = root_node.run(group_by=root_node.group_by, force_dense=False)
+```
+
+```{code-cell} ipython3
+root_node
+```
+
+```{code-cell} ipython3
+s.model_spec.
+```
+
+```{code-cell} ipython3
+graph
+```
+
+```{code-cell} ipython3
+min_graph
+```
+
+```{code-cell} ipython3
+graph.model
+```
+
+```{code-cell} ipython3
+reprlib.Repr(maxdict=2).repr(graph.model)
+```
+
+```{code-cell} ipython3
+s = specs[0]
+```
+
+```{code-cell} ipython3
+s
+```
+
+```{code-cell} ipython3
+self
+```
+
+```{code-cell} ipython3
+f"<{self.__class__.__name__}[{self.level}] {self.name}>"
 ```
 
 ```{code-cell} ipython3
