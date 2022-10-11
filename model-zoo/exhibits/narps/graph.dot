@@ -3,9 +3,9 @@ digraph structs {
 	node [shape=record]
 	run [label="<f0> name: run|<f1> level: run"]
 	subject [label="<f0> name: subject|<f1> level: subject"]
-	"between-groups" [label="<f0> name: between-groups|<f1> level: dataset"]
 	positive [label="<f0> name: positive|<f1> level: dataset"]
 	"negative-loss" [label="<f0> name: negative-loss|<f1> level: dataset"]
+	"between-groups" [label="<f0> name: between-groups|<f1> level: dataset"]
 	run -> subject
 	subject -> positive
 	subject -> "negative-loss"
