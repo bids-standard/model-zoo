@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>NARPS &#8212; BIDS Stats Models - Model Zoo</title>
+    <title>Neuroimaging Analysis Replication and Prediction Study (NARPS) &#8212; BIDS Stats Models - Model Zoo</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -108,7 +108,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   NARPS
+   Neuroimaging Analysis Replication and Prediction Study (NARPS)
   </a>
  </li>
  <li class="toctree-l1">
@@ -317,23 +317,148 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initializing-model">
+   Initializing Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#populating-the-graph">
+   Populating the Graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-nodes">
+   Running nodes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subject-level-model">
+     Subject-level model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#group-level-nodes">
+     Group-level Nodes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#positive-node-within-groups">
+       “Positive” Node (Within-Groups)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#negative-loss-node-within-groups">
+       “Negative-Loss” Node (Within-Groups)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#between-groups-node-specification">
+     Between-Groups Node specification
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>NARPS</h1>
+                <h1>Neuroimaging Analysis Replication and Prediction Study (NARPS)</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initializing-model">
+   Initializing Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#populating-the-graph">
+   Populating the Graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-nodes">
+   Running nodes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#subject-level-model">
+     Subject-level model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#group-level-nodes">
+     Group-level Nodes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#positive-node-within-groups">
+       “Positive” Node (Within-Groups)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#negative-loss-node-within-groups">
+       “Negative-Loss” Node (Within-Groups)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#between-groups-node-specification">
+     Between-Groups Node specification
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -341,14 +466,15 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="narps">
-<h1>NARPS<a class="headerlink" href="#narps" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="neuroimaging-analysis-replication-and-prediction-study-narps">
+<h1>Neuroimaging Analysis Replication and Prediction Study (NARPS)<a class="headerlink" href="#neuroimaging-analysis-replication-and-prediction-study-narps" title="Permalink to this headline">#</a></h1>
+<p>Here, we specify the statistical model in the <a class="reference external" href="https://www.narps.info/">NARPS</a> study using a <em>BIDS Stats Model</em>.</p>
+<p>The dataset is publicaly available on <a class="reference external" href="https://openneuro.org/datasets/ds001734/">OpenNeuro</a>.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
-<span class="o">%</span><span class="k">autoreload</span> 2
-
-<span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 
@@ -360,20 +486,19 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">bids</span>
 <span class="kn">from</span> <span class="nn">bids.modeling</span> <span class="kn">import</span> <span class="n">BIDSStatsModelsGraph</span>
 <span class="kn">from</span> <span class="nn">bids.layout</span> <span class="kn">import</span> <span class="n">BIDSLayout</span>
-
-<span class="k">def</span> <span class="nf">api</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">attr</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">attr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>First, we set up the <code class="docutils literal notranslate"><span class="pre">BIDSLayout</span></code> object…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="s1">&#39;./ds001734/&#39;</span><span class="p">,</span> <span class="n">database_path</span><span class="o">=</span><span class="s2">&quot;./ds001734.db&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="s1">&#39;./ds001734/&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>… and load the <em>BIDS Stats Model</em> JSON specification:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">json_file</span> <span class="o">=</span> <span class="s1">&#39;./model-narps_smdl.json&#39;</span>
@@ -411,15 +536,6 @@ title="Print to PDF"
    &#39;Model&#39;: {&#39;X&#39;: [1], &#39;Type&#39;: &#39;meta&#39;},
    &#39;DummyContrasts&#39;: {&#39;Test&#39;: &#39;t&#39;}},
   {&#39;Level&#39;: &#39;Dataset&#39;,
-   &#39;Name&#39;: &#39;between-groups&#39;,
-   &#39;GroupBy&#39;: [&#39;contrast&#39;],
-   &#39;Model&#39;: {&#39;X&#39;: [1, &#39;group&#39;], &#39;Formula&#39;: &#39;0 + C(group)&#39;},
-   &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;range_vs_indiference&#39;,
-     &#39;ConditionList&#39;: [&#39;C(group)[T.equalRange]&#39;,
-      &#39;C(group)[T.equalIndifference]&#39;],
-     &#39;Weights&#39;: [1, -1],
-     &#39;Test&#39;: &#39;t&#39;}]},
-  {&#39;Level&#39;: &#39;Dataset&#39;,
    &#39;Name&#39;: &#39;positive&#39;,
    &#39;GroupBy&#39;: [&#39;contrast&#39;, &#39;group&#39;],
    &#39;Model&#39;: {&#39;X&#39;: [1]},
@@ -431,6 +547,15 @@ title="Print to PDF"
    &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;negative&#39;,
      &#39;ConditionList&#39;: [1],
      &#39;Weights&#39;: [-1],
+     &#39;Test&#39;: &#39;t&#39;}]},
+  {&#39;Level&#39;: &#39;Dataset&#39;,
+   &#39;Name&#39;: &#39;between-groups&#39;,
+   &#39;GroupBy&#39;: [&#39;contrast&#39;],
+   &#39;Model&#39;: {&#39;X&#39;: [1, &#39;group&#39;], &#39;Formula&#39;: &#39;0 + C(group)&#39;},
+   &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;range_vs_indiference&#39;,
+     &#39;ConditionList&#39;: [&#39;C(group)[T.equalRange]&#39;,
+      &#39;C(group)[T.equalIndifference]&#39;],
+     &#39;Weights&#39;: [1, -1],
      &#39;Test&#39;: &#39;t&#39;}]}],
  &#39;Edges&#39;: [{&#39;Source&#39;: &#39;run&#39;, &#39;Destination&#39;: &#39;subject&#39;},
   {&#39;Source&#39;: &#39;subject&#39;, &#39;Destination&#39;: &#39;positive&#39;},
@@ -444,23 +569,23 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+<section id="initializing-model">
+<h2>Initializing Model<a class="headerlink" href="#initializing-model" title="Permalink to this headline">#</a></h2>
+<p>Here, we modify the model to restrict it to a single task and three subjects (for demonstration purposes), and initialize the <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelGraph</span></code> object:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="s1">&#39;MGT&#39;</span><span class="p">,</span>
     <span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> <span class="s1">&#39;002&#39;</span><span class="p">,</span> <span class="s1">&#39;003&#39;</span><span class="p">]</span>
 <span class="p">}</span>
+
+<span class="n">graph</span> <span class="o">=</span> <span class="n">BIDSStatsModelsGraph</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">BIDSStatsModelsGraph</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>We can visualize the model as a graph:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
@@ -468,189 +593,132 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/model-narps_smdl_6_0.svg" src="../../_images/model-narps_smdl_6_0.svg" /></div>
+<img alt="../../_images/model-narps_smdl_12_0.svg" src="../../_images/model-narps_smdl_12_0.svg" /></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">root_node</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>This graph specifices that a <em>run</em> level model should be run on every subject / run combination, followed by a <em>subject</em> level model, which combines the results of the <em>run</em> level models.</p>
+<p>Finally, at the group level, we have three distinct models: a between-group comparison of the ‘loss’ contrast, and within-group one-sample t-tests for the ‘loss’ and ‘positive’ contrasts.</p>
+<p>We’ll take a closer look later.</p>
+</section>
+<section id="populating-the-graph">
+<h2>Populating the Graph<a class="headerlink" href="#populating-the-graph" title="Permalink to this headline">#</a></h2>
+<p>In order to compute the precise design matrices for each level of the model, we need to populate the graph with the specific variables, and outputs from each <code class="docutils literal notranslate"><span class="pre">Node</span></code> to the next.</p>
+<p>First, we load the <code class="docutils literal notranslate"><span class="pre">BIDSVariableCollection</span></code> objects, for the entire graph:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">()</span>
 <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-    <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">453</span><span class="p">)</span>  <span class="c1"># TR = 1, nvols = 453</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">453</span><span class="p">)</span>  <span class="c1"># TR = 1, nvols = 453; necessary if no BOLD data</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can look at the variables available to the root node of the Graph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">root_node</span>
+<span class="n">colls</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">get_collections</span><span class="p">()</span>
+<span class="n">colls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
+ &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span><span class="o">.</span><span class="n">group_by</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;run&#39;, &#39;subject&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that there are multiple instances of the root node, one for each subject / run combination (the node’s <code class="docutils literal notranslate"><span class="pre">group_by</span></code> is : <code class="docutils literal notranslate"><span class="pre">['run',</span> <span class="pre">'subject']</span></code>). We can access the variables for a specific instance of the root node using <code class="docutils literal notranslate"><span class="pre">variables</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">variables</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;participant_response&#39;: &lt;SparseRunVariable(name=&#39;participant_response&#39;, source=&#39;events&#39;)&gt;,
+ &#39;loss&#39;: &lt;SparseRunVariable(name=&#39;loss&#39;, source=&#39;events&#39;)&gt;,
+ &#39;RT&#39;: &lt;SparseRunVariable(name=&#39;RT&#39;, source=&#39;events&#39;)&gt;,
+ &#39;gain&#39;: &lt;SparseRunVariable(name=&#39;gain&#39;, source=&#39;events&#39;)&gt;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="running-nodes">
+<h2>Running nodes<a class="headerlink" href="#running-nodes" title="Permalink to this headline">#</a></h2>
+<p>Although the graph has defined how <code class="docutils literal notranslate"><span class="pre">Nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">Edges</span></code> are related, it has not yet defined the specific design matrices for each, as this requires knowing the specific variables associated with each <code class="docutils literal notranslate"><span class="pre">Node</span></code>. We can now run the graph to populate the design matrices for each <code class="docutils literal notranslate"><span class="pre">Node</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">group_by</span><span class="o">=</span><span class="n">root_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">,</span> <span class="n">force_dense</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/model-zoo/model-zoo/src/pybids/bids/modeling/statsmodels.py:710: UserWarning: Use &#39;Contrasts&#39; not &#39;Conditions&#39; or &#39;ConditionList&#39; to specifyDummyContrasts. Renaming to &#39;Contrasts&#39; for now.
+  warnings.warn(
+</pre></div>
 </div>
+</div>
+</div>
+<p>For each instance of the root node, a <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsNodeOutput</span></code> object is created, which contains the model specification, and final design matrix for each:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span><span class="p">(</span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;X&#39;:        trials      gain      loss   demeaned_RT  intercept
- 0    0.000002 -0.000020 -0.000011  7.939675e-07        1.0
- 1   -0.000005  0.000056  0.000032 -2.276861e-06        1.0
- 2    0.000014 -0.000159 -0.000091  6.446336e-06        1.0
- 3   -0.000037  0.000408  0.000235 -1.654103e-05        1.0
- 4    0.000073 -0.000812 -0.000468  3.296583e-05        1.0
- ..        ...       ...       ...           ...        ...
- 448  0.729063  8.015666  5.652929 -2.061146e-01        1.0
- 449  0.576339  7.628444  4.549625 -1.434993e-01        1.0
- 450  0.397427  6.338474  3.218710 -8.201623e-02        1.0
- 451  0.237071  4.844265  2.008481 -3.181046e-02        1.0
- 452  0.097324  3.315304  0.939883  8.506043e-03        1.0
- 
- [453 rows x 5 columns],
- &#39;contrasts&#39;: [ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;}),
-  ContrastInfo(name=&#39;demeaned_RT&#39;, conditions=[&#39;demeaned_RT&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;demeaned_RT&#39;}),
-  ContrastInfo(name=&#39;intercept&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;intercept&#39;}),
-  ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
-  ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;})],
- &#39;data&#39;:        trials      gain      loss   demeaned_RT  intercept
- 0    0.000002 -0.000020 -0.000011  7.939675e-07          1
- 1   -0.000005  0.000056  0.000032 -2.276861e-06          1
- 2    0.000014 -0.000159 -0.000091  6.446336e-06          1
- 3   -0.000037  0.000408  0.000235 -1.654103e-05          1
- 4    0.000073 -0.000812 -0.000468  3.296583e-05          1
- ..        ...       ...       ...           ...        ...
- 448  0.729063  8.015666  5.652929 -2.061146e-01          1
- 449  0.576339  7.628444  4.549625 -1.434993e-01          1
- 450  0.397427  6.338474  3.218710 -8.201623e-02          1
- 451  0.237071  4.844265  2.008481 -3.181046e-02          1
- 452  0.097324  3.315304  0.939883  8.506043e-03          1
- 
- [453 rows x 5 columns],
- &#39;entities&#39;: {&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;},
- &#39;force_dense&#39;: False,
- &#39;invalid_contrasts&#39;: &#39;drop&#39;,
- &#39;metadata&#39;:      BandwidthPerPixelPhaseEncode  \
- 0                          34.305   
- 1                          34.305   
- 2                          34.305   
- 3                          34.305   
- 4                          34.305   
- ..                            ...   
- 448                        34.305   
- 449                        34.305   
- 450                        34.305   
- 451                        34.305   
- 452                        34.305   
- 
-                                             CogAtlasID  EchoTime  \
- 0    http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 1    http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 2    http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 3    http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 4    http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- ..                                                 ...       ...   
- 448  http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 449  http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 450  http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 451  http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 452  http://www.cognitiveatlas.org/id/trm_4cacee4a1...      0.03   
- 
-      EffectiveEchoSpacing  FlipAngle  MagneticFieldStrength Manufacturer  \
- 0                0.000275         68                      3      SIEMENS   
- 1                0.000275         68                      3      SIEMENS   
- 2                0.000275         68                      3      SIEMENS   
- 3                0.000275         68                      3      SIEMENS   
- 4                0.000275         68                      3      SIEMENS   
- ..                    ...        ...                    ...          ...   
- 448              0.000275         68                      3      SIEMENS   
- 449              0.000275         68                      3      SIEMENS   
- 450              0.000275         68                      3      SIEMENS   
- 451              0.000275         68                      3      SIEMENS   
- 452              0.000275         68                      3      SIEMENS   
- 
-     ManufacturersModelName  MultibandAccelerationFactor  \
- 0                   Prisma                            4   
- 1                   Prisma                            4   
- 2                   Prisma                            4   
- 3                   Prisma                            4   
- 4                   Prisma                            4   
- ..                     ...                          ...   
- 448                 Prisma                            4   
- 449                 Prisma                            4   
- 450                 Prisma                            4   
- 451                 Prisma                            4   
- 452                 Prisma                            4   
- 
-     PhaseEncodingDirection  ...     TaskDescription TaskName datatype  \
- 0                       j-  ...  Mixed gambles task      MGT     func   
- 1                       j-  ...  Mixed gambles task      MGT     func   
- 2                       j-  ...  Mixed gambles task      MGT     func   
- 3                       j-  ...  Mixed gambles task      MGT     func   
- 4                       j-  ...  Mixed gambles task      MGT     func   
- ..                     ...  ...                 ...      ...      ...   
- 448                     j-  ...  Mixed gambles task      MGT     func   
- 449                     j-  ...  Mixed gambles task      MGT     func   
- 450                     j-  ...  Mixed gambles task      MGT     func   
- 451                     j-  ...  Mixed gambles task      MGT     func   
- 452                     j-  ...  Mixed gambles task      MGT     func   
- 
-     duration extension  onset run  subject  suffix task  
- 0        1.0   .nii.gz    0.0   1      001    bold  MGT  
- 1        1.0   .nii.gz    1.0   1      001    bold  MGT  
- 2        1.0   .nii.gz    2.0   1      001    bold  MGT  
- 3        1.0   .nii.gz    3.0   1      001    bold  MGT  
- 4        1.0   .nii.gz    4.0   1      001    bold  MGT  
- ..       ...       ...    ...  ..      ...     ...  ...  
- 448      1.0   .nii.gz  448.0   1      001    bold  MGT  
- 449      1.0   .nii.gz  449.0   1      001    bold  MGT  
- 450      1.0   .nii.gz  450.0   1      001    bold  MGT  
- 451      1.0   .nii.gz  451.0   1      001    bold  MGT  
- 452      1.0   .nii.gz  452.0   1      001    bold  MGT  
- 
- [453 rows x 22 columns],
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f4ff67c39d0&gt;,
- &#39;node&#39;: &lt;BIDSStatsModelsNode[run] run&gt;,
- &#39;sampling_rate&#39;: &#39;TR&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 2, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 3, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 4, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 2, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 3, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 4, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 2, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 3, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 4, &#39;subject&#39;: &#39;003&#39;})&gt;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6f27040&gt;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_run</span> <span class="o">=</span> <span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>For each, we can access key aspects of the model specification:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: label=&#39;conditions&#39;, ylabel=&#39;scan number&#39;&gt;
-</pre></div>
-</div>
-<img alt="../../_images/model-narps_smdl_12_1.png" src="../../_images/model-narps_smdl_12_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">entities</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_run</span><span class="o">.</span><span class="n">entities</span>
 </pre></div>
 </div>
 </div>
@@ -662,7 +730,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final design matrix</span>
+<span class="n">first_run</span><span class="o">.</span><span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -685,168 +754,56 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>BandwidthPerPixelPhaseEncode</th>
-      <th>CogAtlasID</th>
-      <th>EchoTime</th>
-      <th>EffectiveEchoSpacing</th>
-      <th>FlipAngle</th>
-      <th>MagneticFieldStrength</th>
-      <th>Manufacturer</th>
-      <th>ManufacturersModelName</th>
-      <th>MultibandAccelerationFactor</th>
-      <th>PhaseEncodingDirection</th>
-      <th>...</th>
-      <th>TaskDescription</th>
-      <th>TaskName</th>
-      <th>datatype</th>
-      <th>duration</th>
-      <th>extension</th>
-      <th>onset</th>
-      <th>run</th>
-      <th>subject</th>
-      <th>suffix</th>
-      <th>task</th>
+      <th>trials</th>
+      <th>gain</th>
+      <th>loss</th>
+      <th>demeaned_RT</th>
+      <th>intercept</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.000002</td>
+      <td>-0.000020</td>
+      <td>-0.000011</td>
+      <td>7.939675e-07</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>-0.000005</td>
+      <td>0.000056</td>
+      <td>0.000032</td>
+      <td>-2.276861e-06</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>1.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.000014</td>
+      <td>-0.000159</td>
+      <td>-0.000091</td>
+      <td>6.446336e-06</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>2.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>-0.000037</td>
+      <td>0.000408</td>
+      <td>0.000235</td>
+      <td>-1.654103e-05</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>3.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.000073</td>
+      <td>-0.000812</td>
+      <td>-0.000468</td>
+      <td>3.296583e-05</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>4.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -855,148 +812,99 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>448</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.729063</td>
+      <td>8.015666</td>
+      <td>5.652929</td>
+      <td>-2.061146e-01</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>448.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>449</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.576339</td>
+      <td>7.628444</td>
+      <td>4.549625</td>
+      <td>-1.434993e-01</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>449.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>450</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.397427</td>
+      <td>6.338474</td>
+      <td>3.218710</td>
+      <td>-8.201623e-02</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>450.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>451</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.237071</td>
+      <td>4.844265</td>
+      <td>2.008481</td>
+      <td>-3.181046e-02</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>451.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
     <tr>
       <th>452</th>
-      <td>34.305</td>
-      <td>http://www.cognitiveatlas.org/id/trm_4cacee4a1...</td>
-      <td>0.03</td>
-      <td>0.000275</td>
-      <td>68</td>
-      <td>3</td>
-      <td>SIEMENS</td>
-      <td>Prisma</td>
-      <td>4</td>
-      <td>j-</td>
-      <td>...</td>
-      <td>Mixed gambles task</td>
-      <td>MGT</td>
-      <td>func</td>
+      <td>0.097324</td>
+      <td>3.315304</td>
+      <td>0.939883</td>
+      <td>8.506043e-03</td>
       <td>1.0</td>
-      <td>.nii.gz</td>
-      <td>452.0</td>
-      <td>1</td>
-      <td>001</td>
-      <td>bold</td>
-      <td>MGT</td>
     </tr>
   </tbody>
 </table>
-<p>453 rows × 22 columns</p>
+<p>453 rows × 5 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bold</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">**</span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">entities</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s1">&#39;.nii.gz&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot design matrix</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: label=&#39;conditions&#39;, ylabel=&#39;scan number&#39;&gt;
+</pre></div>
 </div>
+<img alt="../../_images/model-narps_smdl_29_1.png" src="../../_images/model-narps_smdl_29_1.png" />
+</div>
+</div>
+<p>Finally, these are the contrasts for the root node:</p>
+<p>The contrasts specify the outputs of the <code class="docutils literal notranslate"><span class="pre">Node</span></code> that will be passed to subsequent Nodes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import nilearn.glm</span>
-<span class="c1"># l1m = nilearn.glm.first_level.FirstLevelModel()</span>
-<span class="c1"># l1m.fit(bold.get_image(), design_matrices=specs[0].X)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contrast specification</span>
+<span class="n">first_run</span><span class="o">.</span><span class="n">contrasts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
+ ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;}),
+ ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;})]
 </pre></div>
 </div>
 </div>
 </div>
+<section id="subject-level-model">
+<h3>Subject-level model<a class="headerlink" href="#subject-level-model" title="Permalink to this headline">#</a></h3>
+<p>Now that we have populated the design matrices for the run-level root node <code class="docutils literal notranslate"><span class="pre">Node</span></code>, we can advance the graph to the next level, and repeat the process.</p>
+<p>Here, the subsequent <code class="docutils literal notranslate"><span class="pre">Node</span></code> is a <code class="docutils literal notranslate"><span class="pre">subject</span></code> level fixed-effects meta-analysis model, which comibines run estimates, separately for each combination of <code class="docutils literal notranslate"><span class="pre">contrast</span></code> and <code class="docutils literal notranslate"><span class="pre">subject</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_node</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_node</span><span class="o">.</span><span class="n">level</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;subject&#39;
 </pre></div>
 </div>
 </div>
@@ -1013,55 +921,359 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{}
-</pre></div>
-</div>
-</div>
-</div>
+<p>In order to populate the <code class="docutils literal notranslate"><span class="pre">subject</span></code> level node, we need to pass the outputs from the previous <code class="docutils literal notranslate"><span class="pre">run</span></code> level <code class="docutils literal notranslate"><span class="pre">Node</span></code> as inputs to the subsequent <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contrasts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">contrasts</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">specs</span><span class="p">]))</span>
-<span class="n">sub_specs</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">contrasts</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="n">next_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the <code class="docutils literal notranslate"><span class="pre">subject</span></code> level <code class="docutils literal notranslate"><span class="pre">Node</span></code> is <code class="docutils literal notranslate"><span class="pre">group_by</span></code> : <code class="docutils literal notranslate"><span class="pre">['subject',</span> <span class="pre">'contrast']</span></code>, each combination of <code class="docutils literal notranslate"><span class="pre">subject</span></code> and <code class="docutils literal notranslate"><span class="pre">contrast</span></code> will have a separate <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsNodeOutput</span></code> object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">contrasts</span><span class="p">)</span>
+<span class="n">sub_specs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Taking a look at a single Nodes’s specification, the design matrix (<code class="docutils literal notranslate"><span class="pre">X</span></code>) is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>intercept</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In this case, we are applying a simple intercept model which is equivalent to a one-sample t-test.</p>
+<p>To understand which inputs are associated with this design, we can look at the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>contrast</th>
+      <th>run</th>
+      <th>subject</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>gain</td>
+      <td>1</td>
+      <td>002</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>gain</td>
+      <td>2</td>
+      <td>002</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>gain</td>
+      <td>3</td>
+      <td>002</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>gain</td>
+      <td>4</td>
+      <td>002</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Finally the contrast for this <code class="docutils literal notranslate"><span class="pre">Node</span></code> simply passes forward the intercept:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">contrasts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="group-level-nodes">
+<h3>Group-level Nodes<a class="headerlink" href="#group-level-nodes" title="Permalink to this headline">#</a></h3>
+<p>Remember that the group-level of this model, we defined three separate <code class="docutils literal notranslate"><span class="pre">Nodes</span></code>, each performing a different analysis.</p>
+<ul class="simple">
+<li><p>“positive” is a within-group one-sample t-test of all contrasts.</p></li>
+<li><p>“negative-loss” is a within-group one-sample t-test for the ‘loss’ contrast, but reversed such that the positive direction is negative.</p></li>
+<li><p>“between-groups” is a between-group comparison of the ‘loss’ contrast.</p></li>
+</ul>
+<p>Let’s take a look at each separately:</p>
+<section id="positive-node-within-groups">
+<h4>“Positive” Node (Within-Groups)<a class="headerlink" href="#positive-node-within-groups" title="Permalink to this headline">#</a></h4>
+<p>Let’s look at the original definition of this <code class="docutils literal notranslate"><span class="pre">Node</span></code> and the corresponding <code class="docutils literal notranslate"><span class="pre">Edge</span></code> in the original JSON specification:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Nodes&#39;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Level&#39;: &#39;Dataset&#39;,
+ &#39;Name&#39;: &#39;negative-loss&#39;,
+ &#39;GroupBy&#39;: [&#39;contrast&#39;, &#39;group&#39;],
+ &#39;Model&#39;: {&#39;X&#39;: [1]},
+ &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;negative&#39;,
+   &#39;ConditionList&#39;: [1],
+   &#39;Weights&#39;: [-1],
+   &#39;Test&#39;: &#39;t&#39;}]}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span><span class="p">(</span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Edges&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;X&#39;:    intercept
- 0          1
- 1          1
- 2          1
- 3          1,
- &#39;contrasts&#39;: [ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;001&#39;})],
- &#39;data&#39;:    intercept
- 0          1
- 1          1
- 2          1
- 3          1,
- &#39;entities&#39;: {&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;001&#39;},
- &#39;force_dense&#39;: True,
- &#39;invalid_contrasts&#39;: &#39;drop&#39;,
- &#39;metadata&#39;:   contrast  run subject
- 0     gain    1     001
- 1     gain    2     001
- 2     gain    3     001
- 3     gain    4     001,
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f4ff6da11c0&gt;,
- &#39;node&#39;: &lt;BIDSStatsModelsNode[subject] subject&gt;,
- &#39;sampling_rate&#39;: &#39;TR&#39;}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Source&#39;: &#39;subject&#39;, &#39;Destination&#39;: &#39;positive&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">Node</span></code> specifies to run a separate one-sample t-test for each contrast, for each group separately (<code class="docutils literal notranslate"><span class="pre">'GroupBy':</span> <span class="pre">['contrast',</span> <span class="pre">'group']</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare subject-level Node output contrasts</span>
+<span class="n">sub_contrasts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">contrasts</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sub_specs</span><span class="p">]))</span>
+
+<span class="c1"># Run &quot;positive&quot; Node</span>
+<span class="n">ds0_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
+<span class="n">ds0_specs</span> <span class="o">=</span> <span class="n">ds0_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are unique <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsNodeOutput</span></code> objects (and thus, models) for each contrast / group combiation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_specs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Taking a look at this first, we can see the model is a simple intercept model, which is equivalent to a one-sample t-test:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>intercept</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>With the following inputs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>contrast</th>
+      <th>subject</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>gain</td>
+      <td>001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>gain</td>
+      <td>003</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="negative-loss-node-within-groups">
+<h4>“Negative-Loss” Node (Within-Groups)<a class="headerlink" href="#negative-loss-node-within-groups" title="Permalink to this headline">#</a></h4>
+<p>Next, the “negative-loss” Node takes <em>only</em> the ‘loss’ contrast, and reverses the sign of the positive direction, such that the positive direction is negative.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> section of the model, we specify the weight as -1 to flip the sign.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Negative-loss node specification</span>
+<span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Nodes&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Level&#39;: &#39;Dataset&#39;,
+ &#39;Name&#39;: &#39;between-groups&#39;,
+ &#39;GroupBy&#39;: [&#39;contrast&#39;],
+ &#39;Model&#39;: {&#39;X&#39;: [1, &#39;group&#39;], &#39;Formula&#39;: &#39;0 + C(group)&#39;},
+ &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;range_vs_indiference&#39;,
+   &#39;ConditionList&#39;: [&#39;C(group)[T.equalRange]&#39;,
+    &#39;C(group)[T.equalIndifference]&#39;],
+   &#39;Weights&#39;: [1, -1],
+   &#39;Test&#39;: &#39;t&#39;}]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The corresponding <code class="docutils literal notranslate"><span class="pre">Edge</span></code> specifies to <code class="docutils literal notranslate"><span class="pre">Filter</span></code> the input to only include the ‘loss’ contrast:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Edges&#39;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Source&#39;: &#39;subject&#39;,
+ &#39;Destination&#39;: &#39;between-groups&#39;,
+ &#39;Filter&#39;: {&#39;contrast&#39;: [&#39;loss&#39;]}}
 </pre></div>
 </div>
 </div>
@@ -1069,65 +1281,12 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span>
-<span class="n">api</span><span class="p">(</span><span class="n">ds1_node</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;add_child&#39;: &lt;bound method BIDSStatsModelsNode.add_child of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;add_collections&#39;: &lt;bound method BIDSStatsModelsNode.add_collections of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;add_parent&#39;: &lt;bound method BIDSStatsModelsNode.add_parent of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;children&#39;: [],
- &#39;contrasts&#39;: [{&#39;name&#39;: &#39;negative&#39;,
-   &#39;condition_list&#39;: [1],
-   &#39;weights&#39;: [-1],
-   &#39;test&#39;: &#39;t&#39;}],
- &#39;dummy_contrasts&#39;: False,
- &#39;get_collections&#39;: &lt;bound method BIDSStatsModelsNode.get_collections of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;group_by&#39;: [&#39;contrast&#39;, &#39;group&#39;],
- &#39;level&#39;: &#39;dataset&#39;,
- &#39;model&#39;: {&#39;x&#39;: [1]},
- &#39;name&#39;: &#39;negative-loss&#39;,
- &#39;parents&#39;: [BIDSStatsModelsEdge(source=&lt;BIDSStatsModelsNode[subject] subject&gt;, destination=&lt;BIDSStatsModelsNode[dataset] negative-loss&gt;, filter={&#39;contrast&#39;: [&#39;loss&#39;]})],
- &#39;run&#39;: &lt;bound method BIDSStatsModelsNode.run of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;transformations&#39;: {&#39;transformer&#39;: &#39;pybids-transforms-v1&#39;,
-  &#39;instructions&#39;: []}}
+<span class="n">ds1_specs</span> <span class="o">=</span> <span class="n">ds1_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span><span class="o">**</span><span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;contrast&#39;: [&#39;loss&#39;]}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_contrasts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">contrasts</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sub_specs</span><span class="p">]))</span>
-<span class="n">ds1_specs</span> <span class="o">=</span> <span class="n">ds1_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="n">ds1_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">,</span> <span class="o">**</span><span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">debug</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR:root:No traceback has been produced, nothing to debug.
-</pre></div>
-</div>
-</div>
-</div>
+<p>The design matrix for the group-level node peforms a simple one-sample t-test on the subject-level contrasts:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
@@ -1171,7 +1330,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">ds1_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds1_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
 </pre></div>
 </div>
 </div>
@@ -1194,7 +1353,6 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>intercept</th>
       <th>contrast</th>
       <th>subject</th>
     </tr>
@@ -1202,13 +1360,11 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
       <td>loss</td>
       <td>001</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
       <td>loss</td>
       <td>003</td>
     </tr>
@@ -1216,6 +1372,7 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
+<p>Finally, looking at the contrasts, we can see that the ‘loss’ contrast is passed forward, but with the positive direction flipped:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contrasts</span>
@@ -1228,170 +1385,68 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="between-groups-node-specification">
+<h3>Between-Groups Node specification<a class="headerlink" href="#between-groups-node-specification" title="Permalink to this headline">#</a></h3>
+<p>Finally, the “between-groups” Node is a between-group comparison of the ‘loss’ contrast.</p>
+<p>Importantly, the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> is set to <code class="docutils literal notranslate"><span class="pre">['contrast']</span></code>, such that the model is run separately for each contrast, but the contrasts are combined across groups.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
-<span class="n">ds0_specs</span> <span class="o">=</span> <span class="n">ds0_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="n">ds0_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_specs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff864cfd0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6adba60&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff881bdf0&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6dfd850&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff864c730&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6acf430&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6acf760&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6acf370&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6ad2280&gt;,
- &lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput at 0x7f4ff6ad2cd0&gt;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_specs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Nodes&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>intercept</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Level&#39;: &#39;Dataset&#39;,
+ &#39;Name&#39;: &#39;between-groups&#39;,
+ &#39;GroupBy&#39;: [&#39;contrast&#39;],
+ &#39;Model&#39;: {&#39;X&#39;: [1, &#39;group&#39;], &#39;Formula&#39;: &#39;0 + C(group)&#39;},
+ &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;range_vs_indiference&#39;,
+   &#39;ConditionList&#39;: [&#39;C(group)[T.equalRange]&#39;,
+    &#39;C(group)[T.equalIndifference]&#39;],
+   &#39;Weights&#39;: [1, -1],
+   &#39;Test&#39;: &#39;t&#39;}]}
+</pre></div>
 </div>
+</div>
+</div>
+<p>In addition, this <code class="docutils literal notranslate"><span class="pre">Node</span></code> uses <code class="docutils literal notranslate"><span class="pre">Formula</span></code> notation to specify the model. The <code class="docutils literal notranslate"><span class="pre">C(group)</span></code> term specifies a categorical variable, which will be used to specify the between-group comparison.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> section, we can refer to specific levels of the categorical variable using the <code class="docutils literal notranslate"><span class="pre">C()</span></code> notation. Here, we specify a contrast of <code class="docutils literal notranslate"><span class="pre">C(group)[T.equalRange]</span> <span class="pre">-</span> <span class="pre">C(group)[T.equalIndifference]</span></code>, with weights <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">-1]</span></code>.</p>
+<p>As in the previous <code class="docutils literal notranslate"><span class="pre">Node</span></code>, the corresponding <code class="docutils literal notranslate"><span class="pre">Edge</span></code> specifies to <code class="docutils literal notranslate"><span class="pre">Filter</span></code> the input to only include the ‘loss’ contrast:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">ds0_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds0_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Edges&#39;</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>intercept</th>
-      <th>contrast</th>
-      <th>subject</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>trials</td>
-      <td>001</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>trials</td>
-      <td>003</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Source&#39;: &#39;subject&#39;,
+ &#39;Destination&#39;: &#39;between-groups&#39;,
+ &#39;Filter&#39;: {&#39;contrast&#39;: [&#39;loss&#39;]}}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds2_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running between-subject Node</span>
+<span class="n">ds2_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
 <span class="n">filters</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span> <span class="ow">or</span> <span class="p">{}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
-<span class="n">ds2_specs</span> <span class="o">=</span> <span class="n">ds2_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span> <span class="n">group_by</span><span class="o">=</span><span class="n">ds2_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">,</span> <span class="o">**</span><span class="n">filters</span><span class="p">)</span>
+<span class="n">ds2_specs</span> <span class="o">=</span> <span class="n">ds2_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span> <span class="o">**</span><span class="n">filters</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ds2_specs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;contrast&#39;: [&#39;loss&#39;]}
-[&lt;bids.modeling.statsmodels.BIDSStatsModelsNodeOutput object at 0x7f4ff8122550&gt;]
+[&lt;BIDSStatsModelsNodeOutput(level=between-groups, entities={&#39;contrast&#39;: &#39;loss&#39;})&gt;]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span><span class="p">(</span><span class="n">ds2_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;X&#39;:    C(group)[T.equalIndifference]  C(group)[T.equalRange]
- 0                              1                       0
- 1                              0                       1
- 2                              1                       0,
- &#39;contrasts&#39;: [ContrastInfo(name=&#39;loss_range_vs_indiference&#39;, conditions=[&#39;C(group)[T.equalRange]&#39;, &#39;C(group)[T.equalIndifference]&#39;], weights=[1, -1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;loss_range_vs_indiference&#39;})],
- &#39;data&#39;:    intercept              group
- 0          1  equalIndifference
- 1          1         equalRange
- 2          1  equalIndifference,
- &#39;entities&#39;: {&#39;contrast&#39;: &#39;loss&#39;},
- &#39;force_dense&#39;: True,
- &#39;invalid_contrasts&#39;: &#39;drop&#39;,
- &#39;metadata&#39;:   contrast subject        suffix
- 0     loss     001  participants
- 1     loss     002  participants
- 2     loss     003  participants,
- &#39;model_spec&#39;: &lt;bids.modeling.model_spec.GLMMSpec at 0x7f4ff6d71700&gt;,
- &#39;node&#39;: &lt;BIDSStatsModelsNode[dataset] between-groups&gt;,
- &#39;sampling_rate&#39;: &#39;TR&#39;}
-</pre></div>
-</div>
-</div>
-</div>
+<p>The design matrix (<code class="docutils literal notranslate"><span class="pre">X</span></code>) for this <code class="docutils literal notranslate"><span class="pre">Node</span></code> contrasts subjects 1 and 3 vs 2, as these subjects differ by <code class="docutils literal notranslate"><span class="pre">group</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds2_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
@@ -1443,7 +1498,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">ds2_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">ds2_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds2_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
 </pre></div>
 </div>
 </div>
@@ -1466,8 +1521,6 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>intercept</th>
-      <th>group</th>
       <th>contrast</th>
       <th>subject</th>
       <th>suffix</th>
@@ -1476,24 +1529,18 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>equalIndifference</td>
       <td>loss</td>
       <td>001</td>
       <td>participants</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>equalRange</td>
       <td>loss</td>
       <td>002</td>
       <td>participants</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1</td>
-      <td>equalIndifference</td>
       <td>loss</td>
       <td>003</td>
       <td>participants</td>
@@ -1502,89 +1549,8 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span><span class="p">(</span><span class="n">ds1_node</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;add_child&#39;: &lt;bound method BIDSStatsModelsNode.add_child of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;add_collections&#39;: &lt;bound method BIDSStatsModelsNode.add_collections of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;add_parent&#39;: &lt;bound method BIDSStatsModelsNode.add_parent of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;children&#39;: [],
- &#39;contrasts&#39;: [{&#39;name&#39;: &#39;negative&#39;,
-   &#39;condition_list&#39;: [1],
-   &#39;weights&#39;: [-1],
-   &#39;test&#39;: &#39;t&#39;}],
- &#39;dummy_contrasts&#39;: False,
- &#39;get_collections&#39;: &lt;bound method BIDSStatsModelsNode.get_collections of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;group_by&#39;: [&#39;contrast&#39;, &#39;group&#39;],
- &#39;level&#39;: &#39;dataset&#39;,
- &#39;model&#39;: {&#39;x&#39;: [1]},
- &#39;name&#39;: &#39;negative-loss&#39;,
- &#39;parents&#39;: [BIDSStatsModelsEdge(source=&lt;BIDSStatsModelsNode[subject] subject&gt;, destination=&lt;BIDSStatsModelsNode[dataset] negative-loss&gt;, filter={&#39;contrast&#39;: [&#39;loss&#39;]})],
- &#39;run&#39;: &lt;bound method BIDSStatsModelsNode.run of &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;&gt;,
- &#39;transformations&#39;: {&#39;transformer&#39;: &#39;pybids-transforms-v1&#39;,
-  &#39;instructions&#39;: []}}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OrderedDict([(&#39;run&#39;, &lt;BIDSStatsModelsNode[run] run&gt;),
-             (&#39;subject&#39;, &lt;BIDSStatsModelsNode[subject] subject&gt;),
-             (&#39;between-groups&#39;, &lt;BIDSStatsModelsNode[dataset] between-groups&gt;),
-             (&#39;positive&#39;, &lt;BIDSStatsModelsNode[dataset] positive&gt;),
-             (&#39;negative-loss&#39;, &lt;BIDSStatsModelsNode[dataset] negative-loss&gt;)])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">root_node</span><span class="o">.</span><span class="n">children</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[BIDSStatsModelsEdge(source=&lt;BIDSStatsModelsNode[run] run&gt;, destination=&lt;BIDSStatsModelsNode[subject] subject&gt;, filter={})]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">root_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span><span class="o">.</span><span class="n">children</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[BIDSStatsModelsEdge(source=&lt;BIDSStatsModelsNode[subject] subject&gt;, destination=&lt;BIDSStatsModelsNode[dataset] positive&gt;, filter={}),
- BIDSStatsModelsEdge(source=&lt;BIDSStatsModelsNode[subject] subject&gt;, destination=&lt;BIDSStatsModelsNode[dataset] negative-loss&gt;, filter={&#39;contrast&#39;: [&#39;loss&#39;]}),
- BIDSStatsModelsEdge(source=&lt;BIDSStatsModelsNode[subject] subject&gt;, destination=&lt;BIDSStatsModelsNode[dataset] between-groups&gt;, filter={&#39;contrast&#39;: [&#39;loss&#39;]})]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">root_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;between-groups&#39;
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

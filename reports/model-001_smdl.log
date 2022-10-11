@@ -23,7 +23,7 @@ layout = BIDSLayout('./ds000003', derivatives='./ds000003-fmriprep')
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNotADirectoryError[0m                        Traceback (most recent call last)
 Cell [0;32mIn [4], line 1[0m
-[0;32m----> 1[0m layout [38;5;241m=[39m BIDSLayout([38;5;124m'[39m[38;5;124m./ds000003[39m[38;5;124m'[39m, derivatives[38;5;241m=[39m[38;5;124m'[39m[38;5;124m./ds000003-fmriprep[39m[38;5;124m'[39m)
+[0;32m----> 1[0m layout [38;5;241m=[39m [43mBIDSLayout[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43m./ds000003[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mderivatives[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43m./ds000003-fmriprep[39;49m[38;5;124;43m'[39;49m[43m)[49m
 
 File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:158[0m, in [0;36mBIDSLayout.__init__[0;34m(self, root, validate, absolute_paths, derivatives, config, sources, regex_search, database_path, reset_database, indexer, **indexer_kwargs)[0m
 [1;32m    156[0m [38;5;28;01mif[39;00m derivatives [38;5;129;01mis[39;00m [38;5;28;01mTrue[39;00m:
