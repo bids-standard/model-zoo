@@ -175,7 +175,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/bids-standard/model-zoo/main?urlpath=tree/./exhibits/narps/model-narps_smdl.ipynb"
+        <a href="https://mybinder.org/v2/gh/bids-standard/model-zoo/main?urlpath=tree/./exhibits/narps/model-narps_smdl.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -659,10 +659,10 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;participant_response&#39;: &lt;SparseRunVariable(name=&#39;participant_response&#39;, source=&#39;events&#39;)&gt;,
- &#39;loss&#39;: &lt;SparseRunVariable(name=&#39;loss&#39;, source=&#39;events&#39;)&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;gain&#39;: &lt;SparseRunVariable(name=&#39;gain&#39;, source=&#39;events&#39;)&gt;,
+ &#39;participant_response&#39;: &lt;SparseRunVariable(name=&#39;participant_response&#39;, source=&#39;events&#39;)&gt;,
  &#39;RT&#39;: &lt;SparseRunVariable(name=&#39;RT&#39;, source=&#39;events&#39;)&gt;,
- &#39;gain&#39;: &lt;SparseRunVariable(name=&#39;gain&#39;, source=&#39;events&#39;)&gt;}
+ &#39;loss&#39;: &lt;SparseRunVariable(name=&#39;loss&#39;, source=&#39;events&#39;)&gt;}
 </pre></div>
 </div>
 </div>
@@ -879,9 +879,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
- ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;}),
- ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;})]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;}),
+ ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;}),
+ ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;})]
 </pre></div>
 </div>
 </div>
@@ -938,15 +938,15 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
  &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
  &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
  &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
  &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;]
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;]
 </pre></div>
 </div>
 </div>
@@ -1036,25 +1036,25 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>gain</td>
+      <td>loss</td>
       <td>1</td>
       <td>002</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>gain</td>
+      <td>loss</td>
       <td>2</td>
       <td>002</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>gain</td>
+      <td>loss</td>
       <td>3</td>
       <td>002</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>gain</td>
+      <td>loss</td>
       <td>4</td>
       <td>002</td>
     </tr>
@@ -1070,7 +1070,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;002&#39;})]
 </pre></div>
 </div>
 </div>
@@ -1140,12 +1140,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
  &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
  &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;]
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
+ &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;]
 </pre></div>
 </div>
 </div>
@@ -1225,12 +1225,12 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>gain</td>
+      <td>loss</td>
       <td>001</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>gain</td>
+      <td>loss</td>
       <td>003</td>
     </tr>
   </tbody>
