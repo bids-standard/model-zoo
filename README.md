@@ -16,6 +16,16 @@ jupyter-book build model-zoo
 ## Adding a new exhibit
 To add a new exhibit, create a new directory in the `exhibits` directory. The name of the directory can be the name of the dataset you are using, but is not strictly controlled. Within that directory, create at least one BIDS Stats Model (e.g, `model-<model_name>_smdl.json`). You should also provide a paired Markdown file called `model-<model_name>_smdl.md`. Finally, add this markdown file to the `_toc.yml` file in the root of the repository. 
 
+### Automate using cookicutter
+
+To make this process simpler, you can use cookie cutter to create the template for you. To do this, run the following command:
+
+```bash
+cookiecutter template
+```
+
+See [this guide](exhibits/_template/README.md) for more information.
+
 ### Dataset submodules
 Within each exhibit, there should be at least one DataLad git submodule for each dataset used in the exhibit. For example, the `narps` exhibit has a submodule for the `ds001734` dataset. 
 
