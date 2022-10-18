@@ -6,3 +6,4 @@ spm_tutorials/derivatives
 .DS_store
 .idea
 model-zoo/_build
+*.ipynb
