@@ -1,0 +1,112 @@
+{
+    "BIDSModelVersion": "1.0.0",
+    "Name": "SPM_FaceRepetitionParametric",
+    "Description": "Look at effect of 2nd order parametric modulation",
+    "Input": {
+            "task": ["FaceRepetition"]
+    },
+    "Nodes": [
+        {
+            "Level": "Run",
+            "Name": "run_level",
+            "GroupBy": [
+                "run"
+            ],
+            "Transformations": {
+                "Transformer": "pybids-transforms-v1",
+                "Instructions": [
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==famous",
+                        "repetition_type==1"
+                    ],
+                    "Output": [
+                        "famous_1"
+                    ]
+                    },
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==famous",
+                        "repetition_type==2"
+                    ],
+                    "Output": [
+                        "famous_2"
+                    ]
+                    },
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==unfamiliar",
+                        "repetition_type==famous"
+                    ],
+                    "Output": [
+                        "unfamiliar_1"
+                    ]
+                    },
+                    {
+                    "Name": "AND",
+                    "Input": [
+                        "face_type==unfamiliar",
+                        "repetition_type==2"
+                    ],
+                    "Output": [
+                        "unfamiliar_2"
+                    ]
+                    },
+                    {
+                    "Name": "Convolve",
+                        "Model": "spm",
+                        "Input": [
+                        "famous_1",
+                        "unfamiliar_1",
+                        "famous_2",
+                        "unfamiliar_2"
+                    ],
+                    "Derivative": false,
+                    "Dispersion": false
+                    }
+                ]
+            }, 
+            "Model": {
+                "X": [
+                    "famous_1",
+                    "unfamiliar_1",
+                    "famous_2",
+                    "unfamiliar_2",
+                    "trans_*",
+                    "rot_*",
+                    "nonfamous_2_lag_order_1",
+                    "nonfamous_2_lag_order_2",
+                    "famous_2_lag_order_1",
+                    "famous_2_lag_order_2"
+                ],
+                "Type": "glm",
+                "Options": {
+                    "HighPassFilterCutoffHz": 0.008
+                },
+                "Software": {
+                    "SPM": {
+                        "whitening": "AR(1)"
+                    }
+                }
+            },
+            "Contrasts": [
+                {
+                    "Name": "Famous Lag",
+                    "ConditionList": [
+                        "famous_2_lag_order_1",
+                        "famous_2_lag_order_2"
+                    ],
+                    "Weights": [
+                        [1,0],
+                        [0,1]
+                    ],
+                    "Test": "F"
+                }          
+            ]
+        }
+    ]
+}
+

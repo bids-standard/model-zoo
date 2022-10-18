@@ -1,0 +1,9 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+title: ''
+chapters:
+- file: exhibits/narps/model-narps_smdl
+- file: exhibits/ds003/model-001_smdl

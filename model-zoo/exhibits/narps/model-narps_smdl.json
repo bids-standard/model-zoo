@@ -34,7 +34,7 @@
         ]
       },
       "Model": {
-        "X": ["trials", "gain", "loss", "demeaned_RT", "rot_x", "rot_y", "rot_z", "trans_x", "trans_y", "trans_z", 1],
+        "X": ["trials", "gain", "loss", "demeaned_RT", 1],
         "Type": "glm"
       },
       "DummyContrasts": {
@@ -50,23 +50,6 @@
       "DummyContrasts": {
         "Test": "t"
       }
-    },
-    {
-      "Level": "Dataset",
-      "Name": "between-groups",
-      "GroupBy": ["contrast"],
-      "Model": {
-        "X": [1, "group"],
-        "Formula": "0 + C(group)"
-      },
-      "Contrasts": [
-        {
-          "Name": "range_vs_indiference",
-          "ConditionList": ["C(group)[T.equalRange]", "C(group)[T.equalIndifference]"],
-          "Weights": [1, -1],
-          "Test": "t"
-        }
-      ]
     },
     {
       "Level": "Dataset",
@@ -91,6 +74,23 @@
           "Name": "negative",
           "ConditionList": [1],
           "Weights": [-1],
+          "Test": "t"
+        }
+      ]
+    },
+    {
+      "Level": "Dataset",
+      "Name": "between-groups",
+      "GroupBy": ["contrast"],
+      "Model": {
+        "X": [1, "group"],
+        "Formula": "0 + C(group)"
+      },
+      "Contrasts": [
+        {
+          "Name": "range_vs_indiference",
+          "ConditionList": ["C(group)[T.equalRange]", "C(group)[T.equalIndifference]"],
+          "Weights": [1, -1],
           "Test": "t"
         }
       ]
