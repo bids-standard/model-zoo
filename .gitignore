@@ -7,3 +7,4 @@ spm_tutorials/derivatives
 .idea
 model-zoo/_build
 *.ipynb
+__pycache__/
