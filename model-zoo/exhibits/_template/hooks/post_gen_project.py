@@ -1,27 +1,33 @@
 from datalad.api import install
-from os import chdir
+from os import chdir, getcwd
 from pathlib import Path
 import shutil
 
 exhibit_name = '{{ cookiecutter.exhibit_name }}'
 
 dataset_url = '{{ cookiecutter.dataset_url }}'
+dataset_path = '{{ cookiecutter.dataset_path }}'
 preproc_url = '{{ cookiecutter.preproc_url }}'
+preproc_path = '{{ cookiecutter.preproc_path }}'
+
 model_json_path = '{{ cookiecutter.model_json_path }}'
 toc = '{{ cookiecutter.toc }}'
 report_path = Path(f'model-default_smdl.md')
 
-## TODO:
-# Install the RAW dataset
+exhibit_dir = getcwd()
+
+chdir('../../../')
+#Install the RAW dataset
 if dataset_url != "None":
-    print("Installing RAW dataset...")
-    dataset = install(dataset='../../../', source=dataset_url)
+    print("Installing RAW dataset as submodule...")
+    dataset = install(dataset='.', source=dataset_url, path=Path(f"model-zoo/exhibits/{exhibit_name}/{dataset_path}"))
 
 # Install the PREPROCESSED dataset
 if preproc_url != "None":
-    print("Installing preproc dataset...")
-    preproc = install(dataset='../../../', source=preproc_url)
+    print("Installing preproc dataset as submodule...")
+    preproc = install(dataset='', source=preproc_url, path=Path(f"model-zoo/exhibits/{exhibit_name}/{preproc_path}"))
 
+chdir(exhibit_dir)
 
 default_json = Path("model-default_smdl.json")
 # If user provided a model, copy it to the exhibit folder, and delete the default model

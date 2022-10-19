@@ -62,10 +62,10 @@ def make_exhibit(exhibit_name, model_json_path, dataset_url, preproc_url, scan_l
     context['model_json_rel_path'] = model_json_rel_path # This path is the one that will be used in the markdown report
 
     # Preprocess datalaset URLs (decode to get the path)
-    context['dataset_path'] = decode_source_spec(context['dataset_url'])['default_destpath']
+    context['dataset_path'] = str(Path("data-raw") / decode_source_spec(context['dataset_url'])['default_destpath'])
 
     if context['preproc_url'] != "None":
-        context['preproc_path'] = decode_source_spec(context['preproc_url'])['default_destpath']
+        context['preproc_path'] = str(Path("data-preproc") / decode_source_spec(context['preproc_url'])['default_destpath'])
     else:
         context['preproc_path'] = True
 
