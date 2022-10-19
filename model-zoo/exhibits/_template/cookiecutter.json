@@ -7,5 +7,6 @@
 "dataset_url": "URL of the dataset you wish to use",
 "preproc_url": "URL of the preprocessed dataset you wish to use",
 "dataset_path": "URL of the dataset you wish to use",
-"preproc_path": "URL of the preprocessed dataset you wish to use"
+"preproc_path": "URL of the preprocessed dataset you wish to use",
+"toc": "Update the table of contents"
 }

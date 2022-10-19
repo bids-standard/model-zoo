@@ -35,16 +35,20 @@ from datalad.core.distributed.clone import decode_source_spec
         type=str,
         default="Description of the exhibit."
 )
-def make_exhibit(exhibit_name, model_json_path, dataset_url, preproc_url, scan_length, description):
+@click.option(
+    '--toc/--no-toc', 
+    default=True,
+    help='Update the table of contents with new example?'
+)
+def make_exhibit(exhibit_name, model_json_path, dataset_url, preproc_url, scan_length, description, toc):
     context = {
         'exhibit_name': exhibit_name,
         'dataset_url': dataset_url,
         'preproc_url': preproc_url,
         'scan_length': scan_length,
-        'description': description
+        'description': description,
+        'toc': toc
     }
-
-    print(scan_length)
 
     # Determine absolute & relative path to model JSON file
     if model_json_path == "model-default_smdl.json":
