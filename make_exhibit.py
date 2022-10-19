@@ -7,17 +7,18 @@ from datalad.core.distributed.clone import decode_source_spec
 
 @click.command()
 @click.option('--exhibit-name',
-        help="Name of the exhibit.",
+        help="Name of the exhibit. This will be the name of the folder that will be created under model-zoo/exhibits.",
         required=True,
         type=str
 )
 @click.option('--model-json-path',
-       help="Path to BIDS StatsModel file ending in _smdl.json. If not provided, a default model will be placed in the exhibit folder.",
+       help="Path to a BIDS Stats Model file ending in _smdl.json. File will be copied into the exhibit folder. \
+         If not provided, an incomplete default model will be placed in the exhibit folder as a starting point.",
        default="model-default_smdl.json",
        type=str
 )
 @click.option('--dataset-url',
-        help="DataLad URL of the RAW dataset to install. If not provided, no dataset will be installed, and user will have to manually install it.",
+        help="DataLad URL of the RAW dataset to install as a submodule. If not provided, no dataset will be installed, and user will have to manually install it later.",
         default="None",
         type=str
 )
@@ -27,11 +28,11 @@ from datalad.core.distributed.clone import decode_source_spec
         default="None"
 )
 @click.option('--scan-length',
-        help="Length of the scan in seconds.",
+        help="Length of the scan in seconds. Used to create design matices without downloading functional images.",
         type=int,
 )
 @click.option('--description',
-        help="Description of the exhibit.",
+        help="Description of the BIDS Stats Model.",
         type=str,
         default="Description of the exhibit."
 )
