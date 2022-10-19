@@ -8,3 +8,4 @@ spm_tutorials/derivatives
 model-zoo/_build
 *.ipynb
 __pycache__/
+src/

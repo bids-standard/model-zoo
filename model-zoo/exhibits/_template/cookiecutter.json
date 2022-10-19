@@ -1,9 +1,11 @@
 {
-"example_name": "example_name",
-"author_name": "Your name (or your organization/team)",
+"exhibit_name": "Name of the exhibit folder name",
 "description": "A short description of the example.",
-"dataset_path": "The local path to the dataset being used",
-"derivatives": "Path to the fmriprep derivatives. If no derivatives are availiable type None.",
-"model_json_path": "Model file name, ending in _smdl.json",
-"scan_length": "Scan length (in seconds)"
+"model_json_path": "Path to BIDS StatsModel file ending in _smdl.json",
+"model_json_rel_path": "Relatively path to BIDS StatsModel file ending in _smdl.json",
+"scan_length": "Scan length (in seconds). This is used to calculate design matrices without fetching the data.",
+"dataset_url": "URL of the dataset you wish to use",
+"preproc_url": "URL of the preprocessed dataset you wish to use",
+"dataset_path": "URL of the dataset you wish to use",
+"preproc_path": "URL of the preprocessed dataset you wish to use"
 }

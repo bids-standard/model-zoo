@@ -1,39 +1,38 @@
 # model-zoo-cookiecutter
 
+This cookiecutter facilitates adding an example to the BIDS Stats Model zoo.
+
+In order to use this cookiecutter, you must have a DataLad remote dataset available that contains the data you wish to use.
+
+The cookiecutter will create a directory for your example, and install a DataLad submodule for the dataset (and optionally preprocessed dataset) you wish to use.
+If not provided, the cookiecutter will create a template BIDS Stats Model file and a template MyST Markdown document for you, that you can edit to create your example.
+
 ## How to use this cookiecutter?
 Reproduce the python environment using the requirements.txt. 
 
-**1. Run cookiecutter to create the template:**
+**1. Run make_exhibit to create the template:**
 ```
-cookiecutter template
+python make_exhibit.py
 ```
 
 **2.Enter your model's information:** 
 You will be asked for the following information:
 ```
-"example_name": "example_name",
+"dataset_url": "URL of the dataset you wish to use",
+"preproc_url": "URL of the preprocessed dataset you wish to use",
+"exhibit_name": "Name of the exhibit folder name",
 "author_name": "Your name (or your organization/team)",
 "description": "A short description of the example.",
-"dataset_path": "The local path to the dataset being used"
-"model_json_path": "Path to the json describing the model",
-"scan_length": "Scan length. Can be inferred from the images if these are
-availiable",
-"derivatives": "Path to the fmriprep derivatives. If no derivatives are
-availiable type None."
+"model_json_path": "Path to BIDS StatsModel file ending in _smdl.json",
+"scan_length": "Scan length (in seconds). This is used to calculate design matrices without fetching the data."
 ```
-Note: To use this cookiecutter you will need to have already downloaded the data
-that you want to analyze and have already defined a `model.json` that describes
-the BIDS Stats Models. 
-
 
 **3. This cookiecutter creates the following directory tree:**
 ```
-{example_name}
-├── README.md
-├── data
-    └── data -> symbolic link to the data 
-├── model
-│   └── model-{example_name}_smdl.json -> symbolic link to the passed model file
-└── report.py
+{exhibit_name}
+├── [dataset-name]
+├── [preproc-dataset-name]
+├── model-{example_name}_smdl.json
+├── model-{example_name}_smdl.md
 ```
 
