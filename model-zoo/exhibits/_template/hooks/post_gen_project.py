@@ -41,10 +41,12 @@ if "model-default_smdl.json" not in model_json_path:
 
     # Rename report
     report_path.rename(f'{target_json.stem}.md')
+else:
+    target_json = default_json
 
 
 if toc == 'True':
     print("Updating table of contents...")
     toc = open("../../_toc.yml", "a")  # append mode
-    toc.write(f"\n- file: exhibits/{exhibit_name}/{target_json.stem} \n")
+    toc.write(f"\n- file: exhibits/{exhibit_name}/{target_json.stem}")
     toc.close()
