@@ -3,11 +3,11 @@
    "BIDSModelVersion":"1.0.0",
    "Description":"",
    "Input":{
-      "task":"rhymejudgment"
+      "task":["rhymejudgment"]
    },
    "Nodes":[
       {
-         "Level":"run",
+         "Level":"Run",
          "Name":"subject",
          "GroupBy":[
             "subject"
@@ -49,10 +49,11 @@
                "a_comp_cor_04",
                "a_comp_cor_05",
                1
-            ]
+            ],
+            "Type": "glm"
          },
          "DummyContrasts":{
-            "Conditions":[
+            "Contrasts":[
                "trial_type.word",
                "trial_type.pseudoword"
             ],
@@ -86,7 +87,7 @@
          ]
       },
       {
-         "Level":"dataset",
+         "Level":"Dataset",
          "Name":"t-test",
          "GroupBy":["contrast"],
          "Model":{
@@ -100,13 +101,13 @@
          }
       },
       {
-         "Level":"dataset",
+         "Level":"Dataset",
          "Name":"F-test",
          "GroupBy": [],
          "Model":{
             "X":[
-                "trial_type.word",
-                "trial_type.pseudoword"
+               "trial_type.word",
+               "trial_type.pseudoword"
             ],
             "Type":"glm"
          },
