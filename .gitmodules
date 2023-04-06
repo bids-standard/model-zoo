@@ -49,3 +49,8 @@
 [submodule "model-zoo/exhibits/spm_tutorials/facerep_raw"]
 	path = model-zoo/exhibits/spm_tutorials/facerep_raw
 	url = https://gin.g-node.org/SPM_datasets/spm_facerep_raw.git
+[submodule "model-zoo/exhibits/test/data-raw/ds000005"]
+	path = model-zoo/exhibits/test/data-raw/ds000005
+	url = https://github.com/OpenNeuroDatasets/ds000005.git
+	datalad-id = b2c7f086-8704-11e8-9916-0242ac120015
+	datalad-url = https://github.com/OpenNeuroDatasets/ds000005.git
