@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.14.1
 kernelspec:
-  display_name: Python 3.9.7 ('base')
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -25,6 +25,8 @@ The dataset is publicaly available on [OpenNeuro](https://openneuro.org/datasets
 #### Setup
 
 ```{code-cell} ipython3
+%load_ext autoreload
+%autoreload 2
 import json
 from pathlib import Path
 from itertools import chain
@@ -53,7 +55,7 @@ spec = json.loads(Path(json_file).read_text())
 spec
 ```
 
-### Initializing Model
+### Initializing `BIDSStatsModelsGraph`
 
 +++
 
@@ -62,7 +64,7 @@ Here, we modify the model to restrict it to a single task and three subjects (fo
 ```{code-cell} ipython3
 spec['Input'] = {
     'task': 'MGT',
-    'subject': ['001', '002', '003']
+    'subject': ['001']
 }
 
 graph = BIDSStatsModelsGraph(layout, spec)
@@ -71,31 +73,29 @@ graph = BIDSStatsModelsGraph(layout, spec)
 We can visualize the model as a graph:
 
 ```{code-cell} ipython3
-graph.write_graph(format='svg')
+graph.write_graph()
 ```
 
 This graph specifices that a _run_ level model should be run on every subject / run combination, followed by a _subject_ level model, which combines the results of the _run_ level models.
 
 Finally, at the group level, we have three distinct models: a between-group comparison of the 'loss' contrast, and within-group one-sample t-tests for the 'loss' and 'positive' contrasts.
 
-We'll take a closer look later.
-
 +++
 
-### Populating the Graph
+### Loading variables
 
-In order to compute the precise design matrices for each level of the model, we need to populate the graph with the specific variables, and outputs from each `Node` to the next.
+In order to compute the precise design matrices for each level of the model, we need to populate the graph with the specific variables availablet to each `Node`
 
-First, we load the `BIDSVariableCollection` objects, for the entire graph:
+Here, we load the `BIDSVariableCollection` objects, for the entire graph:
 
 ```{code-cell} ipython3
 try:
     graph.load_collections()
 except ValueError:
-    graph.load_collections(scan_length=453)  # TR = 1, nvols = 453; necessary if no BOLD data
+    graph.load_collections(scan_length=227) # Necessary to define if no BOLD data
 ```
 
-We can look at the variables available to the root node of the Graph:
+Let's take a look at the variable available at the root `run` level
 
 ```{code-cell} ipython3
 root_node = graph.root_node
@@ -107,27 +107,44 @@ colls
 root_node.group_by
 ```
 
-Note that there are multiple instances of the root node, one for each subject / run combination (the node's `group_by` is : `['run', 'subject']`). We can access the variables for a specific instance of the root node using `variables`:
+Note that there are multiple instances of the root node, one for each subject / run combination (the node's `group_by` is : `['run', 'subject']`).
+
+We can access the variables for a specific instance of the root node using `variables`:
 
 ```{code-cell} ipython3
 colls[0].variables
 ```
 
-## Running nodes
-Although the graph has defined how `Nodes` and `Edges` are related, it has not yet defined the specific design matrices for each, as this requires knowing the specific variables associated with each `Node`. We can now run the graph to populate the design matrices for each `Node`:
+```{code-cell} ipython3
+ents = colls[0].entities
+print(f"Subject ID: {ents['subject']}, Run ID: {ents['run']}")
+```
+
+## Executing the graph
+Although the graph has defined how `Nodes` and `Edges` are linked, and we've loaded variables, we need to execute the graph in order to obtain the precise design matrices of each `Node`.
+
+Executing the graph will begin with the root (in this case `run`), apply transformations, create a design matrix, and define the node's outputs as determined by `Contrasts`.
+The outputs are then passed via `Edges` on the subsquent `Node`, and the process is repetead, until the entire graph is populated
+
 
 ```{code-cell} ipython3
-specs = root_node.run(group_by=root_node.group_by, force_dense=False)
+graph.run_graph()
 ```
 
 For each instance of the root node, a `BIDSStatsModelsNodeOutput` object is created, which contains the model specification, and final design matrix for each:
 
-```{code-cell} ipython3
-specs
-```
++++
+
+root_node = graph.root_node
+len(root_node.outputs_)
+
++++
+
+## Run-level Node
+Let's take a look at the first output of the root node (i.e. `run` level)
 
 ```{code-cell} ipython3
-first_run = specs[0]
+first_run = root_node.outputs_[0]
 ```
 
 For each, we can access key aspects of the model specification:
@@ -143,10 +160,8 @@ first_run.X
 
 ```{code-cell} ipython3
 # Plot design matrix
-plot_design_matrix(specs[0].X)
+plot_design_matrix(first_run.X)
 ```
-
-Finally, these are the contrasts for the root node:
 
 The contrasts specify the outputs of the `Node` that will be passed to subsequent Nodes
 
@@ -155,43 +170,46 @@ The contrasts specify the outputs of the `Node` that will be passed to subsequen
 first_run.contrasts
 ```
 
-### Subject-level model
+## Subject-level Node
 
 +++
 
-Now that we have populated the design matrices for the run-level root node `Node`, we can advance the graph to the next level, and repeat the process.
+The `subject` node in this case is a fixed-effects meta-analysis model, which comibines run estimates, separately for each combination of `contrast` and `subject`.
 
-Here, the subsequent `Node` is a `subject` level fixed-effects meta-analysis model, which comibines run estimates, separately for each combination of `contrast` and `subject`.
+We can see how the root node connects to `subject`, via an `Edge`:
 
 ```{code-cell} ipython3
-next_node = root_node.children[0].destination
+edge = root_node.children[0]
 ```
 
 ```{code-cell} ipython3
-next_node.level
+edge
 ```
 
 ```{code-cell} ipython3
-next_node.group_by
+subject_node = edge.destination
+subject_node
 ```
 
-In order to populate the `subject` level node, we need to pass the outputs from the previous `run` level `Node` as inputs to the subsequent `Node`.
+```{code-cell} ipython3
+subject_node.level
+```
 
 ```{code-cell} ipython3
-contrasts = list(chain(*[s.contrasts for s in specs]))
+subject_node.group_by
 ```
 
 Since the `subject` level `Node` is `group_by` : `['subject', 'contrast']`, each combination of `subject` and `contrast` will have a separate `BIDSStatsModelsNodeOutput` object:
 
 ```{code-cell} ipython3
-sub_specs = next_node.run(contrasts)
+sub_specs = subject_node.outputs_
 sub_specs
 ```
 
 Taking a look at a single Nodes's specification, the design matrix (`X`) is:
 
 ```{code-cell} ipython3
-sub_specs[3].X
+sub_specs[0].X
 ```
 
 In this case, we are applying a simple intercept model which is equivalent to a one-sample t-test.
@@ -199,13 +217,13 @@ In this case, we are applying a simple intercept model which is equivalent to a 
 To understand which inputs are associated with this design, we can look at the `metadata` attribute:
 
 ```{code-cell} ipython3
-sub_specs[3].metadata
+sub_specs[0].metadata
 ```
 
-Finally the contrast for this `Node` simply passes forward the intercept:
+Finally the contrast for this `Node` simply passes forward the intercept estimate:
 
 ```{code-cell} ipython3
-sub_specs[3].contrasts
+sub_specs[0].contrasts
 ```
 
 ### Group-level Nodes
@@ -239,12 +257,13 @@ spec['Edges'][1]
 This `Node` specifies to run a separate one-sample t-test for each contrast, for each group separately (`'GroupBy': ['contrast', 'group']`)
 
 ```{code-cell} ipython3
-# Prepare subject-level Node output contrasts
-sub_contrasts = list(chain(*[s.contrasts for s in sub_specs]))
-
 # Run "positive" Node
-ds0_node = next_node.children[0].destination 
-ds0_specs = ds0_node.run(sub_contrasts)
+ds0_node = subject_node.children[0].destination 
+ds0_specs = ds0_node.outputs_
+```
+
+```{code-cell} ipython3
+ds0_node
 ```
 
 There are unique `BIDSStatsModelsNodeOutput` objects (and thus, models) for each contrast / group combiation:
@@ -285,8 +304,8 @@ spec['Edges'][3]
 ```
 
 ```{code-cell} ipython3
-ds1_node = next_node.children[1].destination
-ds1_specs = ds1_node.run(sub_contrasts,**next_node.children[1].filter)
+ds1_node = subject_node.children[1].destination
+ds1_specs = subject_node.outputs_
 ```
 
 The design matrix for the group-level node peforms a simple one-sample t-test on the subject-level contrasts:
@@ -330,12 +349,9 @@ spec['Edges'][3]
 ```
 
 ```{code-cell} ipython3
-# Running between-subject Node
-ds2_node = next_node.children[2].destination 
-filters = next_node.children[2].filter or {}
-print(filters)
-ds2_specs = ds2_node.run(sub_contrasts, **filters)
-print(ds2_specs)
+# Get next node from subject
+ds2_node = subject_node.children[2].destination 
+ds2_specs = ds2_node.outputs_
 ```
 
 The design matrix (`X`) for this `Node` contrasts subjects 1 and 3 vs 2, as these subjects differ by `group`:
