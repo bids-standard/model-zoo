@@ -345,10 +345,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-model">Initializing Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populating-the-graph">Populating the Graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-nodes">Running nodes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subject-level-model">Subject-level model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-bidsstatsmodelsgraph">Initializing <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsGraph</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-variables">Loading variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-the-graph">Executing the graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-level-node">Run-level Node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subject-level-node">Subject-level Node</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-level-nodes">Group-level Nodes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#positive-node-within-groups">“Positive” Node (Within-Groups)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-loss-node-within-groups">“Negative-Loss” Node (Within-Groups)</a></li>
@@ -376,7 +377,9 @@ document.write(`
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 
@@ -431,7 +434,7 @@ document.write(`
       &#39;Model&#39;: &#39;spm&#39;,
       &#39;Input&#39;: [&#39;trials&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;demeaned_RT&#39;]}]},
    &#39;Model&#39;: {&#39;X&#39;: [&#39;trials&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;demeaned_RT&#39;, 1], &#39;Type&#39;: &#39;glm&#39;},
-   &#39;DummyContrasts&#39;: {&#39;Conditions&#39;: [&#39;trials&#39;, &#39;gain&#39;, &#39;loss&#39;], &#39;Test&#39;: &#39;t&#39;}},
+   &#39;DummyContrasts&#39;: {&#39;Contrasts&#39;: [&#39;trials&#39;, &#39;gain&#39;, &#39;loss&#39;], &#39;Test&#39;: &#39;t&#39;}},
   {&#39;Level&#39;: &#39;Subject&#39;,
    &#39;Name&#39;: &#39;subject&#39;,
    &#39;GroupBy&#39;: [&#39;subject&#39;, &#39;contrast&#39;],
@@ -472,14 +475,14 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="initializing-model">
-<h2>Initializing Model<a class="headerlink" href="#initializing-model" title="Permalink to this heading">#</a></h2>
+<section id="initializing-bidsstatsmodelsgraph">
+<h2>Initializing <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsGraph</span></code><a class="headerlink" href="#initializing-bidsstatsmodelsgraph" title="Permalink to this heading">#</a></h2>
 <p>Here, we modify the model to restrict it to a single task and three subjects (for demonstration purposes), and initialize the <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelGraph</span></code> object:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span><span class="p">[</span><span class="s1">&#39;Input&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="s1">&#39;MGT&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;001&#39;</span><span class="p">,</span> <span class="s1">&#39;002&#39;</span><span class="p">,</span> <span class="s1">&#39;003&#39;</span><span class="p">]</span>
+    <span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;001&#39;</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">graph</span> <span class="o">=</span> <span class="n">BIDSStatsModelsGraph</span><span class="p">(</span><span class="n">layout</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
@@ -490,7 +493,7 @@ document.write(`
 <p>We can visualize the model as a graph:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">write_graph</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -499,23 +502,22 @@ document.write(`
 </div>
 <p>This graph specifices that a <em>run</em> level model should be run on every subject / run combination, followed by a <em>subject</em> level model, which combines the results of the <em>run</em> level models.</p>
 <p>Finally, at the group level, we have three distinct models: a between-group comparison of the ‘loss’ contrast, and within-group one-sample t-tests for the ‘loss’ and ‘positive’ contrasts.</p>
-<p>We’ll take a closer look later.</p>
 </section>
-<section id="populating-the-graph">
-<h2>Populating the Graph<a class="headerlink" href="#populating-the-graph" title="Permalink to this heading">#</a></h2>
-<p>In order to compute the precise design matrices for each level of the model, we need to populate the graph with the specific variables, and outputs from each <code class="docutils literal notranslate"><span class="pre">Node</span></code> to the next.</p>
-<p>First, we load the <code class="docutils literal notranslate"><span class="pre">BIDSVariableCollection</span></code> objects, for the entire graph:</p>
+<section id="loading-variables">
+<h2>Loading variables<a class="headerlink" href="#loading-variables" title="Permalink to this heading">#</a></h2>
+<p>In order to compute the precise design matrices for each level of the model, we need to populate the graph with the specific variables availablet to each <code class="docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p>Here, we load the <code class="docutils literal notranslate"><span class="pre">BIDSVariableCollection</span></code> objects, for the entire graph:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">()</span>
 <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-    <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">453</span><span class="p">)</span>  <span class="c1"># TR = 1, nvols = 453; necessary if no BOLD data</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">227</span><span class="p">)</span> <span class="c1"># Necessary to define if no BOLD data</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can look at the variables available to the root node of the Graph:</p>
+<p>Let’s take a look at the variable available at the root <code class="docutils literal notranslate"><span class="pre">run</span></code> level</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">root_node</span>
@@ -526,14 +528,6 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
- &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
  &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
  &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;,
  &lt;BIDSRunVariableCollection[&#39;RT&#39;, &#39;gain&#39;, &#39;loss&#39;, &#39;participant_response&#39;]&gt;]
@@ -553,7 +547,8 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Note that there are multiple instances of the root node, one for each subject / run combination (the node’s <code class="docutils literal notranslate"><span class="pre">group_by</span></code> is : <code class="docutils literal notranslate"><span class="pre">['run',</span> <span class="pre">'subject']</span></code>). We can access the variables for a specific instance of the root node using <code class="docutils literal notranslate"><span class="pre">variables</span></code>:</p>
+<p>Note that there are multiple instances of the root node, one for each subject / run combination (the node’s <code class="docutils literal notranslate"><span class="pre">group_by</span></code> is : <code class="docutils literal notranslate"><span class="pre">['run',</span> <span class="pre">'subject']</span></code>).</p>
+<p>We can access the variables for a specific instance of the root node using <code class="docutils literal notranslate"><span class="pre">variables</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">variables</span>
@@ -561,58 +556,60 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;participant_response&#39;: &lt;SparseRunVariable(name=&#39;participant_response&#39;, source=&#39;events&#39;)&gt;,
- &#39;gain&#39;: &lt;SparseRunVariable(name=&#39;gain&#39;, source=&#39;events&#39;)&gt;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;gain&#39;: &lt;SparseRunVariable(name=&#39;gain&#39;, source=&#39;events&#39;)&gt;,
+ &#39;participant_response&#39;: &lt;SparseRunVariable(name=&#39;participant_response&#39;, source=&#39;events&#39;)&gt;,
  &#39;RT&#39;: &lt;SparseRunVariable(name=&#39;RT&#39;, source=&#39;events&#39;)&gt;,
  &#39;loss&#39;: &lt;SparseRunVariable(name=&#39;loss&#39;, source=&#39;events&#39;)&gt;}
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="running-nodes">
-<h2>Running nodes<a class="headerlink" href="#running-nodes" title="Permalink to this heading">#</a></h2>
-<p>Although the graph has defined how <code class="docutils literal notranslate"><span class="pre">Nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">Edges</span></code> are related, it has not yet defined the specific design matrices for each, as this requires knowing the specific variables associated with each <code class="docutils literal notranslate"><span class="pre">Node</span></code>. We can now run the graph to populate the design matrices for each <code class="docutils literal notranslate"><span class="pre">Node</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">group_by</span><span class="o">=</span><span class="n">root_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">,</span> <span class="n">force_dense</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ents</span> <span class="o">=</span> <span class="n">colls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">entities</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Subject ID: </span><span class="si">{</span><span class="n">ents</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Run ID: </span><span class="si">{</span><span class="n">ents</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/model-zoo/model-zoo/src/pybids/bids/modeling/statsmodels.py:710: UserWarning: Use &#39;Contrasts&#39; not &#39;Conditions&#39; or &#39;ConditionList&#39; to specifyDummyContrasts. Renaming to &#39;Contrasts&#39; for now.
-  warnings.warn(
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Subject ID: 001, Run ID: 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="executing-the-graph">
+<h2>Executing the graph<a class="headerlink" href="#executing-the-graph" title="Permalink to this heading">#</a></h2>
+<p>Although the graph has defined how <code class="docutils literal notranslate"><span class="pre">Nodes</span></code> and <code class="docutils literal notranslate"><span class="pre">Edges</span></code> are linked, and we’ve loaded variables, we need to execute the graph in order to obtain the precise design matrices of each <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
+<p>Executing the graph will begin with the root (in this case <code class="docutils literal notranslate"><span class="pre">run</span></code>), apply transformations, create a design matrix, and define the node’s outputs as determined by <code class="docutils literal notranslate"><span class="pre">Contrasts</span></code>.
+The outputs are then passed via <code class="docutils literal notranslate"><span class="pre">Edges</span></code> on the subsquent <code class="docutils literal notranslate"><span class="pre">Node</span></code>, and the process is repetead, until the entire graph is populated</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">run_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">graph</span><span class="o">.</span><span class="n">run_graph</span><span class="p">()</span>
+
+<span class="ne">AttributeError</span>: &#39;BIDSStatsModelsGraph&#39; object has no attribute &#39;run_graph&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <p>For each instance of the root node, a <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsNodeOutput</span></code> object is created, which contains the model specification, and final design matrix for each:</p>
+<p>root_node = graph.root_node
+len(root_node.outputs_)</p>
+</section>
+<section id="run-level-node">
+<h2>Run-level Node<a class="headerlink" href="#run-level-node" title="Permalink to this heading">#</a></h2>
+<p>Let’s take a look at the first output of the root node (i.e. <code class="docutils literal notranslate"><span class="pre">run</span></code> level)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 2, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 3, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 4, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 2, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 3, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 4, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;003&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 2, &#39;subject&#39;: &#39;003&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 3, &#39;subject&#39;: &#39;003&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=run, entities={&#39;run&#39;: 4, &#39;subject&#39;: &#39;003&#39;})&gt;]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_run</span> <span class="o">=</span> <span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_run</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">outputs_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -624,11 +621,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -637,141 +629,15 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>trials</th>
-      <th>gain</th>
-      <th>loss</th>
-      <th>demeaned_RT</th>
-      <th>intercept</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.000002</td>
-      <td>-0.000020</td>
-      <td>-0.000011</td>
-      <td>7.939675e-07</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-0.000005</td>
-      <td>0.000056</td>
-      <td>0.000032</td>
-      <td>-2.276861e-06</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.000014</td>
-      <td>-0.000159</td>
-      <td>-0.000091</td>
-      <td>6.446336e-06</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>-0.000037</td>
-      <td>0.000408</td>
-      <td>0.000235</td>
-      <td>-1.654103e-05</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.000073</td>
-      <td>-0.000812</td>
-      <td>-0.000468</td>
-      <td>3.296583e-05</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>448</th>
-      <td>0.729063</td>
-      <td>8.015666</td>
-      <td>5.652929</td>
-      <td>-2.061146e-01</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>449</th>
-      <td>0.576339</td>
-      <td>7.628444</td>
-      <td>4.549625</td>
-      <td>-1.434993e-01</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>450</th>
-      <td>0.397427</td>
-      <td>6.338474</td>
-      <td>3.218710</td>
-      <td>-8.201623e-02</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>451</th>
-      <td>0.237071</td>
-      <td>4.844265</td>
-      <td>2.008481</td>
-      <td>-3.181046e-02</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>452</th>
-      <td>0.097324</td>
-      <td>3.315304</td>
-      <td>0.939883</td>
-      <td>8.506043e-03</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>453 rows × 5 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot design matrix</span>
-<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<span class="n">plot_design_matrix</span><span class="p">(</span><span class="n">first_run</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: label=&#39;conditions&#39;, ylabel=&#39;scan number&#39;&gt;
-</pre></div>
 </div>
-<img alt="../../_images/235a1cb3a479904d5e8d61833eed73bf34c5b7e27c0cbf0e074a1aef0e025a5c.png" src="../../_images/235a1cb3a479904d5e8d61833eed73bf34c5b7e27c0cbf0e074a1aef0e025a5c.png" />
-</div>
-</div>
-<p>Finally, these are the contrasts for the root node:</p>
 <p>The contrasts specify the outputs of the <code class="docutils literal notranslate"><span class="pre">Node</span></code> that will be passed to subsequent Nodes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,53 +646,44 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;gain&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;gain&#39;}),
- ContrastInfo(name=&#39;loss&#39;, conditions=[&#39;loss&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;loss&#39;}),
- ContrastInfo(name=&#39;trials&#39;, conditions=[&#39;trials&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;run&#39;: 1, &#39;subject&#39;: &#39;001&#39;, &#39;contrast&#39;: &#39;trials&#39;})]
-</pre></div>
 </div>
-</div>
-</div>
-<section id="subject-level-model">
-<h3>Subject-level model<a class="headerlink" href="#subject-level-model" title="Permalink to this heading">#</a></h3>
-<p>Now that we have populated the design matrices for the run-level root node <code class="docutils literal notranslate"><span class="pre">Node</span></code>, we can advance the graph to the next level, and repeat the process.</p>
-<p>Here, the subsequent <code class="docutils literal notranslate"><span class="pre">Node</span></code> is a <code class="docutils literal notranslate"><span class="pre">subject</span></code> level fixed-effects meta-analysis model, which comibines run estimates, separately for each combination of <code class="docutils literal notranslate"><span class="pre">contrast</span></code> and <code class="docutils literal notranslate"><span class="pre">subject</span></code>.</p>
+</section>
+<section id="subject-level-node">
+<h2>Subject-level Node<a class="headerlink" href="#subject-level-node" title="Permalink to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">subject</span></code> node in this case is a fixed-effects meta-analysis model, which comibines run estimates, separately for each combination of <code class="docutils literal notranslate"><span class="pre">contrast</span></code> and <code class="docutils literal notranslate"><span class="pre">subject</span></code>.</p>
+<p>We can see how the root node connects to <code class="docutils literal notranslate"><span class="pre">subject</span></code>, via an <code class="docutils literal notranslate"><span class="pre">Edge</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_node</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_node</span><span class="o">.</span><span class="n">level</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;subject&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_node</span><span class="o">.</span><span class="n">group_by</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;subject&#39;, &#39;contrast&#39;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_node</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">destination</span>
+<span class="n">subject_node</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In order to populate the <code class="docutils literal notranslate"><span class="pre">subject</span></code> level node, we need to pass the outputs from the previous <code class="docutils literal notranslate"><span class="pre">run</span></code> level <code class="docutils literal notranslate"><span class="pre">Node</span></code> as inputs to the subsequent <code class="docutils literal notranslate"><span class="pre">Node</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contrasts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">contrasts</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">specs</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_node</span><span class="o">.</span><span class="n">level</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_node</span><span class="o">.</span><span class="n">group_by</span>
 </pre></div>
 </div>
 </div>
@@ -834,21 +691,8 @@ document.write(`
 <p>Since the <code class="docutils literal notranslate"><span class="pre">subject</span></code> level <code class="docutils literal notranslate"><span class="pre">Node</span></code> is <code class="docutils literal notranslate"><span class="pre">group_by</span></code> : <code class="docutils literal notranslate"><span class="pre">['subject',</span> <span class="pre">'contrast']</span></code>, each combination of <code class="docutils literal notranslate"><span class="pre">subject</span></code> and <code class="docutils literal notranslate"><span class="pre">contrast</span></code> will have a separate <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsNodeOutput</span></code> object:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">contrasts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span> <span class="o">=</span> <span class="n">subject_node</span><span class="o">.</span><span class="n">outputs_</span>
 <span class="n">sub_specs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;001&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;002&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=subject, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;subject&#39;: &#39;003&#39;})&gt;]
 </pre></div>
 </div>
 </div>
@@ -856,128 +700,28 @@ document.write(`
 <p>Taking a look at a single Nodes’s specification, the design matrix (<code class="docutils literal notranslate"><span class="pre">X</span></code>) is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">X</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>intercept</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>In this case, we are applying a simple intercept model which is equivalent to a one-sample t-test.</p>
 <p>To understand which inputs are associated with this design, we can look at the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> attribute:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>contrast</th>
-      <th>run</th>
-      <th>subject</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>gain</td>
-      <td>1</td>
-      <td>002</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>gain</td>
-      <td>2</td>
-      <td>002</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>gain</td>
-      <td>3</td>
-      <td>002</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>gain</td>
-      <td>4</td>
-      <td>002</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
-<p>Finally the contrast for this <code class="docutils literal notranslate"><span class="pre">Node</span></code> simply passes forward the intercept:</p>
+<p>Finally the contrast for this <code class="docutils literal notranslate"><span class="pre">Node</span></code> simply passes forward the intercept estimate:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">contrasts</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;gain&#39;, conditions=[&#39;intercept&#39;], weights=[1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;subject&#39;: &#39;002&#39;})]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sub_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contrasts</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 <section id="group-level-nodes">
 <h3>Group-level Nodes<a class="headerlink" href="#group-level-nodes" title="Permalink to this heading">#</a></h3>
 <p>Remember that the group-level of this model, we defined three separate <code class="docutils literal notranslate"><span class="pre">Nodes</span></code>, each performing a different analysis.</p>
@@ -996,18 +740,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Level&#39;: &#39;Dataset&#39;,
- &#39;Name&#39;: &#39;negative-loss&#39;,
- &#39;GroupBy&#39;: [&#39;contrast&#39;, &#39;group&#39;],
- &#39;Model&#39;: {&#39;X&#39;: [1]},
- &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;negative&#39;,
-   &#39;ConditionList&#39;: [1],
-   &#39;Weights&#39;: [-1],
-   &#39;Test&#39;: &#39;t&#39;}]}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1015,21 +747,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Source&#39;: &#39;subject&#39;, &#39;Destination&#39;: &#39;positive&#39;}
-</pre></div>
-</div>
-</div>
 </div>
 <p>This <code class="docutils literal notranslate"><span class="pre">Node</span></code> specifies to run a separate one-sample t-test for each contrast, for each group separately (<code class="docutils literal notranslate"><span class="pre">'GroupBy':</span> <span class="pre">['contrast',</span> <span class="pre">'group']</span></code>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare subject-level Node output contrasts</span>
-<span class="n">sub_contrasts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">contrasts</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sub_specs</span><span class="p">]))</span>
-
-<span class="c1"># Run &quot;positive&quot; Node</span>
-<span class="n">ds0_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
-<span class="n">ds0_specs</span> <span class="o">=</span> <span class="n">ds0_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run &quot;positive&quot; Node</span>
+<span class="n">ds0_node</span> <span class="o">=</span> <span class="n">subject_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
+<span class="n">ds0_specs</span> <span class="o">=</span> <span class="n">ds0_node</span><span class="o">.</span><span class="n">outputs_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds0_node</span>
 </pre></div>
 </div>
 </div>
@@ -1041,16 +772,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;gain&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;loss&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;,
- &lt;BIDSStatsModelsNodeOutput(level=positive, entities={&#39;contrast&#39;: &#39;trials&#39;, &#39;group&#39;: &#39;equalRange&#39;})&gt;]
-</pre></div>
-</div>
-</div>
 </div>
 <p>Taking a look at this first, we can see the model is a simple intercept model, which is equivalent to a one-sample t-test:</p>
 <div class="cell docutils container">
@@ -1059,40 +780,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>intercept</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>With the following inputs:</p>
 <div class="cell docutils container">
@@ -1101,43 +788,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>contrast</th>
-      <th>subject</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>gain</td>
-      <td>001</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>gain</td>
-      <td>003</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="negative-loss-node-within-groups">
@@ -1151,19 +801,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Level&#39;: &#39;Dataset&#39;,
- &#39;Name&#39;: &#39;between-groups&#39;,
- &#39;GroupBy&#39;: [&#39;contrast&#39;],
- &#39;Model&#39;: {&#39;X&#39;: [1, &#39;group&#39;], &#39;Formula&#39;: &#39;0 + C(group)&#39;},
- &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;range_vs_indiference&#39;,
-   &#39;ConditionList&#39;: [&#39;C(group)[T.equalRange]&#39;,
-    &#39;C(group)[T.equalIndifference]&#39;],
-   &#39;Weights&#39;: [1, -1],
-   &#39;Test&#39;: &#39;t&#39;}]}
-</pre></div>
-</div>
-</div>
 </div>
 <p>The corresponding <code class="docutils literal notranslate"><span class="pre">Edge</span></code> specifies to <code class="docutils literal notranslate"><span class="pre">Filter</span></code> the input to only include the ‘loss’ contrast:</p>
 <div class="cell docutils container">
@@ -1172,18 +809,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Source&#39;: &#39;subject&#39;,
- &#39;Destination&#39;: &#39;between-groups&#39;,
- &#39;Filter&#39;: {&#39;contrast&#39;: [&#39;loss&#39;]}}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span>
-<span class="n">ds1_specs</span> <span class="o">=</span> <span class="n">ds1_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span><span class="o">**</span><span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_node</span> <span class="o">=</span> <span class="n">subject_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span>
+<span class="n">ds1_specs</span> <span class="o">=</span> <span class="n">subject_node</span><span class="o">.</span><span class="n">outputs_</span>
 </pre></div>
 </div>
 </div>
@@ -1195,40 +825,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>intercept</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1236,53 +832,11 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>contrast</th>
-      <th>subject</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>loss</td>
-      <td>001</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>loss</td>
-      <td>003</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Finally, looking at the contrasts, we can see that the ‘loss’ contrast is passed forward, but with the positive direction flipped:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds1_specs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contrasts</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ContrastInfo(name=&#39;loss_negative&#39;, conditions=[&#39;intercept&#39;], weights=[-1], test=&#39;t&#39;, entities={&#39;contrast&#39;: &#39;loss_negative&#39;, &#39;group&#39;: &#39;equalIndifference&#39;})]
 </pre></div>
 </div>
 </div>
@@ -1299,19 +853,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Level&#39;: &#39;Dataset&#39;,
- &#39;Name&#39;: &#39;between-groups&#39;,
- &#39;GroupBy&#39;: [&#39;contrast&#39;],
- &#39;Model&#39;: {&#39;X&#39;: [1, &#39;group&#39;], &#39;Formula&#39;: &#39;0 + C(group)&#39;},
- &#39;Contrasts&#39;: [{&#39;Name&#39;: &#39;range_vs_indiference&#39;,
-   &#39;ConditionList&#39;: [&#39;C(group)[T.equalRange]&#39;,
-    &#39;C(group)[T.equalIndifference]&#39;],
-   &#39;Weights&#39;: [1, -1],
-   &#39;Test&#39;: &#39;t&#39;}]}
-</pre></div>
-</div>
-</div>
 </div>
 <p>In addition, this <code class="docutils literal notranslate"><span class="pre">Node</span></code> uses <code class="docutils literal notranslate"><span class="pre">Formula</span></code> notation to specify the model. The <code class="docutils literal notranslate"><span class="pre">C(group)</span></code> term specifies a categorical variable, which will be used to specify the between-group comparison.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">Contrast</span></code> section, we can refer to specific levels of the categorical variable using the <code class="docutils literal notranslate"><span class="pre">C()</span></code> notation. Here, we specify a contrast of <code class="docutils literal notranslate"><span class="pre">C(group)[T.equalRange]</span> <span class="pre">-</span> <span class="pre">C(group)[T.equalIndifference]</span></code>, with weights <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">-1]</span></code>.</p>
@@ -1322,28 +863,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Source&#39;: &#39;subject&#39;,
- &#39;Destination&#39;: &#39;between-groups&#39;,
- &#39;Filter&#39;: {&#39;contrast&#39;: [&#39;loss&#39;]}}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running between-subject Node</span>
-<span class="n">ds2_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
-<span class="n">filters</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">filter</span> <span class="ow">or</span> <span class="p">{}</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
-<span class="n">ds2_specs</span> <span class="o">=</span> <span class="n">ds2_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sub_contrasts</span><span class="p">,</span> <span class="o">**</span><span class="n">filters</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ds2_specs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;contrast&#39;: [&#39;loss&#39;]}
-[&lt;BIDSStatsModelsNodeOutput(level=between-groups, entities={&#39;contrast&#39;: &#39;loss&#39;})&gt;]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get next node from subject</span>
+<span class="n">ds2_node</span> <span class="o">=</span> <span class="n">subject_node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">destination</span> 
+<span class="n">ds2_specs</span> <span class="o">=</span> <span class="n">ds2_node</span><span class="o">.</span><span class="n">outputs_</span>
 </pre></div>
 </div>
 </div>
@@ -1355,48 +880,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C(group)[T.equalIndifference]</th>
-      <th>C(group)[T.equalRange]</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1404,52 +887,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>contrast</th>
-      <th>subject</th>
-      <th>suffix</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>loss</td>
-      <td>001</td>
-      <td>participants</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>loss</td>
-      <td>002</td>
-      <td>participants</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>loss</td>
-      <td>003</td>
-      <td>participants</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 </section>
@@ -1523,10 +960,11 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-model">Initializing Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populating-the-graph">Populating the Graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-nodes">Running nodes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subject-level-model">Subject-level model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-bidsstatsmodelsgraph">Initializing <code class="docutils literal notranslate"><span class="pre">BIDSStatsModelsGraph</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-variables">Loading variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-the-graph">Executing the graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-level-node">Run-level Node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subject-level-node">Subject-level Node</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#group-level-nodes">Group-level Nodes</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#positive-node-within-groups">“Positive” Node (Within-Groups)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-loss-node-within-groups">“Negative-Loss” Node (Within-Groups)</a></li>

@@ -487,17 +487,14 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">root_node</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">320</span><span class="p">)</span> <span class="c1"># Set scan_length in case images not available</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">()</span>
-<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-    <span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">320</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">run_graph</span><span class="p">(</span><span class="n">transformation_history</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_reports</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">=</span><span class="s1">&#39;fill&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -511,21 +508,15 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span><span class="o">.</span><span class="n">get_collections</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">entities</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root_node</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">root_node</span>
+<span class="n">root_node</span><span class="o">.</span><span class="n">get_collections</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">entities</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">load_collections</span><span class="p">(</span><span class="n">scan_length</span><span class="o">=</span><span class="mi">320</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">group_by</span><span class="o">=</span><span class="n">root_node</span><span class="o">.</span><span class="n">group_by</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">specs</span> <span class="o">=</span> <span class="n">root_node</span><span class="o">.</span><span class="n">outputs_</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">specs</span><span class="p">)</span>
 </pre></div>
 </div>

@@ -65,14 +65,11 @@ graph = BIDSStatsModelsGraph(layout, spec)
 ```
 
 ```{code-cell} ipython3
-root_node = graph.root_node
+graph.load_collections(scan_length=320) # Set scan_length in case images not available
 ```
 
 ```{code-cell} ipython3
-try:
-    graph.load_collections()
-except ValueError:
-    graph.load_collections(scan_length=320)
+graph.run_graph(transformation_history=True, node_reports=True, missing_values='fill')
 ```
 
 ```{code-cell} ipython3
@@ -80,15 +77,12 @@ collections = layout.get_collections('run', task='rhymejudgment', scan_length=32
 ```
 
 ```{code-cell} ipython3
+root_node = graph.root_node
 root_node.get_collections()[-1].entities
 ```
 
 ```{code-cell} ipython3
-graph.load_collections(scan_length=320)
-```
-
-```{code-cell} ipython3
-specs = root_node.run(group_by=root_node.group_by)
+specs = root_node.outputs_
 len(specs)
 ```
 
