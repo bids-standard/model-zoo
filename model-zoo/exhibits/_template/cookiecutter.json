@@ -1,0 +1,12 @@
+{
+"exhibit_name": "Name of the exhibit folder name",
+"description": "A short description of the example.",
+"model_json_path": "Path to BIDS StatsModel file ending in _smdl.json",
+"model_json_rel_path": "Relatively path to BIDS StatsModel file ending in _smdl.json",
+"scan_length": "Scan length (in seconds). This is used to calculate design matrices without fetching the data.",
+"dataset_url": "URL of the dataset you wish to use",
+"preproc_url": "URL of the preprocessed dataset you wish to use",
+"dataset_path": "URL of the dataset you wish to use",
+"preproc_path": "URL of the preprocessed dataset you wish to use",
+"toc": "Update the table of contents"
+}
