@@ -65,14 +65,11 @@ graph = BIDSStatsModelsGraph(layout, spec)
 ```
 
 ```{code-cell} ipython3
-try:
-    graph.load_collections()
-except ValueError:
-    graph.load_collections(scan_length=320)
+graph.load_collections(scan_length=320) # Set scan_length in case images not available
 ```
 
 ```{code-cell} ipython3
-graph.run_graph(transformation_history=True, node_reports=True)
+graph.run_graph(transformation_history=True, node_reports=True, missing_values='fill')
 ```
 
 ```{code-cell} ipython3
