@@ -38,7 +38,7 @@
         "Type": "glm"
       },
       "DummyContrasts": {
-        "Conditions": ["trials", "gain", "loss"],
+        "Contrasts": ["trials", "gain", "loss"],
         "Test": "t"
       }
     },
