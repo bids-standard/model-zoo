@@ -25,46 +25,51 @@ layout = BIDSLayout('./ds000003', derivatives='./ds000003-fmriprep')
 Cell [0;32mIn[4], line 1[0m
 [0;32m----> 1[0m layout [38;5;241m=[39m [43mBIDSLayout[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43m./ds000003[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mderivatives[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43m./ds000003-fmriprep[39;49m[38;5;124;43m'[39;49m[43m)[49m
 
-File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:158[0m, in [0;36mBIDSLayout.__init__[0;34m(self, root, validate, absolute_paths, derivatives, config, sources, regex_search, database_path, reset_database, indexer, **indexer_kwargs)[0m
-[1;32m    156[0m [38;5;28;01mif[39;00m derivatives [38;5;129;01mis[39;00m [38;5;28;01mTrue[39;00m:
-[1;32m    157[0m     derivatives [38;5;241m=[39m root [38;5;241m/[39m [38;5;124m'[39m[38;5;124mderivatives[39m[38;5;124m'[39m
-[0;32m--> 158[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43madd_derivatives[49m[43m([49m
-[1;32m    159[0m [43m    [49m[43mderivatives[49m[43m,[49m[43m [49m[43mparent_database_path[49m[38;5;241;43m=[39;49m[43mdatabase_path[49m[43m,[49m
-[1;32m    160[0m [43m    [49m[43mvalidate[49m[38;5;241;43m=[39;49m[43mvalidate[49m[43m,[49m[43m [49m[43mabsolute_paths[49m[38;5;241;43m=[39;49m[43mabsolute_paths[49m[43m,[49m
-[1;32m    161[0m [43m    [49m[43mderivatives[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m[43m [49m[43msources[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mconfig[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
-[1;32m    162[0m [43m    [49m[43mregex_search[49m[38;5;241;43m=[39;49m[43mregex_search[49m[43m,[49m[43m [49m[43mreset_database[49m[38;5;241;43m=[39;49m[43mreset_database[49m[43m,[49m
-[1;32m    163[0m [43m    [49m[43mindexer[49m[38;5;241;43m=[39;49m[43mindexer[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mindexer_kwargs[49m[43m)[49m
+File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:182[0m, in [0;36mBIDSLayout.__init__[0;34m(self, root, validate, absolute_paths, derivatives, config, sources, regex_search, database_path, reset_database, indexer, is_derivative, **indexer_kwargs)[0m
+[1;32m    180[0m [38;5;28;01mif[39;00m derivatives [38;5;129;01mis[39;00m [38;5;28;01mTrue[39;00m:
+[1;32m    181[0m     derivatives [38;5;241m=[39m root [38;5;241m/[39m [38;5;124m'[39m[38;5;124mderivatives[39m[38;5;124m'[39m
+[0;32m--> 182[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43madd_derivatives[49m[43m([49m
+[1;32m    183[0m [43m    [49m[43mderivatives[49m[43m,[49m[43m [49m[43mparent_database_path[49m[38;5;241;43m=[39;49m[43mdatabase_path[49m[43m,[49m
+[1;32m    184[0m [43m    [49m[43mvalidate[49m[38;5;241;43m=[39;49m[43mvalidate[49m[43m,[49m[43m [49m[43mabsolute_paths[49m[38;5;241;43m=[39;49m[43mabsolute_paths[49m[43m,[49m
+[1;32m    185[0m [43m    [49m[43mderivatives[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m[43m [49m[43msources[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mconfig[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
+[1;32m    186[0m [43m    [49m[43mregex_search[49m[38;5;241;43m=[39;49m[43mregex_search[49m[43m,[49m[43m [49m[43mreset_database[49m[38;5;241;43m=[39;49m[43mreset_database[49m[43m,[49m
+[1;32m    187[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mindexer_kwargs[49m[43m)[49m
 
-File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:483[0m, in [0;36mBIDSLayout.add_derivatives[0;34m(self, path, parent_database_path, **kwargs)[0m
-[1;32m    481[0m     child_database_path [38;5;241m=[39m parent_database_path [38;5;241m/[39m name
-[1;32m    482[0m     kwargs[[38;5;124m'[39m[38;5;124mdatabase_path[39m[38;5;124m'[39m] [38;5;241m=[39m child_database_path
-[0;32m--> 483[0m [38;5;28mself[39m[38;5;241m.[39mderivatives[name] [38;5;241m=[39m [43mBIDSLayout[49m[43m([49m[43mderiv[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:534[0m, in [0;36mBIDSLayout.add_derivatives[0;34m(self, path, parent_database_path, **kwargs)[0m
+[1;32m    529[0m [38;5;28;01mif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mderivatives:
+[1;32m    530[0m     [38;5;28;01mraise[39;00m BIDSDerivativesValidationError(
+[1;32m    531[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mPipeline name [39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[38;5;124m ([39m[38;5;132;01m{[39;00mpath[38;5;132;01m!s}[39;00m[38;5;124m) has already been added to this [39m[38;5;124m"[39m
+[1;32m    532[0m         [38;5;124m"[39m[38;5;124mBIDSLayout. Every added pipeline must have a unique name![39m[38;5;124m"[39m
+[1;32m    533[0m     )
+[0;32m--> 534[0m [38;5;28mself[39m[38;5;241m.[39mderivatives[name] [38;5;241m=[39m [43mBIDSLayout[49m[43m([49m[43mpath[49m[43m,[49m[43m [49m[43mis_derivative[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
 
-File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:152[0m, in [0;36mBIDSLayout.__init__[0;34m(self, root, validate, absolute_paths, derivatives, config, sources, regex_search, database_path, reset_database, indexer, **indexer_kwargs)[0m
-[1;32m    150[0m     [38;5;28;01mif[39;00m indexer [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[1;32m    151[0m         indexer [38;5;241m=[39m BIDSLayoutIndexer(validate[38;5;241m=[39mvalidate, [38;5;241m*[39m[38;5;241m*[39mindexer_kwargs)
-[0;32m--> 152[0m     [43mindexer[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
-[1;32m    154[0m [38;5;66;03m# Add derivatives if any are found[39;00m
-[1;32m    155[0m [38;5;28;01mif[39;00m derivatives:
+File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/layout.py:176[0m, in [0;36mBIDSLayout.__init__[0;34m(self, root, validate, absolute_paths, derivatives, config, sources, regex_search, database_path, reset_database, indexer, is_derivative, **indexer_kwargs)[0m
+[1;32m    172[0m     [38;5;28;01mif[39;00m indexer [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    173[0m         indexer [38;5;241m=[39m BIDSLayoutIndexer(
+[1;32m    174[0m             validate[38;5;241m=[39mvalidate [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m is_derivative, [38;5;241m*[39m[38;5;241m*[39mindexer_kwargs
+[1;32m    175[0m         )
+[0;32m--> 176[0m     [43mindexer[49m[43m([49m[38;5;28;43mself[39;49m[43m)[49m
+[1;32m    178[0m [38;5;66;03m# Add derivatives if any are found[39;00m
+[1;32m    179[0m [38;5;28;01mif[39;00m derivatives:
 
-File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/index.py:153[0m, in [0;36mBIDSLayoutIndexer.__call__[0;34m(self, layout)[0m
-[1;32m    151[0m [38;5;28mself[39m[38;5;241m.[39m_index_dir([38;5;28mself[39m[38;5;241m.[39m_layout[38;5;241m.[39m_root, [38;5;28mself[39m[38;5;241m.[39m_config)
-[1;32m    152[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mindex_metadata:
-[0;32m--> 153[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_index_metadata[49m[43m([49m[43m)[49m
+File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/index.py:150[0m, in [0;36mBIDSLayoutIndexer.__call__[0;34m(self, layout)[0m
+[1;32m    148[0m [38;5;28mself[39m[38;5;241m.[39m_index_dir([38;5;28mself[39m[38;5;241m.[39m_layout[38;5;241m.[39m_root, [38;5;28mself[39m[38;5;241m.[39m_config)
+[1;32m    149[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mindex_metadata:
+[0;32m--> 150[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_index_metadata[49m[43m([49m[43m)[49m
 
-File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/index.py:419[0m, in [0;36mBIDSLayoutIndexer._index_metadata[0;34m(self)[0m
-[1;32m    417[0m [38;5;28;01mfor[39;00m pl, js_file [38;5;129;01min[39;00m payloads[::[38;5;241m-[39m[38;5;241m1[39m]:
-[1;32m    418[0m     [38;5;28;01mtry[39;00m:
-[0;32m--> 419[0m         file_md[38;5;241m.[39mupdate([43mpl[49m[43m([49m[43m)[49m)
-[1;32m    420[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mFileNotFoundError[39;00m:
-[1;32m    421[0m         [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m virtual_datafile:
+File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/index.py:403[0m, in [0;36mBIDSLayoutIndexer._index_metadata[0;34m(self)[0m
+[1;32m    401[0m [38;5;28;01mfor[39;00m pl, js_file [38;5;129;01min[39;00m payloads[::[38;5;241m-[39m[38;5;241m1[39m]:
+[1;32m    402[0m     [38;5;28;01mtry[39;00m:
+[0;32m--> 403[0m         file_md[38;5;241m.[39mupdate([43mpl[49m[43m([49m[43m)[49m)
+[1;32m    404[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mFileNotFoundError[39;00m:
+[1;32m    405[0m         [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m virtual_datafile:
 
-File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/index.py:311[0m, in [0;36mBIDSLayoutIndexer._index_metadata.<locals>.load_json[0;34m(path)[0m
-[1;32m    309[0m [38;5;129m@lru_cache[39m(maxsize[38;5;241m=[39m[38;5;28;01mNone[39;00m)
-[1;32m    310[0m [38;5;28;01mdef[39;00m [38;5;21mload_json[39m(path):
-[0;32m--> 311[0m     [38;5;28;01mwith[39;00m [38;5;28;43mopen[39;49m[43m([49m[43mpath[49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mr[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mutf-8[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;28;01mas[39;00m handle:
-[1;32m    312[0m         [38;5;28;01mtry[39;00m:
-[1;32m    313[0m             [38;5;28;01mreturn[39;00m json[38;5;241m.[39mload(handle)
+File [0;32m~/work/model-zoo/model-zoo/src/pybids/bids/layout/index.py:293[0m, in [0;36mBIDSLayoutIndexer._index_metadata.<locals>.load_json[0;34m(path)[0m
+[1;32m    291[0m [38;5;129m@lru_cache[39m(maxsize[38;5;241m=[39m[38;5;28;01mNone[39;00m)
+[1;32m    292[0m [38;5;28;01mdef[39;00m [38;5;21mload_json[39m(path):
+[0;32m--> 293[0m     [38;5;28;01mwith[39;00m [38;5;28;43mopen[39;49m[43m([49m[43mpath[49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mr[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mutf-8[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;28;01mas[39;00m handle:
+[1;32m    294[0m         [38;5;28;01mtry[39;00m:
+[1;32m    295[0m             [38;5;28;01mreturn[39;00m json[38;5;241m.[39mload(handle)
 
 [0;31mNotADirectoryError[0m: [Errno 20] Not a directory: '/home/runner/work/model-zoo/model-zoo/model-zoo/exhibits/ds003/ds000003-fmriprep/sub-01/func/sub-01_task-rhymejudgment_desc-confounds_timeseries.json'
 NotADirectoryError: [Errno 20] Not a directory: '/home/runner/work/model-zoo/model-zoo/model-zoo/exhibits/ds003/ds000003-fmriprep/sub-01/func/sub-01_task-rhymejudgment_desc-confounds_timeseries.json'
