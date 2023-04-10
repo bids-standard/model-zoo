@@ -8,6 +8,6 @@ notebook
 jupytext
 -e git+https://github.com/bids-standard/stats-models.git#egg=bsmschema&subdirectory=bsmschema
 jupyter-book
--e git+https://www.github.com/bids-standard/pybids.git@c411a86#egg=pybids
+-e git+https://www.github.com/bids-standard/pybids.git@cae49f0#egg=pybids
 altair
 jinja2
