@@ -56,3 +56,8 @@
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000005.git
 [submodule "model-zoo/exhibits/ds000114/ds000114"]
 	datalad-url = https://github.com/OpenNeuroDatasets/ds000114
+[submodule "model-zoo/exhibits/ds000114/ds000114-fmriprep"]
+	path = model-zoo/exhibits/ds000114/ds000114-fmriprep
+	url = https://github.com/OpenNeuroDerivatives/ds000114-fmriprep
+	datalad-id = ee6f2bd5-62ba-4869-850e-6df4228bc940
+	datalad-url = https://github.com/OpenNeuroDerivatives/ds000114-fmriprep
