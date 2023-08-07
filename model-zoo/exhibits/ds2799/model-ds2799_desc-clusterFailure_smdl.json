@@ -1,0 +1,56 @@
+{
+  "Name": "ds002799 cluster failure",
+  "Description": "example on how to run a dummy GLM on resting state data",
+  "BIDSModelVersion": "1.0.0",
+  "Input": {
+    "task": [
+      "rest"
+    ]
+  },
+  "Nodes": [
+    {
+      "Level": "Run",
+      "Name": "run",
+      "GroupBy": [
+        "run",
+        "session",
+        "subject"
+      ],
+      "Transformations":{
+        "Transformer":"pybids-transforms-v1",
+        "Instructions":[
+          {
+            "Name":"Factor",
+            "Input":[
+              "trial_type"
+            ]
+          },
+          {
+            "Name":"Convolve",
+            "Input":[
+              "trial_type.dummy"
+            ],
+            "Model":"spm"
+          }
+        ]
+      },
+      "Model": {
+        "X": [
+          "rot*",
+          "trans*",
+          "white_matter",
+          "csf",
+          1
+        ],
+        "Type": "glm",
+        "Options": {
+          "HighPassFilterCutoffHz": 0.008,
+          "Mask": {
+            "desc": ["brain"],
+            "suffix": ["mask"]
+          }
+        }
+      }
+    }
+  ]
+}
